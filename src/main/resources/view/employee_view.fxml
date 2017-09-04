@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="555.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.qwerfghi.database.controller.EmployeeViewController">
+   <center>
+      <TableView fx:id="table" prefHeight="555.0" prefWidth="829.0" BorderPane.alignment="CENTER">
+        <columns>
+            <TableColumn fx:id="NameColumn" prefWidth="94.0" text="Имя" />
+          <TableColumn fx:id="lNameColumn" prefWidth="92.0" text="Фамилия" />
+          <TableColumn fx:id="PatronymicColumn" prefWidth="110.0" text="Отчетство" />
+            <TableColumn fx:id="DateColumn" prefWidth="75.0" text="Дата найма" />
+            <TableColumn fx:id="positionColumn" prefWidth="92.0" text="Должность" />
+            <TableColumn fx:id="PassportColumn" prefWidth="110.0" text="Номер паспорта" />
+            <TableColumn fx:id="PhoneNumColumn" prefWidth="75.0" text="Номер телефона" />
+            <TableColumn fx:id="EmailColumn" prefWidth="75.0" text="Email" />
+        </columns>
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
+      </TableView>
+   </center>
+   <left>
+      <VBox alignment="CENTER" prefHeight="555.0" prefWidth="173.0" BorderPane.alignment="CENTER">
+         <children>
+            <TextField fx:id="eName" promptText="Имя работника">
+               <VBox.margin>
+                  <Insets bottom="15.0" />
+               </VBox.margin>
+            </TextField>
+            <TextField fx:id="eLName" promptText="Фамили работника">
+               <VBox.margin>
+                  <Insets bottom="15.0" />
+               </VBox.margin>
+            </TextField>
+            <TextField fx:id="ePatronymic" promptText="Отчество работника">
+               <VBox.margin>
+                  <Insets bottom="15.0" />
+               </VBox.margin>
+            </TextField>
+            <DatePicker fx:id="eDate" prefHeight="25.0" prefWidth="196.0" promptText="Дата найма">
+               <VBox.margin>
+                  <Insets bottom="15.0" />
+               </VBox.margin>
+            </DatePicker>
+            <TextField fx:id="ePosition" promptText="Должность">
+               <VBox.margin>
+                  <Insets bottom="15.0" />
+               </VBox.margin>
+            </TextField>
+            <TextField fx:id="ePassport" promptText="Номер паспорта">
+               <VBox.margin>
+                  <Insets bottom="15.0" />
+               </VBox.margin>
+            </TextField>
+            <TextField fx:id="ePhone" promptText="Номер телефона">
+               <VBox.margin>
+                  <Insets bottom="15.0" />
+               </VBox.margin>
+            </TextField>
+            <TextField fx:id="eEmail" promptText="Email">
+               <VBox.margin>
+                  <Insets bottom="15.0" />
+               </VBox.margin>
+            </TextField>
+            <Button mnemonicParsing="false" onAction="#OnEmployee" text="Добавить работника">
+               <VBox.margin>
+                  <Insets bottom="50.0" />
+               </VBox.margin>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#OnDelete" text="Удалить работника" />
+         </children>
+      </VBox>
+   </left>
+</BorderPane>

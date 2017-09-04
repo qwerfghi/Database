@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.qwerfghi.database.controller.RegistrationController">
+   <top>
+      <ToolBar nodeOrientation="RIGHT_TO_LEFT" prefHeight="40.0">
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
+         <items>
+            <Button focusTraversable="false" mnemonicParsing="false" onAction="#onLogIn" prefWidth="65.0" text="Вход" />
+         </items>
+      </ToolBar>
+   </top>
+   <center>
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <VBox alignment="CENTER" prefHeight="560.0" prefWidth="348.0">
+               <children>
+                  <HBox prefHeight="150.0" prefWidth="224.0">
+                     <children>
+                        <VBox prefHeight="150.0" prefWidth="160.0">
+                           <children>
+                              <TextField fx:id="loginField" focusTraversable="false" promptText="Логин">
+                                 <VBox.margin>
+                                    <Insets bottom="10.0" />
+                                 </VBox.margin>
+                              </TextField>
+                              <PasswordField fx:id="passwordField_1" focusTraversable="false" promptText="Пароль">
+                                 <VBox.margin>
+                                    <Insets bottom="10.0" />
+                                 </VBox.margin>
+                              </PasswordField>
+                              <PasswordField fx:id="passwordField_2" focusTraversable="false" promptText="Повторите пароль">
+                                 <VBox.margin>
+                                    <Insets bottom="10.0" />
+                                 </VBox.margin>
+                              </PasswordField>
+                              <TextField fx:id="firstName" focusTraversable="false" promptText="Имя">
+                                 <VBox.margin>
+                                    <Insets bottom="10.0" />
+                                 </VBox.margin>
+                              </TextField>
+                              <TextField fx:id="lastName" focusTraversable="false" promptText="Фамилия">
+                                 <VBox.margin>
+                                    <Insets bottom="10.0" />
+                                 </VBox.margin>
+                              </TextField>
+                              <TextField fx:id="patronymic" promptText="Отчетсво">
+                                 <VBox.margin>
+                                    <Insets bottom="10.0" />
+                                 </VBox.margin>
+                              </TextField>
+                              <TextField fx:id="passNum" promptText="Номер паспорта">
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                              </TextField>
+                           </children>
+                        </VBox>
+                        <VBox prefHeight="210.0" prefWidth="188.0">
+                           <children>
+                              <TextField fx:id="phoneNum" promptText="Телефонный номер">
+                                 <VBox.margin>
+                                    <Insets bottom="10.0" />
+                                 </VBox.margin>
+                              </TextField>
+                              <TextField fx:id="email" promptText="Email">
+                                 <VBox.margin>
+                                    <Insets bottom="10.0" />
+                                 </VBox.margin>
+                              </TextField>
+                              <TextField fx:id="region" promptText="Область">
+                                 <VBox.margin>
+                                    <Insets bottom="10.0" />
+                                 </VBox.margin>
+                              </TextField>
+                              <TextField fx:id="locality" promptText="Город/населенный пункт">
+                                 <VBox.margin>
+                                    <Insets bottom="10.0" />
+                                 </VBox.margin>
+                              </TextField>
+                              <TextField fx:id="street" promptText="Улица">
+                                 <VBox.margin>
+                                    <Insets bottom="10.0" />
+                                 </VBox.margin>
+                              </TextField>
+                              <TextField fx:id="houseNum" prefHeight="25.0" prefWidth="123.0" promptText="Дом">
+                                 <VBox.margin>
+                                    <Insets bottom="10.0" />
+                                 </VBox.margin>
+                              </TextField>
+                              <TextField fx:id="apartmentNum" prefHeight="25.0" prefWidth="119.0" promptText="Квартира">
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                              </TextField>
+                           </children>
+                           <padding>
+                              <Insets left="20.0" />
+                           </padding>
+                        </VBox>
+                     </children>
+                  </HBox>
+                  <Button alignment="CENTER" focusTraversable="false" mnemonicParsing="false" onAction="#onRegistration" prefWidth="150.0" text="Зарегистрироваться">
+                     <VBox.margin>
+                        <Insets top="15.0" />
+                     </VBox.margin>
+                  </Button>
+               </children>
+            </VBox>
+            <VBox alignment="CENTER" maxWidth="324.0" prefHeight="560.0" prefWidth="324.0">
+               <children>
+                  <Label text="Добавьте питомцев:">
+                     <VBox.margin>
+                        <Insets bottom="20.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="petName" maxWidth="150.0" prefHeight="25.0" prefWidth="181.0" promptText="Имя питомца">
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                  </TextField>
+                  <TextField fx:id="petAge" maxWidth="150.0" promptText="Возраст питомца (лет)">
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                  </TextField>
+                  <Label text="Вид питомца:" />
+                  <ChoiceBox fx:id="animalType" prefWidth="150.0">
+                     <VBox.margin>
+                        <Insets bottom="15.0" />
+                     </VBox.margin>
+                  </ChoiceBox>
+                  <TextArea fx:id="petNotice" prefHeight="200.0" prefWidth="200.0" promptText="Примечания" />
+                  <Button mnemonicParsing="false" onAction="#onPet" text="Добавить питомца">
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </Button>
+               </children>
+               <HBox.margin>
+                  <Insets left="50.0" />
+               </HBox.margin>
+            </VBox>
+         </children>
+      </HBox>
+   </center>
+</BorderPane>

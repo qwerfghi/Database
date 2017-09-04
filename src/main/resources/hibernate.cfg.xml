@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration SYSTEM "http://hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+        <property name="connection.url">jdbc:mysql://127.0.0.1:3306/hostel?autoReconnect=true</property>
+        <property name="connection.username">root</property>
+        <property name="connection.password">root</property>
+        <property name="dialect">org.hibernate.dialect.MySQLDialect</property>
+        <property name="hibernate.current_session_context_class">thread</property>
+        <property name="hibernate.id.new_generator_mappings">false</property>
+        <property name="show_sql">true</property>
+        <property name="hbm2ddl.auto">update</property>
+        <mapping class="com.qwerfghi.database.model.entity.AddressEntity"/>
+        <mapping class="com.qwerfghi.database.model.entity.AnimalEntity"/>
+        <mapping class="com.qwerfghi.database.model.entity.OwnerEntity"/>
+        <mapping class="com.qwerfghi.database.model.entity.PrivilegesEntity"/>
+        <mapping class="com.qwerfghi.database.model.entity.RecallEntity"/>
+        <mapping class="com.qwerfghi.database.model.entity.RoomEntity"/>
+        <mapping class="com.qwerfghi.database.model.entity.StaffEntity"/>
+        <mapping class="com.qwerfghi.database.model.entity.UserEntity"/>
+    </session-factory>
+</hibernate-configuration>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="555.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.qwerfghi.database.controller.AnimalViewController">
+   <left>
+      <VBox alignment="CENTER" prefHeight="555.0" prefWidth="175.0" BorderPane.alignment="CENTER">
+         <children>
+            <TextField fx:id="idOwner" promptText="Идентификатор владельца">
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
+            </TextField>
+            <TextField fx:id="animalName" promptText="Кличка питомца">
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
+            </TextField>
+            <ChoiceBox fx:id="animalType" prefHeight="25.0" prefWidth="177.0">
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
+            </ChoiceBox>
+            <TextField fx:id="animalAge" promptText="Возраст питомца">
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
+            </TextField>
+            <TextField fx:id="notice" promptText="Примечание">
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
+            </TextField>
+            <Button mnemonicParsing="false" onAction="#onAddAnimal" text="Добавить питомца">
+               <VBox.margin>
+                  <Insets bottom="15.0" />
+               </VBox.margin>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#onDeleteAnimal" text="Удалить питомца" />
+         </children>
+      </VBox>
+   </left>
+   <center>
+      <TableView fx:id="table" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+        <columns>
+          <TableColumn fx:id="idOwnerColumn" prefWidth="75.0" text="Идентификатор владельца" />
+          <TableColumn fx:id="animalNameColumn" prefWidth="75.0" text="Кличка питомца" />
+            <TableColumn fx:id="animalTypeColumn" prefWidth="75.0" text="Вид питомца" />
+            <TableColumn fx:id="animalAgeColumn" prefWidth="75.0" text="Возраст питомца" />
+            <TableColumn fx:id="noticeColumn" prefWidth="75.0" text="Примечание" />
+        </columns>
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
+      </TableView>
+   </center>
+</BorderPane>

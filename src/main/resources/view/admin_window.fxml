@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.qwerfghi.database.controller.AdminWindowController">
+   <top>
+      <StackPane prefHeight="47.0" prefWidth="1000.0" BorderPane.alignment="CENTER">
+         <children>
+            <ToolBar prefHeight="49.0" prefWidth="1000.0" />
+            <GridPane>
+              <columnConstraints>
+                  <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Hyperlink onAction="#onEmployee" text="Персонал" GridPane.columnIndex="1" />
+                  <Hyperlink onAction="#OnGuest" text="Посетители" GridPane.columnIndex="2" />
+                  <Button mnemonicParsing="false" onAction="#OnExit" prefHeight="31.0" prefWidth="67.0" text="Выйти" GridPane.columnIndex="3">
+                     <GridPane.margin>
+                        <Insets right="25.0" />
+                     </GridPane.margin>
+                  </Button>
+                  <Hyperlink onAction="#OnAnimals" text="Питомцы" />
+               </children>
+            </GridPane>
+         </children>
+      </StackPane>
+   </top>
+</BorderPane>
