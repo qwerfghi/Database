@@ -1,7 +1,6 @@
 package com.qwerfghi.database.model;
 
 import com.qwerfghi.database.HibernateUtil;
-import com.qwerfghi.database.Main;
 import com.qwerfghi.database.model.entity.AnimalType;
 import com.qwerfghi.database.model.entity.RoomEntity;
 import com.qwerfghi.database.model.entity.UserEntity;
@@ -10,15 +9,11 @@ import javafx.collections.ObservableList;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
-import javax.persistence.EntityManager;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import java.sql.*;
 import java.util.*;
-
-import static com.qwerfghi.database.controller.GuestWindowController.date;
-import static com.qwerfghi.database.controller.GuestWindowController.select;
 
 public class MyConnection {
 
@@ -37,12 +32,7 @@ public class MyConnection {
     public static int currentId = 23;
     public static int userId = 23;
     public static AnimalType animalType;
-    private Main app;
     public UserEntity user;
-
-    public void setApp(Main app) {
-        this.app = app;
-    }
 
     public void connect() {
         try {
@@ -51,12 +41,6 @@ public class MyConnection {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-    }
-
-    private void close() throws SQLException {
-        statement.close();
-        connection.close();
-        user = null;
     }
 
     public boolean registration(String username, String pass, String firstName, String lastName, String patron,
@@ -114,24 +98,6 @@ public class MyConnection {
         return rooms;
     }
 
-    public ObservableList<Room> getAllSelectedRooms() {
-        ObservableList<Room> list = FXCollections.observableArrayList();
-        list.addAll(allSelectedRooms());
-        return list;
-    }
-
-    private Set<Room> allSelectedRooms() {
-        String sql = "select number, date_beg, date_end, cost from room where animal_type='" + select + "' and (date_end<" + date + " or date_end is null) order by number asc;";
-        getted++;
-        if (getted == 30) {
-            Runtime.getRuntime().gc();
-            System.out.println("Очистка");
-            getted = 0;
-        }
-        rooms = getSelectedRoomSet(getResultSet(sql));
-        return rooms;
-    }
-
     private ResultSet getResultSet(String sql) {
         try {
             return statement.executeQuery(sql);
@@ -151,22 +117,6 @@ public class MyConnection {
                 Integer roomNum = resultSet.getInt("number");
                 String dateOut = resultSet.getString("date_end");
                 set.add(new Room(this, roomType, dateEnter, roomCost, roomNum, dateOut));
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return set;
-    }
-
-    private Set<Room> getSelectedRoomSet(ResultSet resultSet) {
-        Set<Room> set = new LinkedHashSet<>();
-        try {
-            while (resultSet.next()) {
-                Integer roomNum = resultSet.getInt("number");
-                String dateEnter = resultSet.getString("date_beg");
-                String dateOut = resultSet.getString("date_end");
-                Integer roomCost = resultSet.getInt("cost");
-                set.add(new Room(this, roomNum, dateEnter, dateOut, roomCost));
             }
         } catch (SQLException e) {
             e.printStackTrace();

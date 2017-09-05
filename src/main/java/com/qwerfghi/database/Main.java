@@ -91,7 +91,7 @@ public class Main extends Application {
             root = loader.load();
 
             RegistrationController controller = loader.getController();
-            controller.setApp(this);
+            controller.setMain(this);
 
             Scene scene = new Scene(root);
             stage.setScene(scene);
@@ -131,18 +131,15 @@ public class Main extends Application {
             return null;
         }
     }
-    public FragmentController setRoomElement(LayoutController parent) {
+    public void setRoomElement(LayoutController parent) {
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getClassLoader().getResource("view/room_view.fxml"));
             BorderPane element = loader.load();
             RoomViewController controller = loader.getController();
-            controller.setParent(parent);
             root.setCenter(element);
-            return controller;
         } catch (IOException e) {
             e.printStackTrace();
-            return null;
         }
     }
     public FragmentController setInformationElement(LayoutController parent) {

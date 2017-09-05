@@ -14,7 +14,7 @@ import javafx.scene.control.*;
 public class RegistrationController {
 
     private MyConnection connection;
-    private Main app;
+    private Main main;
     public static String select_pet = "Собака";
 
     @FXML
@@ -123,7 +123,7 @@ public class RegistrationController {
 
     @FXML
     private void onLogIn() {
-        app.initLogin();
+        main.initLogin();
     }
 
     @FXML
@@ -134,19 +134,11 @@ public class RegistrationController {
         if (select_pet.equals("")) select_pet = "NULL";
         else select_pet = "\'" + select_pet + "\'";
         if (connection.addPet(petN, select_pet, Integer.parseInt(petAge.getText()), petNotice.getText())) {
-            showDialog("Животное добавлено.", Alert.AlertType.INFORMATION);
+            Helper.showDialog("Животное добавлено.");
         }
     }
 
-    public void setApp(Main app) {
-        this.app = app;
-    }
-
-    private void showDialog(String message, Alert.AlertType alertType) {
-        Alert alert = new Alert(alertType);
-        alert.setTitle("Error");
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        alert.showAndWait();
+    public void setMain(Main main) {
+        this.main = main;
     }
 }

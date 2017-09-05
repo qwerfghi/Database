@@ -10,7 +10,7 @@ import javax.persistence.TypedQuery;
 import java.util.List;
 
 @Repository
-public class HibernateUserDAO implements UserDAO {
+public class HibernateUserDAO extends HibernateDAO<UserEntity> implements UserDAO {
 
     @PersistenceContext
     private EntityManager entityManager;
@@ -24,27 +24,17 @@ public class HibernateUserDAO implements UserDAO {
     }
 
     @Override
-    public void add(UserEntity entity) {
-
-    }
-
-    @Override
     public UserEntity getById(int id) {
-        return null;
-    }
-
-    @Override
-    public void update(UserEntity entity) {
-
+        return entityManager.find(UserEntity.class, id);
     }
 
     @Override
     public void delete(int id) {
-
+        entityManager.remove(getById(id));
     }
 
     @Override
     public List<UserEntity> getAll() {
-        return null;
+        return entityManager.createQuery("SELECT u FROM UserEntity u", UserEntity.class).getResultList();
     }
 }

@@ -4,8 +4,6 @@ import com.qwerfghi.database.Main;
 import com.qwerfghi.database.model.LayoutController;
 import javafx.fxml.FXML;
 
-
-
 public class LogOnWindowController implements LayoutController {
     private Main main;
     @FXML

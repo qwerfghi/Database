@@ -3,12 +3,12 @@ package com.qwerfghi.database.model.service;
 import com.qwerfghi.database.model.dao.RoomDAO;
 import com.qwerfghi.database.model.entity.AnimalType;
 import com.qwerfghi.database.model.entity.RoomEntity;
-import javafx.collections.ObservableList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.Date;
+import java.util.List;
 
 @Service
 public class GuestService {
@@ -17,7 +17,7 @@ public class GuestService {
     private RoomDAO roomDAO;
 
     @Transactional
-    public ObservableList<RoomEntity> getAllFreeRooms(AnimalType type, Date checkInDate){
+    public List<RoomEntity> getAllFreeRooms(AnimalType type, Date checkInDate){
         return roomDAO.getAllFreeRooms(type, checkInDate);
     }
 }

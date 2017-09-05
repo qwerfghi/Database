@@ -3,32 +3,27 @@ package com.qwerfghi.database.model.dao.hibernate;
 import com.qwerfghi.database.model.dao.AddressDAO;
 import com.qwerfghi.database.model.entity.AddressEntity;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import java.util.List;
 
-public class HibernateAddressDAO implements AddressDAO {
+public class HibernateAddressDAO extends HibernateDAO<AddressEntity> implements AddressDAO {
 
-    @Override
-    public void add(AddressEntity entity) {
-
-    }
+    @PersistenceContext
+    private EntityManager entityManager;
 
     @Override
     public AddressEntity getById(int id) {
-        return null;
-    }
-
-    @Override
-    public void update(AddressEntity entity) {
-
+        return entityManager.find(AddressEntity.class, id);
     }
 
     @Override
     public void delete(int id) {
-
+        entityManager.remove(getById(id));
     }
 
     @Override
     public List<AddressEntity> getAll() {
-        return null;
+        return entityManager.createQuery("SELECT a FROM AddressEntity a", AddressEntity.class).getResultList();
     }
 }
