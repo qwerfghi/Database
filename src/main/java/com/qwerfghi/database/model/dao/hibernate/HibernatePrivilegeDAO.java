@@ -7,6 +7,7 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import javax.persistence.EntityManager;
+import java.util.List;
 
 public class HibernatePrivilegeDAO implements PrivilegeDAO {
     @Override
@@ -28,5 +29,30 @@ public class HibernatePrivilegeDAO implements PrivilegeDAO {
             }
             return null;
         }
+    }
+
+    @Override
+    public void add(PrivilegesEntity entity) {
+
+    }
+
+    @Override
+    public PrivilegesEntity getById(int id) {
+        return null;
+    }
+
+    @Override
+    public void update(PrivilegesEntity entity) {
+
+    }
+
+    @Override
+    public void delete(int id) {
+
+    }
+
+    @Override
+    public List<PrivilegesEntity> getAll() {
+        return null;
     }
 }

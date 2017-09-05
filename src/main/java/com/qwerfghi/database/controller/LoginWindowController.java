@@ -2,7 +2,6 @@ package com.qwerfghi.database.controller;
 
 import com.qwerfghi.database.Main;
 import com.qwerfghi.database.model.MyConnection;
-import com.qwerfghi.database.model.dao.DAOFactory;
 import com.qwerfghi.database.model.dao.UserDAO;
 import com.qwerfghi.database.model.entity.UserEntity;
 import javafx.fxml.FXML;
@@ -32,7 +31,7 @@ public class LoginWindowController {
         String username = loginField.getText();
         String password = passwordField.getText();
         if (!username.equals("") || !password.equals("")) {
-            UserEntity user = userDAO.getUser(username, password);
+            UserEntity user = userDAO.getByUsernameAndPassword(username, password);
             if (user == null) {
                 showErrorDialog("Неверный логин или пароль.");
             } else if (user.getPrivilegeEntity().getId() == 1) {

@@ -13,11 +13,12 @@ import javax.persistence.NoResultException;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
+import java.util.List;
 
 public class HibernateUserDAO implements UserDAO {
 
     @Override
-    public UserEntity getUser(String username, String password) {
+    public UserEntity getByUsernameAndPassword(String username, String password) {
         UserEntity entity;
         Transaction transaction = null;
         try (Session session = HibernateUtil.getSessionFactory().getCurrentSession()) {
@@ -42,22 +43,27 @@ public class HibernateUserDAO implements UserDAO {
     }
 
     @Override
-    public void insertUser(UserEntity user) {
-        Transaction transaction = null;
-        try (Session session = HibernateUtil.getSessionFactory().getCurrentSession()) {
-            transaction = session.beginTransaction();
-            EntityManager entityManager = session.getEntityManagerFactory().createEntityManager();
-            PrivilegesEntity entity = entityManager.find(PrivilegesEntity.class, 1L);
-            user.setPrivilegeEntity(entity);
-            entityManager.persist(user);
-            entityManager.flush();
-            entityManager.close();
-            transaction.commit();
-        } catch (Exception e) {
-            if (transaction != null) {
-                transaction.rollback();
-            }
-            e.printStackTrace();
-        }
+    public void add(UserEntity entity) {
+
+    }
+
+    @Override
+    public UserEntity getById(int id) {
+        return null;
+    }
+
+    @Override
+    public void update(UserEntity entity) {
+
+    }
+
+    @Override
+    public void delete(int id) {
+
+    }
+
+    @Override
+    public List<UserEntity> getAll() {
+        return null;
     }
 }

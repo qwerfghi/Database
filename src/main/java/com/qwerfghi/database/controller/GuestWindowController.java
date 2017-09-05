@@ -2,7 +2,6 @@ package com.qwerfghi.database.controller;
 
 import com.qwerfghi.database.Main;
 import com.qwerfghi.database.model.MyConnection;
-import com.qwerfghi.database.model.dao.DAOFactory;
 import com.qwerfghi.database.model.dao.RoomDAO;
 import com.qwerfghi.database.model.entity.AnimalType;
 import com.qwerfghi.database.model.entity.RoomEntity;

@@ -6,12 +6,6 @@ import javafx.collections.ObservableList;
 
 import java.util.Date;
 
-public interface RoomDAO {
-    /*int insertRoom(...);
-    boolean deleteCustomer(...);
-    RoomEntity findCustomer(...);
-    boolean updateCustomer(...);
-    RowSet selectCustomersRS(...);
-    Collection selectCustomersTO(...);*/
+public interface RoomDAO extends Dao<RoomEntity> {
     ObservableList<RoomEntity> getAllFreeRooms(AnimalType type, Date checkInDate);
 }

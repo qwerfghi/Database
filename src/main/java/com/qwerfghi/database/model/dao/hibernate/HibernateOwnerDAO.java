@@ -1,32 +1,34 @@
 package com.qwerfghi.database.model.dao.hibernate;
 
-import com.qwerfghi.database.HibernateUtil;
 import com.qwerfghi.database.model.dao.OwnerDAO;
 import com.qwerfghi.database.model.entity.OwnerEntity;
-import org.hibernate.Session;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityTransaction;
+import java.util.List;
 
 public class HibernateOwnerDAO implements OwnerDAO {
+
     @Override
-    @SuppressWarnings("all")
-    public void insertOwner(OwnerEntity owner) {
-        EntityTransaction transaction = null;
-        try (Session session = HibernateUtil.getSessionFactory().getCurrentSession()) {
-            session.beginTransaction();
-            EntityManager entityManager = session.getEntityManagerFactory().createEntityManager();
-            transaction = entityManager.getTransaction();
-            transaction.begin();
-            entityManager.persist(owner);
-            entityManager.flush();
-            entityManager.close();
-            transaction.commit();
-        } catch (Exception e) {
-            e.printStackTrace();
-            if (transaction != null) {
-                transaction.rollback();
-            }
-        }
+    public void add(OwnerEntity entity) {
+
+    }
+
+    @Override
+    public OwnerEntity getById(int id) {
+        return null;
+    }
+
+    @Override
+    public void update(OwnerEntity entity) {
+
+    }
+
+    @Override
+    public void delete(int id) {
+
+    }
+
+    @Override
+    public List<OwnerEntity> getAll() {
+        return null;
     }
 }
