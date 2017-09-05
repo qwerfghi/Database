@@ -4,10 +4,13 @@ import com.qwerfghi.database.Main;
 import com.qwerfghi.database.model.MyConnection;
 import com.qwerfghi.database.model.dao.UserDAO;
 import com.qwerfghi.database.model.entity.UserEntity;
+import com.qwerfghi.database.model.service.LoginService;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.GenericXmlApplicationContext;
 
 public class LoginWindowController {
 
@@ -19,19 +22,18 @@ public class LoginWindowController {
     @FXML
     private PasswordField passwordField;
 
-
     @FXML
     private void initialize() {
     }
 
     @FXML
     private void onLogIn() {
-        DAOFactory factory = DAOFactory.getDAOFactory(DAOFactory.HIBERNATE);
-        UserDAO userDAO = factory.getUserDAO();
+        ApplicationContext ctx = main.getContext();
+        LoginService loginService = ctx.getBean(LoginService.class);
         String username = loginField.getText();
         String password = passwordField.getText();
         if (!username.equals("") || !password.equals("")) {
-            UserEntity user = userDAO.getByUsernameAndPassword(username, password);
+            UserEntity user = loginService.getByUsernameAndPassword(username, password);
             if (user == null) {
                 showErrorDialog("Неверный логин или пароль.");
             } else if (user.getPrivilegeEntity().getId() == 1) {

@@ -28,8 +28,8 @@
         <property name="maxTotal" value="10"/>
     </bean>
 
-    <context:component-scan base-package="by.netcracker.bsuir.pz3.courses.dao"/>
-    <context:component-scan base-package="by.netcracker.bsuir.pz3.courses.service"/>
+    <context:component-scan base-package="com.qwerfghi.database.model.dao"/>
+    <context:component-scan base-package="com.qwerfghi.database.model.service"/>
 
     <bean id="entityManager" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
         <property name="dataSource" ref="dataSource" />

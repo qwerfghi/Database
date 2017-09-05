@@ -10,6 +10,8 @@ import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.GenericXmlApplicationContext;
 
 import java.io.IOException;
 import java.net.URL;
@@ -19,11 +21,13 @@ public class Main extends Application {
     public static MyConnection connection;
     private Stage stage;
     private BorderPane root;
+    private ApplicationContext context;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
         this.stage = primaryStage;
         this.stage.setTitle("Base");
+        this.context = new GenericXmlApplicationContext("classpath:root-context.xml");
         initLogin();
     }
 
@@ -214,5 +218,9 @@ public class Main extends Application {
             e.printStackTrace();
             return null;
         }
+    }
+
+    public ApplicationContext getContext() {
+        return context;
     }
 }

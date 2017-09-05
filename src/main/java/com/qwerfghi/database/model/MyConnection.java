@@ -5,7 +5,6 @@ import com.qwerfghi.database.Main;
 import com.qwerfghi.database.model.entity.AnimalType;
 import com.qwerfghi.database.model.entity.RoomEntity;
 import com.qwerfghi.database.model.entity.UserEntity;
-import com.qwerfghi.database.model.entity.UserEntity_;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import org.hibernate.Session;
@@ -58,44 +57,6 @@ public class MyConnection {
         statement.close();
         connection.close();
         user = null;
-    }
-
-    public boolean logIn(String user, String password) {
-        SessionFactory factory = HibernateUtil.getSessionFactory();
-        EntityManager manager = factory.createEntityManager();
-        CriteriaBuilder builder = manager.getCriteriaBuilder();
-        CriteriaQuery<UserEntity> criteria = builder.createQuery(UserEntity.class);
-        Root<UserEntity> root = criteria.from(UserEntity.class);
-        criteria.select(root);
-        criteria.where(builder.equal(root.get(UserEntity_.username), user));
-        criteria.where(builder.equal(root.get(UserEntity_.password), password));
-        UserEntity entity = manager.createQuery(criteria).getSingleResult();
-        manager.close();
-        factory.close();
-        return true;
-
-
-
-        /*String sql = "select u.iduser, u.username, u.password as user_pass, p.privilege_name as privilege, p.password " +
-                "from user as u " +
-                "inner join privileges as p on u.privilege_id = p.id " +
-                "where u.username = \'" + user + "\' and u.password = MD5(\'" + password + "\');";
-        try {
-            ResultSet resultSet = statement.executeQuery(sql);
-            if (resultSet.next()) {
-                USER = resultSet.getString("privilege");
-                PASS = resultSet.getString("password");
-                int id = resultSet.getInt("iduser");
-                String name = resultSet.getString("username");
-                close();
-                connect();
-                this.user = new UserInfo(id, name);
-                return true;
-            } else return false;
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return false;
-        }*/
     }
 
     public boolean registration(String username, String pass, String firstName, String lastName, String patron,

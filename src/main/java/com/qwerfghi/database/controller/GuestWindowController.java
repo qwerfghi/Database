@@ -5,6 +5,7 @@ import com.qwerfghi.database.model.MyConnection;
 import com.qwerfghi.database.model.dao.RoomDAO;
 import com.qwerfghi.database.model.entity.AnimalType;
 import com.qwerfghi.database.model.entity.RoomEntity;
+import com.qwerfghi.database.model.service.GuestService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -13,6 +14,8 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.GenericXmlApplicationContext;
 
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -75,9 +78,9 @@ public class GuestWindowController {
 
     @FXML
     public void onShow(){
-        DAOFactory factory = DAOFactory.getDAOFactory(DAOFactory.HIBERNATE);
-        RoomDAO dao = factory.getRoomDAO();
-        list = dao.getAllFreeRooms(select, convertDate(datePicker.getValue()));
+        ApplicationContext ctx = main.getContext();
+        GuestService guestService = ctx.getBean(GuestService.class);
+        list = guestService.getAllFreeRooms(select, convertDate(datePicker.getValue()));
         roomNumColumn.setCellValueFactory(new PropertyValueFactory<>("number"));
         dateEnterColumn.setCellValueFactory(new PropertyValueFactory<>("dateBeg"));
         dateOutColumn.setCellValueFactory(new PropertyValueFactory<>("dateEnd"));

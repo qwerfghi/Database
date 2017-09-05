@@ -7,5 +7,5 @@ import javafx.collections.ObservableList;
 import java.util.Date;
 
 public interface RoomDAO extends Dao<RoomEntity> {
-    ObservableList<RoomEntity> getAllFreeRooms(AnimalType type, Date checkInDate);
+    ObservableList<RoomEntity> getAllFreeRooms(AnimalType animalType, Date checkInDate);
 }

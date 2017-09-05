@@ -83,10 +83,10 @@ public class RegistrationController {
 
     @FXML
     private void onRegistration() {
-        DAOFactory factory = DAOFactory.getDAOFactory(DAOFactory.HIBERNATE);
-        PrivilegeDAO privilegeDAO = factory.getPrivilegeDAO();
-        OwnerDAO ownerDAO = factory.getOwnerDAO();
-        ownerDAO.add(getOwnerEntity(privilegeDAO));
+//        DAOFactory factory = DAOFactory.getDAOFactory(DAOFactory.HIBERNATE);
+//        PrivilegeDAO privilegeDAO = factory.getPrivilegeDAO();
+//        OwnerDAO ownerDAO = factory.getOwnerDAO();
+//        ownerDAO.add(getOwnerEntity(privilegeDAO));
     }
 
     private OwnerEntity getOwnerEntity(PrivilegeDAO privilegeDAO) {

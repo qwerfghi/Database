@@ -5,19 +5,22 @@ import com.qwerfghi.database.model.entity.AnimalType;
 import com.qwerfghi.database.model.entity.RoomEntity;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 import java.util.Date;
 import java.util.List;
 
+@Repository
 public class HibernateRoomDAO implements RoomDAO {
 
     @PersistenceContext
     private EntityManager entityManager;
 
     @Override
-    public ObservableList<RoomEntity> getAllFreeRooms(AnimalType type, Date checkOutDate) {
+    public ObservableList<RoomEntity> getAllFreeRooms(AnimalType animalType, Date checkOutDate) {
 //        try (Session session = HibernateUtil.getSessionFactory().getCurrentSession()) {
 //            Transaction transaction = session.beginTransaction();
 //            CriteriaBuilder builder = session.getCriteriaBuilder();
@@ -32,8 +35,10 @@ public class HibernateRoomDAO implements RoomDAO {
 //            transaction.commit();
 //            return FXCollections.observableArrayList(resultList);
 //        }
-        List<RoomEntity> list = entityManager.createQuery("SELECT r FROM RoomEntity r WHERE r.", RoomEntity.class).getResultList();
-        return FXCollections.observableArrayList(list);
+        TypedQuery<RoomEntity> query = entityManager.createQuery("SELECT r FROM RoomEntity r WHERE r.animalType = :animalType AND (r.dateEnd is NULL OR r.dateEnd > :checkOutDate)", RoomEntity.class);
+        query.setParameter("animalType", animalType);
+        query.setParameter("checkOutDate", checkOutDate);
+        return FXCollections.observableArrayList(query.getResultList());
     }
 
     @Override
