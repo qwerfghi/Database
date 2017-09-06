@@ -21,13 +21,13 @@ public class Main extends Application {
     public static MyConnection connection;
     private Stage stage;
     private BorderPane root;
-    private ApplicationContext context;
+    private static ApplicationContext context;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
         this.stage = primaryStage;
         this.stage.setTitle("Base");
-        this.context = new GenericXmlApplicationContext("classpath:root-context.xml");
+        context = new GenericXmlApplicationContext("classpath:root-context.xml");
         initLogin();
     }
 
@@ -45,6 +45,7 @@ public class Main extends Application {
             e.printStackTrace();
         }
     }
+
     public void initLogin() {
         try {
             FXMLLoader loader = new FXMLLoader();
@@ -78,6 +79,7 @@ public class Main extends Application {
             e.printStackTrace();
         }
     }
+
     public static void main(String[] args) {
         connection = new MyConnection();
         connection.connect();
@@ -117,6 +119,7 @@ public class Main extends Application {
             e.printStackTrace();
         }
     }
+
     public FragmentController setReservationElement(LayoutController parent) {
         try {
             FXMLLoader loader = new FXMLLoader();
@@ -131,6 +134,7 @@ public class Main extends Application {
             return null;
         }
     }
+
     public void setRoomElement(LayoutController parent) {
         try {
             FXMLLoader loader = new FXMLLoader();
@@ -142,6 +146,7 @@ public class Main extends Application {
             e.printStackTrace();
         }
     }
+
     public FragmentController setInformationElement(LayoutController parent) {
         try {
             FXMLLoader loader = new FXMLLoader();
@@ -174,12 +179,7 @@ public class Main extends Application {
 
     public void setEmployeeElement() {
         try {
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getClassLoader().getResource("view/employee_view.fxml"));
-            BorderPane element = loader.load();
-            EmployeeViewController controller = loader.getController();
-            controller.setMain(this);
-            root.setCenter(element);
+            root.setCenter(FXMLLoader.load(getURL("view/employee_view.fxml")));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -215,7 +215,11 @@ public class Main extends Application {
         }
     }
 
-    public ApplicationContext getContext() {
+    public static ApplicationContext getContext() {
         return context;
+    }
+
+    private URL getURL (String path) {
+        return getClass().getClassLoader().getResource(path);
     }
 }

@@ -2,18 +2,10 @@ package com.qwerfghi.database.controller;
 
 import com.qwerfghi.database.Main;
 import com.qwerfghi.database.model.LayoutController;
-import com.qwerfghi.database.model.MyConnection;
 import javafx.fxml.FXML;
-
 
 public class AdminWindowController implements LayoutController {
     private Main main;
-    private MyConnection connection;
-
-    @FXML
-    private void initialize() {
-
-    }
 
     @FXML
     private void onEmployee () {

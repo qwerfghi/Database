@@ -68,7 +68,7 @@ public class GuestWindowController {
 
     @FXML
     public void onShow() {
-        ApplicationContext ctx = main.getContext();
+        ApplicationContext ctx = Main.getContext();
         GuestService guestService = ctx.getBean(GuestService.class);
         list = FXCollections.observableList(guestService.getAllFreeRooms(select, Helper.convertLocalDateToDate(datePicker.getValue())));
         roomNumColumn.setCellValueFactory(new PropertyValueFactory<>("number"));

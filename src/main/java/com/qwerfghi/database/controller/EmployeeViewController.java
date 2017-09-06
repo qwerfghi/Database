@@ -11,11 +11,10 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import org.springframework.context.ApplicationContext;
 
 public class EmployeeViewController {
-    private Main main;
     private ObservableList<StaffEntity> list;
+    private EmployeeService employeeService;
     private static String date;
 
     @FXML
@@ -37,28 +36,30 @@ public class EmployeeViewController {
     @FXML
     private TableColumn<StaffEntity, String> emailColumn;
     @FXML
-    private TextField eName;
+    private TextField firstNameField;
     @FXML
-    private TextField eLName;
+    private TextField lastNameField;
     @FXML
-    private TextField ePatronymic;
+    private TextField patronymicField;
     @FXML
-    private TextField ePassport;
+    private TextField passportField;
     @FXML
-    private TextField ePhone;
+    private TextField phoneField;
     @FXML
-    private TextField eEmail;
+    private TextField emailField;
     @FXML
-    private TextField ePosition;
+    private TextField positionField;
     @FXML
-    private DatePicker eDate;
-
+    private DatePicker datePicker;
 
 
     @FXML
     public void initialize() {
-        ApplicationContext ctx = main.getContext();
-        EmployeeService employeeService = ctx.getBean(EmployeeService.class);
+        employeeService = Main.getContext().getBean(EmployeeService.class);
+        updateTable();
+    }
+
+    private void updateTable() {
         list = FXCollections.observableList(employeeService.getAll());
         firstNameColumn.setCellValueFactory(new PropertyValueFactory<>("employeeName"));
         lastNameColumn.setCellValueFactory(new PropertyValueFactory<>("employeeLastName"));
@@ -72,20 +73,25 @@ public class EmployeeViewController {
     }
 
     public void OnEmployee () {
-        if (eDate.getValue() != null) {
-            date = eDate.getValue().toString();
+        if (datePicker.getValue() != null) {
+            date = datePicker.getValue().toString();
             date = date.replace("-","");
         }
-        //connection.addEmployee(eName.getText(), eLName.getText(), ePatronymic.getText(), date, ePosition.getText(), ePassport.getText(), ePhone.getText(), eEmail.getText());
-        initialize();
+        StaffEntity staffEntity = new StaffEntity();
+        staffEntity.setEmployeeName(firstNameField.getText());
+        staffEntity.setEmployeeLastName(lastNameField.getText());
+        staffEntity.setEmployeePatronymic(patronymicField.getText());
+        staffEntity.setPassport(passportField.getText());
+        staffEntity.setPhoneNum(phoneField.getText());
+        staffEntity.setEmail(emailField.getText());
+        staffEntity.setPosition(positionField.getText());
+        staffEntity.setDateRec(Helper.convertLocalDateToDate(datePicker.getValue()));
+        //connection.addEmployee(firstNameField.getText(), lastNameField.getText(), patronymicField.getText(), date, positionField.getText(), passportField.getText(), phoneField.getText(), emailField.getText());
+        updateTable();
     }
 
     public void OnDelete () {
         //connection.deleteEmployee(table.getSelectionModel().getSelectedItem().passportProperty().getValue());
-        initialize();
-    }
-
-    public void setMain(Main main) {
-        this.main = main;
+        updateTable();
     }
 }

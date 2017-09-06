@@ -23,7 +23,12 @@ public abstract class HibernateDAO<T> implements Dao<T> {
     }
 
     @Override
-    public void delete(int id) {
+    public void delete(T entity) {
+        entityManager.remove(entity);
+    }
+
+    @Override
+    public void deleteById(int id) {
         entityManager.remove(getById(id));
     }
 }

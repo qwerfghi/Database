@@ -26,42 +26,42 @@
    <left>
       <VBox alignment="CENTER" prefHeight="555.0" prefWidth="173.0" BorderPane.alignment="CENTER">
          <children>
-            <TextField fx:id="eName" promptText="Имя работника">
+            <TextField fx:id="firstNameField" promptText="Имя работника">
                <VBox.margin>
                   <Insets bottom="15.0" />
                </VBox.margin>
             </TextField>
-            <TextField fx:id="eLName" promptText="Фамили работника">
+            <TextField fx:id="lastNameField" promptText="Фамили работника">
                <VBox.margin>
                   <Insets bottom="15.0" />
                </VBox.margin>
             </TextField>
-            <TextField fx:id="ePatronymic" promptText="Отчество работника">
+            <TextField fx:id="patronymicField" promptText="Отчество работника">
                <VBox.margin>
                   <Insets bottom="15.0" />
                </VBox.margin>
             </TextField>
-            <DatePicker fx:id="eDate" prefHeight="25.0" prefWidth="196.0" promptText="Дата найма">
+            <DatePicker fx:id="datePicker" prefHeight="25.0" prefWidth="196.0" promptText="Дата найма">
                <VBox.margin>
                   <Insets bottom="15.0" />
                </VBox.margin>
             </DatePicker>
-            <TextField fx:id="ePosition" promptText="Должность">
+            <TextField fx:id="positionField" promptText="Должность">
                <VBox.margin>
                   <Insets bottom="15.0" />
                </VBox.margin>
             </TextField>
-            <TextField fx:id="ePassport" promptText="Номер паспорта">
+            <TextField fx:id="passportField" promptText="Номер паспорта">
                <VBox.margin>
                   <Insets bottom="15.0" />
                </VBox.margin>
             </TextField>
-            <TextField fx:id="ePhone" promptText="Номер телефона">
+            <TextField fx:id="phoneField" promptText="Номер телефона">
                <VBox.margin>
                   <Insets bottom="15.0" />
                </VBox.margin>
             </TextField>
-            <TextField fx:id="eEmail" promptText="Email">
+            <TextField fx:id="emailField" promptText="Email">
                <VBox.margin>
                   <Insets bottom="15.0" />
                </VBox.margin>
