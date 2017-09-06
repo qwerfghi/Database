@@ -1,7 +1,6 @@
 package com.qwerfghi.database.model.entity;
 
 import javax.persistence.*;
-import java.io.Serializable;
 
 /**
  * Created by Павел on 21.06.2017.
@@ -101,6 +100,26 @@ public class OwnerEntity {
         this.discount = discount;
     }
 
+    @OneToOne
+    @JoinColumn(name = "idaddress", foreignKey = @ForeignKey(name = "fk_address"))
+    public AddressEntity getAddress() {
+        return address;
+    }
+
+    public void setAddress(AddressEntity address) {
+        this.address = address;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "iduser", foreignKey = @ForeignKey(name = "fk_user"))
+    public UserEntity getUser() {
+        return user;
+    }
+
+    public void setUser(UserEntity user) {
+        this.user = user;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -133,26 +152,6 @@ public class OwnerEntity {
         result = 31 * result + (email != null ? email.hashCode() : 0);
         result = 31 * result + (discount != null ? discount.hashCode() : 0);
         return result;
-    }
-
-    @OneToOne
-    @JoinColumn(name = "idaddress", foreignKey = @ForeignKey(name = "fk_address"))
-    public AddressEntity getAddress() {
-        return address;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "iduser", foreignKey = @ForeignKey(name = "fk_user"))
-    public UserEntity getUser() {
-        return user;
-    }
-
-    public void setUser(UserEntity user) {
-        this.user = user;
-    }
-
-    public void setAddress(AddressEntity address) {
-        this.address = address;
     }
 
     @Converter

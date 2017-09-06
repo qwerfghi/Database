@@ -18,11 +18,6 @@ public class HibernateAddressDAO extends HibernateDAO<AddressEntity> implements 
     }
 
     @Override
-    public void delete(int id) {
-        entityManager.remove(getById(id));
-    }
-
-    @Override
     public List<AddressEntity> getAll() {
         return entityManager.createQuery("SELECT a FROM AddressEntity a", AddressEntity.class).getResultList();
     }

@@ -31,11 +31,6 @@ public class HibernateRoomDAO extends HibernateDAO<RoomEntity> implements RoomDA
     }
 
     @Override
-    public void delete(int id) {
-        entityManager.remove(getById(id));
-    }
-
-    @Override
     public List<RoomEntity> getAll() {
         return entityManager.createQuery("SELECT r FROM RoomEntity r", RoomEntity.class).getResultList();
     }

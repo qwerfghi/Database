@@ -17,7 +17,7 @@ public class AdminWindowController implements LayoutController {
 
     @FXML
     private void onEmployee () {
-        main.setEmployeeElement(this);
+        main.setEmployeeElement();
     }
 
     @FXML

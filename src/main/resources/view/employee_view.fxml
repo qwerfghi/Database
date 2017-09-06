@@ -9,14 +9,14 @@
    <center>
       <TableView fx:id="table" prefHeight="555.0" prefWidth="829.0" BorderPane.alignment="CENTER">
         <columns>
-            <TableColumn fx:id="NameColumn" prefWidth="94.0" text="Имя" />
-          <TableColumn fx:id="lNameColumn" prefWidth="92.0" text="Фамилия" />
-          <TableColumn fx:id="PatronymicColumn" prefWidth="110.0" text="Отчетство" />
-            <TableColumn fx:id="DateColumn" prefWidth="75.0" text="Дата найма" />
+            <TableColumn fx:id="firstNameColumn" prefWidth="94.0" text="Имя" />
+          <TableColumn fx:id="lastNameColumn" prefWidth="92.0" text="Фамилия" />
+          <TableColumn fx:id="patronymicColumn" prefWidth="110.0" text="Отчетство" />
+            <TableColumn fx:id="dateColumn" prefWidth="75.0" text="Дата найма" />
             <TableColumn fx:id="positionColumn" prefWidth="92.0" text="Должность" />
-            <TableColumn fx:id="PassportColumn" prefWidth="110.0" text="Номер паспорта" />
-            <TableColumn fx:id="PhoneNumColumn" prefWidth="75.0" text="Номер телефона" />
-            <TableColumn fx:id="EmailColumn" prefWidth="75.0" text="Email" />
+            <TableColumn fx:id="passportColumn" prefWidth="110.0" text="Номер паспорта" />
+            <TableColumn fx:id="phoneNumColumn" prefWidth="75.0" text="Номер телефона" />
+            <TableColumn fx:id="emailColumn" prefWidth="75.0" text="Email" />
         </columns>
          <columnResizePolicy>
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />

@@ -21,4 +21,9 @@ public abstract class HibernateDAO<T> implements Dao<T> {
     public void update(T entity) {
         entityManager.merge(entity);
     }
+
+    @Override
+    public void delete(int id) {
+        entityManager.remove(getById(id));
+    }
 }

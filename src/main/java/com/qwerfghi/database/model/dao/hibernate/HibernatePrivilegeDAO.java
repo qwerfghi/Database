@@ -41,11 +41,6 @@ public class HibernatePrivilegeDAO extends HibernateDAO<PrivilegesEntity> implem
     }
 
     @Override
-    public void delete(int id) {
-        entityManager.remove(getById(id));
-    }
-
-    @Override
     public List<PrivilegesEntity> getAll() {
         return entityManager.createQuery("SELECT p FROM PrivilegesEntity p", PrivilegesEntity.class).getResultList();
     }

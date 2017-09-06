@@ -1,17 +1,16 @@
 package com.qwerfghi.database.model.entity;
 
 import javax.persistence.*;
-import java.io.Serializable;
 
 /**
  * Created by Павел on 21.06.2017.
  */
 @Entity
-@Table(name = "animal", schema = "hostel", catalog = "")
+@Table(name = "animal", schema = "hostel")
 public class AnimalEntity {
     private short idanimal;
     private String animalName;
-    private Serializable animalKind;
+    private AnimalType animalType;
     private byte age;
     private byte vetInspection;
     private byte zootaxi;
@@ -40,12 +39,12 @@ public class AnimalEntity {
 
     @Basic
     @Column(name = "animal_kind")
-    public Serializable getAnimalKind() {
-        return animalKind;
+    public AnimalType getAnimalType() {
+        return animalType;
     }
 
-    public void setAnimalKind(Serializable animalKind) {
-        this.animalKind = animalKind;
+    public void setAnimalType(AnimalType animalType) {
+        this.animalType = animalType;
     }
 
     @Basic
@@ -111,7 +110,7 @@ public class AnimalEntity {
         if (zootaxi != that.zootaxi) return false;
         if (cut != that.cut) return false;
         if (animalName != null ? !animalName.equals(that.animalName) : that.animalName != null) return false;
-        if (animalKind != null ? !animalKind.equals(that.animalKind) : that.animalKind != null) return false;
+        if (animalType != null ? !animalType.equals(that.animalType) : that.animalType != null) return false;
         if (notice != null ? !notice.equals(that.notice) : that.notice != null) return false;
 
         return true;
@@ -121,7 +120,7 @@ public class AnimalEntity {
     public int hashCode() {
         int result = (int) idanimal;
         result = 31 * result + (animalName != null ? animalName.hashCode() : 0);
-        result = 31 * result + (animalKind != null ? animalKind.hashCode() : 0);
+        result = 31 * result + (animalType != null ? animalType.hashCode() : 0);
         result = 31 * result + (int) age;
         result = 31 * result + (int) vetInspection;
         result = 31 * result + (int) zootaxi;

@@ -29,11 +29,6 @@ public class HibernateUserDAO extends HibernateDAO<UserEntity> implements UserDA
     }
 
     @Override
-    public void delete(int id) {
-        entityManager.remove(getById(id));
-    }
-
-    @Override
     public List<UserEntity> getAll() {
         return entityManager.createQuery("SELECT u FROM UserEntity u", UserEntity.class).getResultList();
     }

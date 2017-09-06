@@ -172,18 +172,16 @@ public class Main extends Application {
         }
     }
 
-    public FragmentController setEmployeeElement(LayoutController parent) {
+    public void setEmployeeElement() {
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getClassLoader().getResource("view/employee_view.fxml"));
             BorderPane element = loader.load();
             EmployeeViewController controller = loader.getController();
-            controller.setParent(parent);
+            controller.setMain(this);
             root.setCenter(element);
-            return controller;
         } catch (IOException e) {
             e.printStackTrace();
-            return null;
         }
     }
 

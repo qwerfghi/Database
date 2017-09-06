@@ -18,11 +18,6 @@ public class HibernateOwnerDAO extends HibernateDAO<OwnerEntity> implements Owne
     }
 
     @Override
-    public void delete(int id) {
-        entityManager.remove(getById(id));
-    }
-
-    @Override
     public List<OwnerEntity> getAll() {
         return entityManager.createQuery("SELECT o FROM OwnerEntity o", OwnerEntity.class).getResultList();
     }

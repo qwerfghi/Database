@@ -1,41 +1,41 @@
 package com.qwerfghi.database.controller;
 
 import com.qwerfghi.database.Main;
-import com.qwerfghi.database.model.Employeer;
-import com.qwerfghi.database.model.FragmentController;
-import com.qwerfghi.database.model.LayoutController;
-import com.qwerfghi.database.model.MyConnection;
+import com.qwerfghi.database.model.entity.StaffEntity;
+import com.qwerfghi.database.model.service.EmployeeService;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
+import org.springframework.context.ApplicationContext;
 
-public class EmployeeViewController implements FragmentController {
-    private LayoutController parent;
-    private MyConnection connection;
-    private ObservableList<Employeer> list;
+public class EmployeeViewController {
+    private Main main;
+    private ObservableList<StaffEntity> list;
     private static String date;
 
     @FXML
-    private TableView<Employeer> table;
+    private TableView<StaffEntity> table;
     @FXML
-    private TableColumn<Employeer, String> NameColumn;
+    private TableColumn<StaffEntity, String> firstNameColumn;
     @FXML
-    private TableColumn<Employeer, String> lNameColumn;
+    private TableColumn<StaffEntity, String> lastNameColumn;
     @FXML
-    private TableColumn<Employeer, String> PatronymicColumn;
+    private TableColumn<StaffEntity, String> patronymicColumn;
     @FXML
-    private TableColumn<Employeer, String> DateColumn;
+    private TableColumn<StaffEntity, String> dateColumn;
     @FXML
-    private TableColumn<Employeer, String> positionColumn;
+    private TableColumn<StaffEntity, String> positionColumn;
     @FXML
-    private TableColumn<Employeer, String> PassportColumn;
+    private TableColumn<StaffEntity, String> passportColumn;
     @FXML
-    private TableColumn<Employeer, String> PhoneNumColumn;
+    private TableColumn<StaffEntity, String> phoneNumColumn;
     @FXML
-    private TableColumn<Employeer, String> EmailColumn;
+    private TableColumn<StaffEntity, String> emailColumn;
     @FXML
     private TextField eName;
     @FXML
@@ -57,16 +57,17 @@ public class EmployeeViewController implements FragmentController {
 
     @FXML
     public void initialize() {
-        connection = Main.connection;
-        list = connection.getAllEmployeers();
-        NameColumn.setCellValueFactory(cellData -> cellData.getValue().employee_nameProperty());
-        lNameColumn.setCellValueFactory(cellData -> cellData.getValue().employee_last_nameProperty());
-        PatronymicColumn.setCellValueFactory(cellData -> cellData.getValue().employee_patronymicProperty());
-        DateColumn.setCellValueFactory(cellData -> cellData.getValue().daterecProperty());
-        positionColumn.setCellValueFactory(cellData -> cellData.getValue().positionProperty());
-        PassportColumn.setCellValueFactory(cellData -> cellData.getValue().passportProperty());
-        PhoneNumColumn.setCellValueFactory(cellData -> cellData.getValue().phone_numProperty());
-        EmailColumn.setCellValueFactory(cellData -> cellData.getValue().emailProperty());
+        ApplicationContext ctx = main.getContext();
+        EmployeeService employeeService = ctx.getBean(EmployeeService.class);
+        list = FXCollections.observableList(employeeService.getAll());
+        firstNameColumn.setCellValueFactory(new PropertyValueFactory<>("employeeName"));
+        lastNameColumn.setCellValueFactory(new PropertyValueFactory<>("employeeLastName"));
+        patronymicColumn.setCellValueFactory(new PropertyValueFactory<>("employeePatronymic"));
+        dateColumn.setCellValueFactory(new PropertyValueFactory<>("dateRec"));
+        passportColumn.setCellValueFactory(new PropertyValueFactory<>("passport"));
+        phoneNumColumn.setCellValueFactory(new PropertyValueFactory<>("phoneNum"));
+        emailColumn.setCellValueFactory(new PropertyValueFactory<>("email"));
+        positionColumn.setCellValueFactory(new PropertyValueFactory<>("position"));
         table.setItems(list);
     }
 
@@ -75,21 +76,16 @@ public class EmployeeViewController implements FragmentController {
             date = eDate.getValue().toString();
             date = date.replace("-","");
         }
-        connection.addEmployee(eName.getText(), eLName.getText(), ePatronymic.getText(), date, ePosition.getText(), ePassport.getText(), ePhone.getText(), eEmail.getText());
+        //connection.addEmployee(eName.getText(), eLName.getText(), ePatronymic.getText(), date, ePosition.getText(), ePassport.getText(), ePhone.getText(), eEmail.getText());
         initialize();
     }
 
     public void OnDelete () {
-        connection.deleteEmployee(table.getSelectionModel().getSelectedItem().passportProperty().getValue());
+        //connection.deleteEmployee(table.getSelectionModel().getSelectedItem().passportProperty().getValue());
         initialize();
     }
 
-    public void setParent(LayoutController parent) {
-        this.parent = parent;
-    }
-
-    @Override
-    public FragmentController getChild() {
-        return null;
+    public void setMain(Main main) {
+        this.main = main;
     }
 }

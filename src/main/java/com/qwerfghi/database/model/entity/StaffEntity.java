@@ -7,7 +7,7 @@ import java.sql.Date;
  * Created by Павел on 21.06.2017.
  */
 @Entity
-@Table(name = "staff", schema = "hostel", catalog = "")
+@Table(name = "staff", schema = "hostel")
 public class StaffEntity {
     private short idstaff;
     private String employeeName;
