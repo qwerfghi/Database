@@ -18,4 +18,14 @@ public class EmployeeService {
     public List<StaffEntity> getAll() {
         return staffDAO.getAll();
     }
+
+    @Transactional
+    public void add(StaffEntity entity) {
+        staffDAO.add(entity);
+    }
+
+    @Transactional
+    public void deleteById(int id) {
+        staffDAO.delete(id);
+    }
 }

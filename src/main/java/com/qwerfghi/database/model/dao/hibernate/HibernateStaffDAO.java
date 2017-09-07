@@ -21,6 +21,6 @@ public class HibernateStaffDAO extends HibernateDAO<StaffEntity> implements Staf
 
     @Override
     public List<StaffEntity> getAll() {
-        return entityManager.createQuery("SELECT s FROM StaffEntity s", StaffEntity.class).getResultList();
+        return entityManager.createQuery("FROM StaffEntity", StaffEntity.class).getResultList();
     }
 }

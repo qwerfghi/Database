@@ -19,7 +19,7 @@ public class HibernateRoomDAO extends HibernateDAO<RoomEntity> implements RoomDA
 
     @Override
     public List<RoomEntity> getAllFreeRooms(AnimalType animalType, Date checkOutDate) {
-        TypedQuery<RoomEntity> query = entityManager.createQuery("SELECT r FROM RoomEntity r WHERE r.animalType = :animalType AND (r.dateEnd is NULL OR r.dateEnd > :checkOutDate)", RoomEntity.class);
+        TypedQuery<RoomEntity> query = entityManager.createQuery("FROM RoomEntity r WHERE r.animalType = :animalType AND (r.dateEnd is NULL OR r.dateEnd > :checkOutDate)", RoomEntity.class);
         query.setParameter("animalType", animalType);
         query.setParameter("checkOutDate", checkOutDate);
         return query.getResultList();
@@ -32,6 +32,6 @@ public class HibernateRoomDAO extends HibernateDAO<RoomEntity> implements RoomDA
 
     @Override
     public List<RoomEntity> getAll() {
-        return entityManager.createQuery("SELECT r FROM RoomEntity r", RoomEntity.class).getResultList();
+        return entityManager.createQuery("FROM RoomEntity", RoomEntity.class).getResultList();
     }
 }

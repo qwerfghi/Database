@@ -14,24 +14,6 @@ public class HibernatePrivilegeDAO extends HibernateDAO<PrivilegesEntity> implem
 
     @Override
     public PrivilegesEntity getUserPrivilege() {
-//        PrivilegesEntity entity;
-//        Transaction transaction = null;
-//        try (Session session = HibernateUtil.getSessionFactory().getCurrentSession()) {
-//            transaction = session.beginTransaction();
-//            EntityManager entityManager = session.getEntityManagerFactory().createEntityManager();
-//            byte b = 2;
-//            entity = entityManager.find(PrivilegesEntity.class, b);
-//            transaction.commit();
-//            entityManager.close();
-//            return entity;
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//            if (transaction != null) {
-//                transaction.rollback();
-//            }
-//            return null;
-//        }
-
         return entityManager.find(PrivilegesEntity.class, 2);
     }
 
@@ -42,6 +24,6 @@ public class HibernatePrivilegeDAO extends HibernateDAO<PrivilegesEntity> implem
 
     @Override
     public List<PrivilegesEntity> getAll() {
-        return entityManager.createQuery("SELECT p FROM PrivilegesEntity p", PrivilegesEntity.class).getResultList();
+        return entityManager.createQuery("FROM PrivilegesEntity", PrivilegesEntity.class).getResultList();
     }
 }

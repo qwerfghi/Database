@@ -17,7 +17,7 @@ public class HibernateUserDAO extends HibernateDAO<UserEntity> implements UserDA
 
     @Override
     public UserEntity getByUsernameAndPassword(String username, String password) {
-        TypedQuery<UserEntity> query = entityManager.createQuery("SELECT u FROM UserEntity u WHERE u.username = :username AND u.password= :password", UserEntity.class);
+        TypedQuery<UserEntity> query = entityManager.createQuery("FROM UserEntity u WHERE u.username = :username AND u.password= :password", UserEntity.class);
         query.setParameter("username", username);
         query.setParameter("password", password);
         return query.getSingleResult();
@@ -30,6 +30,6 @@ public class HibernateUserDAO extends HibernateDAO<UserEntity> implements UserDA
 
     @Override
     public List<UserEntity> getAll() {
-        return entityManager.createQuery("SELECT u FROM UserEntity u", UserEntity.class).getResultList();
+        return entityManager.createQuery("FROM UserEntity", UserEntity.class).getResultList();
     }
 }

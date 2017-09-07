@@ -8,21 +8,21 @@ import javax.persistence.*;
 @Entity
 @Table(name = "address", schema = "hostel")
 public class AddressEntity {
-    private short idaddress;
+    private int idaddress;
     private String region;
     private String locality;
     private String street;
-    private byte houseNum;
-    private short apartmentNum;
+    private int houseNum;
+    private int apartmentNum;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue
     @Column(name = "idaddress")
-    public short getIdaddress() {
+    public int getIdaddress() {
         return idaddress;
     }
 
-    public void setIdaddress(short idaddress) {
+    public void setIdaddress(int idaddress) {
         this.idaddress = idaddress;
     }
 
@@ -58,21 +58,21 @@ public class AddressEntity {
 
     @Basic
     @Column(name = "house_num")
-    public byte getHouseNum() {
+    public int getHouseNum() {
         return houseNum;
     }
 
-    public void setHouseNum(byte houseNum) {
+    public void setHouseNum(int houseNum) {
         this.houseNum = houseNum;
     }
 
     @Basic
     @Column(name = "apartment_num")
-    public short getApartmentNum() {
+    public int getApartmentNum() {
         return apartmentNum;
     }
 
-    public void setApartmentNum(short apartmentNum) {
+    public void setApartmentNum(int apartmentNum) {
         this.apartmentNum = apartmentNum;
     }
 
@@ -95,12 +95,12 @@ public class AddressEntity {
 
     @Override
     public int hashCode() {
-        int result = (int) idaddress;
+        int result = idaddress;
         result = 31 * result + (region != null ? region.hashCode() : 0);
         result = 31 * result + (locality != null ? locality.hashCode() : 0);
         result = 31 * result + (street != null ? street.hashCode() : 0);
-        result = 31 * result + (int) houseNum;
-        result = 31 * result + (int) apartmentNum;
+        result = 31 * result + houseNum;
+        result = 31 * result + apartmentNum;
         return result;
     }
 }

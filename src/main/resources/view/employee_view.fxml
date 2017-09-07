@@ -66,12 +66,12 @@
                   <Insets bottom="15.0" />
                </VBox.margin>
             </TextField>
-            <Button mnemonicParsing="false" onAction="#OnEmployee" text="Добавить работника">
+            <Button mnemonicParsing="false" onAction="#addEmployee" text="Добавить работника">
                <VBox.margin>
                   <Insets bottom="50.0" />
                </VBox.margin>
             </Button>
-            <Button mnemonicParsing="false" onAction="#OnDelete" text="Удалить работника" />
+            <Button mnemonicParsing="false" onAction="#deleteEmployee" text="Удалить работника" />
          </children>
       </VBox>
    </left>

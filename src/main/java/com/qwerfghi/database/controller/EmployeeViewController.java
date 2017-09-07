@@ -15,7 +15,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 public class EmployeeViewController {
     private ObservableList<StaffEntity> list;
     private EmployeeService employeeService;
-    private static String date;
 
     @FXML
     private TableView<StaffEntity> table;
@@ -72,11 +71,7 @@ public class EmployeeViewController {
         table.setItems(list);
     }
 
-    public void OnEmployee () {
-        if (datePicker.getValue() != null) {
-            date = datePicker.getValue().toString();
-            date = date.replace("-","");
-        }
+    public void addEmployee() {
         StaffEntity staffEntity = new StaffEntity();
         staffEntity.setEmployeeName(firstNameField.getText());
         staffEntity.setEmployeeLastName(lastNameField.getText());
@@ -86,12 +81,12 @@ public class EmployeeViewController {
         staffEntity.setEmail(emailField.getText());
         staffEntity.setPosition(positionField.getText());
         staffEntity.setDateRec(Helper.convertLocalDateToDate(datePicker.getValue()));
-        //connection.addEmployee(firstNameField.getText(), lastNameField.getText(), patronymicField.getText(), date, positionField.getText(), passportField.getText(), phoneField.getText(), emailField.getText());
+        employeeService.add(staffEntity);
         updateTable();
     }
 
-    public void OnDelete () {
-        //connection.deleteEmployee(table.getSelectionModel().getSelectedItem().passportProperty().getValue());
+    public void deleteEmployee() {
+        employeeService.deleteById(table.selectionModelProperty().get().getSelectedItem().getIdstaff());
         updateTable();
     }
 }

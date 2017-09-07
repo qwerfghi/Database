@@ -9,30 +9,30 @@ import java.sql.Date;
 @Entity
 @Table(name = "room", schema = "hostel")
 public class RoomEntity {
-    private short idrooms;
-    private short number;
+    private int idrooms;
+    private int number;
     private AnimalType animalType;
     private Date dateBeg;
     private Date dateEnd;
-    private short cost;
+    private int cost;
 
     @Id
     @Column(name = "idrooms")
-    public short getIdrooms() {
+    public int getIdrooms() {
         return idrooms;
     }
 
-    public void setIdrooms(short idrooms) {
+    public void setIdrooms(int idrooms) {
         this.idrooms = idrooms;
     }
 
     @Basic
     @Column(name = "number")
-    public short getNumber() {
+    public int getNumber() {
         return number;
     }
 
-    public void setNumber(short number) {
+    public void setNumber(int number) {
         this.number = number;
     }
 
@@ -69,11 +69,11 @@ public class RoomEntity {
 
     @Basic
     @Column(name = "cost")
-    public short getCost() {
+    public int getCost() {
         return cost;
     }
 
-    public void setCost(short cost) {
+    public void setCost(int cost) {
         this.cost = cost;
     }
 
@@ -96,12 +96,12 @@ public class RoomEntity {
 
     @Override
     public int hashCode() {
-        int result = (int) idrooms;
-        result = 31 * result + (int) number;
+        int result = idrooms;
+        result = 31 * result + number;
         result = 31 * result + (animalType != null ? animalType.hashCode() : 0);
         result = 31 * result + (dateBeg != null ? dateBeg.hashCode() : 0);
         result = 31 * result + (dateEnd != null ? dateEnd.hashCode() : 0);
-        result = 31 * result + (int) cost;
+        result = 31 * result + cost;
         return result;
     }
 }

@@ -19,6 +19,6 @@ public class HibernateAddressDAO extends HibernateDAO<AddressEntity> implements 
 
     @Override
     public List<AddressEntity> getAll() {
-        return entityManager.createQuery("SELECT a FROM AddressEntity a", AddressEntity.class).getResultList();
+        return entityManager.createQuery("FROM AddressEntity", AddressEntity.class).getResultList();
     }
 }

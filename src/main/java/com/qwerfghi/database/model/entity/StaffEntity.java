@@ -1,7 +1,7 @@
 package com.qwerfghi.database.model.entity;
 
 import javax.persistence.*;
-import java.sql.Date;
+import java.util.Date;
 
 /**
  * Created by Павел on 21.06.2017.
@@ -9,10 +9,11 @@ import java.sql.Date;
 @Entity
 @Table(name = "staff", schema = "hostel")
 public class StaffEntity {
-    private short idstaff;
+    private int idstaff;
     private String employeeName;
     private String employeeLastName;
     private String employeePatronymic;
+    @Temporal(TemporalType.DATE)
     private Date dateRec;
     private String passport;
     private String phoneNum;
@@ -20,12 +21,13 @@ public class StaffEntity {
     private String position;
 
     @Id
+    @GeneratedValue
     @Column(name = "idstaff")
-    public short getIdstaff() {
+    public int getIdstaff() {
         return idstaff;
     }
 
-    public void setIdstaff(short idstaff) {
+    public void setIdstaff(int idstaff) {
         this.idstaff = idstaff;
     }
 
@@ -133,7 +135,7 @@ public class StaffEntity {
 
     @Override
     public int hashCode() {
-        int result = (int) idstaff;
+        int result = idstaff;
         result = 31 * result + (employeeName != null ? employeeName.hashCode() : 0);
         result = 31 * result + (employeeLastName != null ? employeeLastName.hashCode() : 0);
         result = 31 * result + (employeePatronymic != null ? employeePatronymic.hashCode() : 0);
