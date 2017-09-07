@@ -8,7 +8,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "owner", schema = "hostel")
 public class OwnerEntity {
-    private short idowner;
+    private int idowner;
     private String ownerName;
     private String ownerLastName;
     private String ownerPatronymic;
@@ -22,11 +22,11 @@ public class OwnerEntity {
     @Id
     @GeneratedValue
     @Column(name = "idowner")
-    public short getIdowner() {
+    public int getIdowner() {
         return idowner;
     }
 
-    public void setIdowner(short idowner) {
+    public void setIdowner(int idowner) {
         this.idowner = idowner;
     }
 
@@ -143,7 +143,7 @@ public class OwnerEntity {
 
     @Override
     public int hashCode() {
-        int result = (int) idowner;
+        int result = idowner;
         result = 31 * result + (ownerName != null ? ownerName.hashCode() : 0);
         result = 31 * result + (ownerLastName != null ? ownerLastName.hashCode() : 0);
         result = 31 * result + (ownerPatronymic != null ? ownerPatronymic.hashCode() : 0);

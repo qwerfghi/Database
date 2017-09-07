@@ -8,7 +8,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "user", schema = "hostel")
 public class UserEntity {
-    private short iduser;
+    private int iduser;
     private String username;
     private String password;
     private PrivilegesEntity privilegeEntity;
@@ -16,11 +16,11 @@ public class UserEntity {
     @Id
     @GeneratedValue
     @Column(name = "iduser")
-    public short getIduser() {
+    public int getIduser() {
         return iduser;
     }
 
-    public void setIduser(short iduser) {
+    public void setIduser(int iduser) {
         this.iduser = iduser;
     }
 

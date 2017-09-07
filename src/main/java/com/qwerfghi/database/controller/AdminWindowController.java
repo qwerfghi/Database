@@ -14,7 +14,7 @@ public class AdminWindowController implements LayoutController {
 
     @FXML
     private void OnGuest () {
-        main.setOwnerElement(this);
+        main.setOwnerElement();
     }
 
     @FXML

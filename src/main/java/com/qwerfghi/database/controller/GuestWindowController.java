@@ -16,6 +16,7 @@ import org.springframework.context.ApplicationContext;
 
 public class GuestWindowController {
 
+    private GuestService guestService;
     private Main main;
     private ObservableList<RoomEntity> list;
     public static AnimalType select = AnimalType.DOG;
@@ -38,6 +39,7 @@ public class GuestWindowController {
 
     @FXML
     private void initialize() {
+        guestService = Main.getContext().getBean(GuestService.class);
         animalType.setItems(FXCollections.observableArrayList("для собаки", "для кота", "для хомяка", "для черепахи", "для змеи"));
         animalType.getSelectionModel().selectFirst();
         animalType.getSelectionModel().selectedIndexProperty().addListener((observable, oldValue, newValue) -> {
@@ -68,8 +70,6 @@ public class GuestWindowController {
 
     @FXML
     public void onShow() {
-        ApplicationContext ctx = Main.getContext();
-        GuestService guestService = ctx.getBean(GuestService.class);
         list = FXCollections.observableList(guestService.getAllFreeRooms(select, Helper.convertLocalDateToDate(datePicker.getValue())));
         roomNumColumn.setCellValueFactory(new PropertyValueFactory<>("number"));
         dateEnterColumn.setCellValueFactory(new PropertyValueFactory<>("dateBeg"));

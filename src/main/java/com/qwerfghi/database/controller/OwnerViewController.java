@@ -1,10 +1,10 @@
 package com.qwerfghi.database.controller;
 
 import com.qwerfghi.database.Main;
-import com.qwerfghi.database.model.FragmentController;
-import com.qwerfghi.database.model.LayoutController;
 import com.qwerfghi.database.model.MyConnection;
-import com.qwerfghi.database.model.User;
+import com.qwerfghi.database.model.entity.OwnerEntity;
+import com.qwerfghi.database.model.entity.UserEntity;
+import com.qwerfghi.database.model.service.OwnerService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -12,104 +12,83 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 
-public class OwnerViewController implements FragmentController {
-    private LayoutController parent;
-    private MyConnection connection;
-    private ObservableList<User> list;
-    private static String select_d = "0%";
+public class OwnerViewController {
+    private ObservableList<OwnerEntity> list;
+    private OwnerService ownerService;
 
     @FXML
-    private TableView<User> table;
+    private TableView<OwnerEntity> table;
     @FXML
-    private TableColumn<User, Integer> idGuestColumn;
+    private TableColumn<OwnerEntity, Integer> idGuestColumn;
     @FXML
-    private TableColumn<User, String> NameColumn;
+    private TableColumn<OwnerEntity, String> NameColumn;
     @FXML
-    private TableColumn<User, String> lNameColumn;
+    private TableColumn<OwnerEntity, String> lNameColumn;
     @FXML
-    private TableColumn<User, String> PatronymicColumn;
+    private TableColumn<OwnerEntity, String> PatronymicColumn;
     @FXML
-    private TableColumn<User, String> passNumColumn;
+    private TableColumn<OwnerEntity, String> passNumColumn;
     @FXML
-    private TableColumn<User, String> phoneNumColumn;
+    private TableColumn<OwnerEntity, String> phoneNumColumn;
     @FXML
-    private TableColumn<User, String> emailColumn;
+    private TableColumn<OwnerEntity, String> emailColumn;
     @FXML
-    private TableColumn<User, String> discountColumn;
+    private TableColumn<OwnerEntity, String> discountColumn;
     @FXML
-    private TextField addName;
+    private TextField nameField;
     @FXML
-    private TextField addLName;
+    private TextField lastNameField;
     @FXML
-    private TextField addPatronymic;
+    private TextField patronymicField;
     @FXML
-    private TextField passNum;
+    private TextField passportField;
     @FXML
-    private TextField phoneNum;
+    private TextField phoneField;
     @FXML
-    private TextField Email;
+    private TextField emailField;
     @FXML
-    private ChoiceBox<String> Discount;
+    private ChoiceBox<String> discount;
 
     @FXML
     public void initialize() {
-        connection = Main.connection;
-        list = connection.getAllUsers();
-        idGuestColumn.setCellValueFactory(cellData -> cellData.getValue().idownerProperty().asObject());
-        NameColumn.setCellValueFactory(cellData -> cellData.getValue().nameProperty());
-        lNameColumn.setCellValueFactory(cellData -> cellData.getValue().lastNameProperty());
-        PatronymicColumn.setCellValueFactory(cellData -> cellData.getValue().patronymicProperty());
-        passNumColumn.setCellValueFactory(cellData -> cellData.getValue().passNumProperty());
-        phoneNumColumn.setCellValueFactory(cellData -> cellData.getValue().phoneNumProperty());
-        emailColumn.setCellValueFactory(cellData -> cellData.getValue().emailProperty());
-        discountColumn.setCellValueFactory(cellData -> cellData.getValue().discountProperty());
-        table.setItems(list);
+        ownerService = Main.getContext().getBean(OwnerService.class);
+        discount.setItems(FXCollections.observableArrayList("0%", "5%", "10%", "20%"));
+        discount.getSelectionModel().selectFirst();
+        updateTable();
+        //discount.getSelectionModel().getSelectedItem();
+    }
 
-        Discount.setItems(FXCollections.observableArrayList("0%", "5%", "10%", "20%"));
-        Discount.getSelectionModel().selectFirst();
-        Discount.getSelectionModel().selectedIndexProperty().addListener((observable, oldValue, newValue) -> {
-            switch (newValue.intValue()){
-                case 0:
-                    select_d = "0%";
-                    break;
-                case 1:
-                    select_d = "5%";
-                    break;
-                case 2:
-                    select_d = "10%";
-                    break;
-                case 3:
-                    select_d = "20%";
-                    break;
-            }
-        });
+    private void updateTable() {
+        list = FXCollections.observableArrayList(ownerService.getAll());
+        idGuestColumn.setCellValueFactory(new PropertyValueFactory<>("idowner"));
+        NameColumn.setCellValueFactory(new PropertyValueFactory<>("ownerName"));
+        lNameColumn.setCellValueFactory(new PropertyValueFactory<>("ownerLastName"));
+        PatronymicColumn.setCellValueFactory(new PropertyValueFactory<>("ownerPatronymic"));
+        passNumColumn.setCellValueFactory(new PropertyValueFactory<>("passport"));
+        phoneNumColumn.setCellValueFactory(new PropertyValueFactory<>("phoneNum"));
+        emailColumn.setCellValueFactory(new PropertyValueFactory<>("email"));
+        discountColumn.setCellValueFactory(new PropertyValueFactory<>("discount"));
+        table.setItems(list);
     }
 
     @FXML
     private void OnAddUser () {
-        connection.addGuest(addName.getText(), addLName.getText(), addPatronymic.getText(),  passNum.getText(), phoneNum.getText(), Email.getText());
-        initialize();
+        //connection.addGuest(nameField.getText(), lastNameField.getText(), patronymicField.getText(),  passportField.getText(), phoneField.getText(), emailField.getText());
+        updateTable();
     }
 
     @FXML
     private void OnDeleteUser () {
-        connection.deleteGuest(table.getSelectionModel().getSelectedItem().idownerProperty().getValue());
-        initialize();
+        //connection.deleteGuest(table.getSelectionModel().getSelectedItem().idownerProperty().getValue());
+        updateTable();
     }
 
     @FXML
     private void OnChangeDiscount () {
-        connection.updateDis(table.getSelectionModel().getSelectedItem().getIdowner(), select_d);
-        initialize();
-    }
+        //connection.updateDis(table.getSelectionModel().getSelectedItem().getIdowner(), select_d);
 
-    public void setParent(LayoutController parent) {
-        this.parent = parent;
-    }
-
-    @Override
-    public FragmentController getChild() {
-        return null;
+        updateTable();
     }
 }

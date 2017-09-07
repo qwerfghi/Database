@@ -9,32 +9,32 @@
    <left>
       <VBox alignment="CENTER" prefHeight="555.0" prefWidth="162.0" BorderPane.alignment="CENTER">
          <children>
-            <TextField fx:id="addName" promptText="Имя посетителя">
+            <TextField fx:id="nameField" promptText="Имя посетителя">
                <VBox.margin>
                   <Insets bottom="10.0" />
                </VBox.margin>
             </TextField>
-            <TextField fx:id="addLName" promptText="Фамилия посетителя">
+            <TextField fx:id="lastNameField" promptText="Фамилия посетителя">
                <VBox.margin>
                   <Insets bottom="10.0" />
                </VBox.margin>
             </TextField>
-            <TextField fx:id="addPatronymic" promptText="Отчетство посетителя">
+            <TextField fx:id="patronymicField" promptText="Отчетство посетителя">
                <VBox.margin>
                   <Insets bottom="10.0" />
                </VBox.margin>
             </TextField>
-            <TextField fx:id="passNum" promptText="Номер пасспорта">
+            <TextField fx:id="passportField" promptText="Номер пасспорта">
                <VBox.margin>
                   <Insets bottom="10.0" />
                </VBox.margin>
             </TextField>
-            <TextField fx:id="phoneNum" promptText="Телефонный номер">
+            <TextField fx:id="phoneField" promptText="Телефонный номер">
                <VBox.margin>
                   <Insets bottom="10.0" />
                </VBox.margin>
             </TextField>
-            <TextField fx:id="Email" promptText="Email">
+            <TextField fx:id="emailField" promptText="Email">
                <VBox.margin>
                   <Insets bottom="10.0" />
                </VBox.margin>
@@ -49,7 +49,7 @@
                   <Insets bottom="10.0" />
                </VBox.margin>
             </Button>
-            <ChoiceBox fx:id="Discount" prefWidth="150.0">
+            <ChoiceBox fx:id="discount" prefWidth="150.0">
                <VBox.margin>
                   <Insets bottom="10.0" />
                </VBox.margin>

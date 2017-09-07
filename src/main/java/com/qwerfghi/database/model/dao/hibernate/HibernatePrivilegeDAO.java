@@ -2,11 +2,13 @@ package com.qwerfghi.database.model.dao.hibernate;
 
 import com.qwerfghi.database.model.dao.PrivilegeDAO;
 import com.qwerfghi.database.model.entity.PrivilegesEntity;
+import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
 
+@Repository
 public class HibernatePrivilegeDAO extends HibernateDAO<PrivilegesEntity> implements PrivilegeDAO {
 
     @PersistenceContext

@@ -8,17 +8,17 @@ import javax.persistence.*;
 @Entity
 @Table(name = "privileges", schema = "hostel")
 public class PrivilegesEntity {
-    private byte id;
+    private int id;
     private String privilegeName;
     private String password;
 
     @Id
     @Column(name = "id")
-    public byte getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(byte id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -59,7 +59,7 @@ public class PrivilegesEntity {
 
     @Override
     public int hashCode() {
-        int result = (int) id;
+        int result = id;
         result = 31 * result + (privilegeName != null ? privilegeName.hashCode() : 0);
         result = 31 * result + (password != null ? password.hashCode() : 0);
         return result;

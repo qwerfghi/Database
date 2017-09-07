@@ -2,11 +2,13 @@ package com.qwerfghi.database.model.dao.hibernate;
 
 import com.qwerfghi.database.model.dao.AddressDAO;
 import com.qwerfghi.database.model.entity.AddressEntity;
+import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
 
+@Repository
 public class HibernateAddressDAO extends HibernateDAO<AddressEntity> implements AddressDAO {
 
     @PersistenceContext

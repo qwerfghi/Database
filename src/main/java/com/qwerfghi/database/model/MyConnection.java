@@ -23,7 +23,6 @@ public class MyConnection {
     private Connection connection;
     private Statement statement;
     private Set<Room> rooms = new HashSet<>();
-    private Set<FreeRoom> free_rooms = new HashSet<>();
     private Set<Information> information = new HashSet<>();
     private Set<Employeer> employeers = new HashSet<>();
     private Set<User> users = new HashSet<>();

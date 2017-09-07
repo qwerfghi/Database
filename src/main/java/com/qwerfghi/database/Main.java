@@ -185,18 +185,14 @@ public class Main extends Application {
         }
     }
 
-    public FragmentController setOwnerElement(LayoutController parent) {
+    public void setOwnerElement() {
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getClassLoader().getResource("view/owner_view.fxml"));
             BorderPane element = loader.load();
-            OwnerViewController controller = loader.getController();
-            controller.setParent(parent);
             root.setCenter(element);
-            return controller;
         } catch (IOException e) {
             e.printStackTrace();
-            return null;
         }
     }
 

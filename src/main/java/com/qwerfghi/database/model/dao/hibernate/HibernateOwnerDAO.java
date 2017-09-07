@@ -2,11 +2,13 @@ package com.qwerfghi.database.model.dao.hibernate;
 
 import com.qwerfghi.database.model.dao.OwnerDAO;
 import com.qwerfghi.database.model.entity.OwnerEntity;
+import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
 
+@Repository
 public class HibernateOwnerDAO extends HibernateDAO<OwnerEntity> implements OwnerDAO {
 
     @PersistenceContext
