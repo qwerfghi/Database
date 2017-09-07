@@ -8,7 +8,8 @@ import javax.persistence.*;
 @Entity
 @Table(name = "animal", schema = "hostel")
 public class AnimalEntity {
-    private short idanimal;
+    private int idanimal;
+    private OwnerEntity owner;
     private String animalName;
     private AnimalType animalType;
     private byte age;
@@ -19,11 +20,11 @@ public class AnimalEntity {
 
     @Id
     @Column(name = "idanimal")
-    public short getIdanimal() {
+    public int getIdanimal() {
         return idanimal;
     }
 
-    public void setIdanimal(short idanimal) {
+    public void setIdanimal(int idanimal) {
         this.idanimal = idanimal;
     }
 
@@ -118,7 +119,7 @@ public class AnimalEntity {
 
     @Override
     public int hashCode() {
-        int result = (int) idanimal;
+        int result = idanimal;
         result = 31 * result + (animalName != null ? animalName.hashCode() : 0);
         result = 31 * result + (animalType != null ? animalType.hashCode() : 0);
         result = 31 * result + (int) age;
@@ -127,5 +128,15 @@ public class AnimalEntity {
         result = 31 * result + (int) cut;
         result = 31 * result + (notice != null ? notice.hashCode() : 0);
         return result;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "idowner", foreignKey = @ForeignKey(name = "fk_owner"))
+    public OwnerEntity getOwner() {
+        return owner;
+    }
+
+    public void setOwner(OwnerEntity owner) {
+        this.owner = owner;
     }
 }

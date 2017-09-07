@@ -1,6 +1,7 @@
 package com.qwerfghi.database.model.service;
 
 import com.qwerfghi.database.model.dao.OwnerDAO;
+import com.qwerfghi.database.model.entity.Discount;
 import com.qwerfghi.database.model.entity.OwnerEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,5 +18,10 @@ public class OwnerService {
     @Transactional
     public List<OwnerEntity> getAll(){
         return ownerDAO.getAll();
+    }
+
+    @Transactional
+    public void changeDiscount(int id, Discount discount) {
+        ownerDAO.changeDiscount(id, discount);
     }
 }

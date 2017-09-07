@@ -1,9 +1,8 @@
 package com.qwerfghi.database.controller;
 
 import com.qwerfghi.database.Main;
-import com.qwerfghi.database.model.MyConnection;
+import com.qwerfghi.database.model.entity.Discount;
 import com.qwerfghi.database.model.entity.OwnerEntity;
-import com.qwerfghi.database.model.entity.UserEntity;
 import com.qwerfghi.database.model.service.OwnerService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -57,7 +56,6 @@ public class OwnerViewController {
         discount.setItems(FXCollections.observableArrayList("0%", "5%", "10%", "20%"));
         discount.getSelectionModel().selectFirst();
         updateTable();
-        //discount.getSelectionModel().getSelectedItem();
     }
 
     private void updateTable() {
@@ -87,8 +85,9 @@ public class OwnerViewController {
 
     @FXML
     private void OnChangeDiscount () {
-        //connection.updateDis(table.getSelectionModel().getSelectedItem().getIdowner(), select_d);
-
+        int id = table.getSelectionModel().getSelectedItem().getIdowner();
+        Discount currentDiscount = Discount.fromCode(this.discount.getSelectionModel().getSelectedItem());
+        ownerService.changeDiscount(id , currentDiscount);
         updateTable();
     }
 }

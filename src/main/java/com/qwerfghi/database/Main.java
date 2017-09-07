@@ -196,18 +196,14 @@ public class Main extends Application {
         }
     }
 
-    public FragmentController setAnimalsElement(LayoutController parent) {
+    public void setAnimalsElement(LayoutController parent) {
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getClassLoader().getResource("view/animal_view.fxml"));
             BorderPane element = loader.load();
-            AnimalViewController controller = loader.getController();
-            controller.setParent(parent);
             root.setCenter(element);
-            return controller;
         } catch (IOException e) {
             e.printStackTrace();
-            return null;
         }
     }
 

@@ -24,9 +24,6 @@ public class MyConnection {
     private Statement statement;
     private Set<Room> rooms = new HashSet<>();
     private Set<Information> information = new HashSet<>();
-    private Set<Employeer> employeers = new HashSet<>();
-    private Set<User> users = new HashSet<>();
-    private Set<Animals> animals = new HashSet<>();
     private static int getted = 0;
     public static int currentId = 23;
     public static int userId = 23;
@@ -183,44 +180,6 @@ public class MyConnection {
         return set;
     }
 
-    public ObservableList<User> getAllUsers() {
-        ObservableList<User> list = FXCollections.observableArrayList();
-        list.addAll(allUsers());
-        return list;
-    }
-
-    private Set<User> allUsers() {
-        String sql = "select idowner, owner_name, owner_last_name, owner_patronymic, passport, phone_num, email, discount from owner;";
-        getted++;
-        if (getted == 30) {
-            Runtime.getRuntime().gc();
-            System.out.println("Очистка");
-            getted = 0;
-        }
-        users = getUserSet(getResultSet(sql));
-        return users;
-    }
-
-    private Set<User> getUserSet(ResultSet resultSet) {
-        Set<User> set = new LinkedHashSet<>();
-        try {
-            while (resultSet.next()) {
-                int idowner = resultSet.getInt("idowner");
-                String name = resultSet.getString("owner_name");
-                String lastName = resultSet.getString("owner_last_name");
-                String patronymic = resultSet.getString("owner_patronymic");
-                String passNum = resultSet.getString("passport");
-                String phoneNum = resultSet.getString("phone_num");
-                String email = resultSet.getString("email");
-                String discount = resultSet.getString("discount");
-                set.add(new User(this, idowner, name, lastName, patronymic, passNum, phoneNum, email, discount));
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return set;
-    }
-
     public void idUser(String login) {
         String sql = "select iduser from user where username = '" + login + "';";
         try {
@@ -323,64 +282,6 @@ public class MyConnection {
         return list;
     }
 
-    public ObservableList<Employeer> getAllEmployeers() {
-        ObservableList<Employeer> list = FXCollections.observableArrayList();
-        list.addAll(allEmployeers());
-        return list;
-    }
-
-    private Set<Employeer> getEmployeersSet(ResultSet resultSet) {
-        Set<Employeer> set = new LinkedHashSet<>();
-        try {
-            while (resultSet.next()) {
-                String name = resultSet.getString("employee_name");
-                String lName = resultSet.getString("employee_last_name");
-                String pName = resultSet.getString("employee_patronymic");
-                String dateN = resultSet.getString("date_rec");
-                String position = resultSet.getString("position");
-                String passport = resultSet.getString("passport");
-                String phoneN = resultSet.getString("phone_num");
-                String email = resultSet.getString("email");
-                set.add(new Employeer(this, name, lName, pName, dateN, position, passport, phoneN, email));
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return set;
-    }
-
-    private Set<Employeer> allEmployeers() {
-        String sql = "select * from staff;";
-        getted++;
-        if (getted == 30) {
-            Runtime.getRuntime().gc();
-            System.out.println("Очистка");
-            getted = 0;
-        }
-        employeers = getEmployeersSet(getResultSet(sql));
-        return employeers;
-    }
-
-    public boolean addEmployee(String firstName, String lastName, String patron, String Date, String position, String passN, String phoneN, String mail) {
-        String sql = "insert into staff (employee_name, employee_last_name, employee_patronymic, date_rec, position, passport, phone_num, email) values ('" + firstName + "', '" + lastName + "', '" + patron + "', '" + Date + "', '" + position + "', '" + passN + "', '" + phoneN + "', '" + mail + "');";
-        try {
-            statement.execute(sql);
-            return true;
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return false;
-        }
-    }
-
-    public void deleteEmployee(String passport) {
-        String sql = "DELETE FROM staff WHERE passport = '" + passport + "';";
-        try {
-            statement.execute(sql);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
     public void addRes(String date_in, String date_out, int taxi, int cut, int vet, int number, String name) {
         String sql = "update room set idowner = '" + currentId + "', date_beg = '" + date_in + "', date_end ='" + date_out + "' where number = '" + number + "';";
         try {
@@ -432,70 +333,6 @@ public class MyConnection {
             } catch (SQLException e) {
                 e.printStackTrace();
             }
-        }
-    }
-
-    public void updateDis(int idowner, String discount) {
-        String sql = "update owner set discount = '" + discount + "' where idowner = '" + idowner + "';";
-        try {
-            statement.execute(sql);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public ObservableList<Animals> getAllAnimals() {
-        ObservableList<Animals> list = FXCollections.observableArrayList();
-        list.addAll(allAnimals());
-        return list;
-    }
-
-    private Set<Animals> allAnimals() {
-        String sql = "select idowner, animal_name, animal_kind, age, notice from animal;";
-        getted++;
-        if (getted == 30) {
-            Runtime.getRuntime().gc();
-            System.out.println("Очистка");
-            getted = 0;
-        }
-        animals = getAnimalsSet(getResultSet(sql));
-        return animals;
-    }
-
-    private Set<Animals> getAnimalsSet(ResultSet resultSet) {
-        Set<Animals> set = new LinkedHashSet<>();
-        try {
-            while (resultSet.next()) {
-                Integer idOwner = resultSet.getInt("idowner");
-                String animalName = resultSet.getString("animal_name");
-                String animalType = resultSet.getString("animal_kind");
-                Integer age = resultSet.getInt("age");
-                String notice = resultSet.getString("notice");
-                set.add(new Animals(this, idOwner, animalName, animalType, age, notice));
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return set;
-    }
-
-    public boolean addPet(int idowner, String petN, String select_pet, int age, String notice) {
-        String sql = "insert into animal (animal_name, animal_kind, vet_inspection, zootaxi, cut, idowner, age, notice) values ('" + petN + "', '" + select_pet + "', '" + 0 + "', '" + 0 + "', '" + 0 + "', '" + idowner + "', '" + age + "', '" + notice + "');";
-        try {
-            statement.execute(sql);
-            return true;
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return false;
-        }
-    }
-
-    public void deletePet(int idowner, String animalName, String animalType, int age) {
-        String sql = "DELETE FROM animal WHERE idowner = '" + idowner + "' and animal_name = '" + animalName + "' and animal_kind = '" + animalType + "' and age = '" + age + "';";
-        try {
-            statement.execute(sql);
-        } catch (SQLException e) {
-            e.printStackTrace();
         }
     }
 }

@@ -5,6 +5,8 @@ import com.qwerfghi.database.model.Animals;
 import com.qwerfghi.database.model.FragmentController;
 import com.qwerfghi.database.model.LayoutController;
 import com.qwerfghi.database.model.MyConnection;
+import com.qwerfghi.database.model.entity.AnimalEntity;
+import com.qwerfghi.database.model.service.AnimalService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -12,26 +14,24 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 
-public class AnimalViewController implements FragmentController {
-
-    private LayoutController parent;
-    private MyConnection connection;
-    private ObservableList<Animals> list;
-    public static String select_pet1 = "Собака";
+public class AnimalViewController {
+    private AnimalService animalService;
+    private ObservableList<AnimalEntity> list;
 
     @FXML
-    private TableView<Animals> table;
+    private TableView<AnimalEntity> table;
     @FXML
-    private TableColumn<Animals, Integer> idOwnerColumn;
+    private TableColumn<AnimalEntity, Integer> idOwnerColumn;
     @FXML
-    private TableColumn<Animals, String> animalNameColumn;
+    private TableColumn<AnimalEntity, String> animalNameColumn;
     @FXML
-    private TableColumn<Animals, String> animalTypeColumn;
+    private TableColumn<AnimalEntity, String> animalTypeColumn;
     @FXML
-    private TableColumn<Animals, Integer> animalAgeColumn;
+    private TableColumn<AnimalEntity, Integer> animalAgeColumn;
     @FXML
-    private TableColumn<Animals, String> noticeColumn;
+    private TableColumn<AnimalEntity, String> noticeColumn;
     @FXML
     private TextField idOwner;
     @FXML
@@ -45,56 +45,27 @@ public class AnimalViewController implements FragmentController {
 
     @FXML
     public void initialize() {
-        connection = Main.connection;
-        list = connection.getAllAnimals();
-        idOwnerColumn.setCellValueFactory(cellData -> cellData.getValue().idOwnerProperty().asObject());
-        animalNameColumn.setCellValueFactory(cellData -> cellData.getValue().animalNameProperty());
-        animalTypeColumn.setCellValueFactory(cellData -> cellData.getValue().animalTypeProperty());
-        animalAgeColumn.setCellValueFactory(cellData -> cellData.getValue().ageProperty().asObject());
-        noticeColumn.setCellValueFactory(cellData -> cellData.getValue().noticeProperty());
+        animalService = Main.getContext().getBean(AnimalService.class);
+        list = FXCollections.observableArrayList(animalService.getAll());
+        idOwnerColumn.setCellValueFactory(new PropertyValueFactory<>("idowner"));
+        animalNameColumn.setCellValueFactory(new PropertyValueFactory<>("animalName"));
+        animalTypeColumn.setCellValueFactory(new PropertyValueFactory<>("idowner"));
+        animalAgeColumn.setCellValueFactory(new PropertyValueFactory<>("idowner"));
+        noticeColumn.setCellValueFactory(new PropertyValueFactory<>("idowner"));
         table.setItems(list);
-        animalType.setItems(FXCollections.
-                observableArrayList("Собака", "Кот", "Хомяк", "Черепаха", "Змея"));
+        animalType.setItems(FXCollections.observableArrayList("Собака", "Кот", "Хомяк", "Черепаха", "Змея"));
         animalType.getSelectionModel().selectFirst();
-        animalType.getSelectionModel().selectedIndexProperty().addListener((observable, oldValue, newValue) -> {
-            switch (newValue.intValue()){
-                case 0:
-                    select_pet1 = "собака";
-                    break;
-                case 1:
-                    select_pet1 = "кот";
-                    break;
-                case 2:
-                    select_pet1 = "хомяк";
-                    break;
-                case 3:
-                    select_pet1 = "черепаха";
-                    break;
-                case 4:
-                    select_pet1 = "змея";
-                    break;
-            }
-        });
     }
 
     @FXML
     private void onAddAnimal () {
-        connection.addPet(Integer.parseInt(idOwner.getText()), animalName.getText(), animalType.getValue(), Integer.parseInt(animalAge.getText()), notice.getText());
+        //connection.addPet(Integer.parseInt(idOwner.getText()), animalName.getText(), animalType.getValue(), Integer.parseInt(animalAge.getText()), notice.getText());
         initialize();
     }
 
     @FXML
     private void onDeleteAnimal () {
-        connection.deletePet(table.getSelectionModel().getSelectedItem().idOwnerProperty().getValue(), table.getSelectionModel().getSelectedItem().animalNameProperty().getValue(), table.getSelectionModel().getSelectedItem().animalTypeProperty().getValue(), table.getSelectionModel().getSelectedItem().ageProperty().getValue());
+        //connection.deletePet(table.getSelectionModel().getSelectedItem().idOwnerProperty().getValue(), table.getSelectionModel().getSelectedItem().animalNameProperty().getValue(), table.getSelectionModel().getSelectedItem().animalTypeProperty().getValue(), table.getSelectionModel().getSelectedItem().ageProperty().getValue());
         initialize();
-    }
-
-    public void setParent(LayoutController parent) {
-        this.parent = parent;
-    }
-
-    @Override
-    public FragmentController getChild() {
-        return null;
     }
 }

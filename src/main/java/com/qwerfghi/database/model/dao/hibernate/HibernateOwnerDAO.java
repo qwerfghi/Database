@@ -1,6 +1,7 @@
 package com.qwerfghi.database.model.dao.hibernate;
 
 import com.qwerfghi.database.model.dao.OwnerDAO;
+import com.qwerfghi.database.model.entity.Discount;
 import com.qwerfghi.database.model.entity.OwnerEntity;
 import org.springframework.stereotype.Repository;
 
@@ -22,5 +23,10 @@ public class HibernateOwnerDAO extends HibernateDAO<OwnerEntity> implements Owne
     @Override
     public List<OwnerEntity> getAll() {
         return entityManager.createQuery("FROM OwnerEntity", OwnerEntity.class).getResultList();
+    }
+
+    @Override
+    public void changeDiscount(int id, Discount discount) {
+        getById(id).setDiscount(discount);
     }
 }
