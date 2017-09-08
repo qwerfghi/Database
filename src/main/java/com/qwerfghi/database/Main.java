@@ -135,30 +135,25 @@ public class Main extends Application {
         }
     }
 
-    public void setRoomElement(LayoutController parent) {
+    public void setRoomElement() {
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getClassLoader().getResource("view/room_view.fxml"));
             BorderPane element = loader.load();
-            RoomViewController controller = loader.getController();
             root.setCenter(element);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public FragmentController setInformationElement(LayoutController parent) {
+    public void setInformationElement() {
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getClassLoader().getResource("view/information_view.fxml"));
             BorderPane element = loader.load();
-            InformationViewController controller = loader.getController();
-            controller.setParent(parent);
             root.setCenter(element);
-            return controller;
         } catch (IOException e) {
             e.printStackTrace();
-            return null;
         }
     }
 
@@ -196,10 +191,10 @@ public class Main extends Application {
         }
     }
 
-    public void setAnimalsElement(LayoutController parent) {
+    public void setAnimalsElement() {
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getClassLoader().getResource("view/animal_view.fxml"));
+            loader.setLocation(getURL("view/animal_view.fxml"));
             BorderPane element = loader.load();
             root.setCenter(element);
         } catch (IOException e) {

@@ -12,14 +12,12 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import org.springframework.context.ApplicationContext;
 
 public class GuestWindowController {
 
     private GuestService guestService;
     private Main main;
     private ObservableList<RoomEntity> list;
-    public static AnimalType select = AnimalType.DOG;
 
     @FXML
     private DatePicker datePicker;
@@ -42,25 +40,6 @@ public class GuestWindowController {
         guestService = Main.getContext().getBean(GuestService.class);
         animalType.setItems(FXCollections.observableArrayList("для собаки", "для кота", "для хомяка", "для черепахи", "для змеи"));
         animalType.getSelectionModel().selectFirst();
-        animalType.getSelectionModel().selectedIndexProperty().addListener((observable, oldValue, newValue) -> {
-            switch (newValue.intValue()) {
-                case 0:
-                    select = AnimalType.DOG;
-                    break;
-                case 1:
-                    select = AnimalType.CAT;
-                    break;
-                case 2:
-                    select = AnimalType.HAMSTER;
-                    break;
-                case 3:
-                    select = AnimalType.TURTLE;
-                    break;
-                case 4:
-                    select = AnimalType.SNAKE;
-                    break;
-            }
-        });
     }
 
     @FXML
@@ -70,7 +49,7 @@ public class GuestWindowController {
 
     @FXML
     public void onShow() {
-        list = FXCollections.observableList(guestService.getAllFreeRooms(select, Helper.convertLocalDateToDate(datePicker.getValue())));
+        list = FXCollections.observableList(guestService.getAllFreeRooms(AnimalType.fromCode(animalType.getValue()), Helper.convertLocalDateToDate(datePicker.getValue())));
         roomNumColumn.setCellValueFactory(new PropertyValueFactory<>("number"));
         dateEnterColumn.setCellValueFactory(new PropertyValueFactory<>("dateBeg"));
         dateOutColumn.setCellValueFactory(new PropertyValueFactory<>("dateEnd"));

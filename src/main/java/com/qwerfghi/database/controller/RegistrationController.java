@@ -86,7 +86,7 @@ public class RegistrationController {
 //        DAOFactory factory = DAOFactory.getDAOFactory(DAOFactory.HIBERNATE);
 //        PrivilegeDAO privilegeDAO = factory.getPrivilegeDAO();
 //        OwnerDAO ownerDAO = factory.getOwnerDAO();
-//        ownerDAO.add(getOwnerEntity(privilegeDAO));
+//        ownerDAO.addAnimal(getOwnerEntity(privilegeDAO));
     }
 
     private OwnerEntity getOwnerEntity(PrivilegeDAO privilegeDAO) {

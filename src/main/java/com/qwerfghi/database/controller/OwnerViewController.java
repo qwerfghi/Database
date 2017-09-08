@@ -3,7 +3,7 @@ package com.qwerfghi.database.controller;
 import com.qwerfghi.database.Main;
 import com.qwerfghi.database.model.entity.Discount;
 import com.qwerfghi.database.model.entity.OwnerEntity;
-import com.qwerfghi.database.model.service.OwnerService;
+import com.qwerfghi.database.model.service.AdminService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -15,7 +15,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 
 public class OwnerViewController {
     private ObservableList<OwnerEntity> list;
-    private OwnerService ownerService;
+    private AdminService adminService;
 
     @FXML
     private TableView<OwnerEntity> table;
@@ -52,14 +52,14 @@ public class OwnerViewController {
 
     @FXML
     public void initialize() {
-        ownerService = Main.getContext().getBean(OwnerService.class);
+        adminService = Main.getContext().getBean(AdminService.class);
         discount.setItems(FXCollections.observableArrayList("0%", "5%", "10%", "20%"));
         discount.getSelectionModel().selectFirst();
         updateTable();
     }
 
     private void updateTable() {
-        list = FXCollections.observableArrayList(ownerService.getAll());
+        list = FXCollections.observableArrayList(adminService.getAllOwners());
         idGuestColumn.setCellValueFactory(new PropertyValueFactory<>("idowner"));
         NameColumn.setCellValueFactory(new PropertyValueFactory<>("ownerName"));
         lNameColumn.setCellValueFactory(new PropertyValueFactory<>("ownerLastName"));
@@ -73,6 +73,7 @@ public class OwnerViewController {
 
     @FXML
     private void OnAddUser () {
+
         //connection.addGuest(nameField.getText(), lastNameField.getText(), patronymicField.getText(),  passportField.getText(), phoneField.getText(), emailField.getText());
         updateTable();
     }
@@ -87,7 +88,7 @@ public class OwnerViewController {
     private void OnChangeDiscount () {
         int id = table.getSelectionModel().getSelectedItem().getIdowner();
         Discount currentDiscount = Discount.fromCode(this.discount.getSelectionModel().getSelectedItem());
-        ownerService.changeDiscount(id , currentDiscount);
+        adminService.changeDiscount(id , currentDiscount);
         updateTable();
     }
 }

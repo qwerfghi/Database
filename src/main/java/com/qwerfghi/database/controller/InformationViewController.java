@@ -12,8 +12,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 
 
-public class InformationViewController implements FragmentController {
-    private LayoutController parent;
+public class InformationViewController {
     private MyConnection connection;
     private ObservableList<Information> list;
 
@@ -73,15 +72,5 @@ public class InformationViewController implements FragmentController {
         ageColumn.setCellValueFactory(cellData -> cellData.getValue().ageProperty().asObject());
         noticeColumn.setCellValueFactory(cellData -> cellData.getValue().noticeProperty());
         table.setItems(list);
-    }
-
-    public void setParent(LayoutController parent) {
-        this.parent = parent;
-    }
-
-
-    @Override
-    public FragmentController getChild() {
-        return null;
     }
 }

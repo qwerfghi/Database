@@ -23,12 +23,12 @@ public class LogOnWindowController implements LayoutController {
 
     @FXML
     public void onRoom () {
-        main.setRoomElement(this);
+        main.setRoomElement();
     }
 
     @FXML
     public void onInformation () {
-        main.setInformationElement(this);
+        main.setInformationElement();
     }
 
     @FXML
