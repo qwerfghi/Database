@@ -157,6 +157,7 @@ public class OwnerEntity {
     @Converter
     public static class DiscountConverter implements AttributeConverter<Discount, String> {
 
+        @Override
         public String convertToDatabaseColumn(Discount value) {
             if (value == null) {
                 return null;
@@ -164,6 +165,7 @@ public class OwnerEntity {
             return value.getDiscount();
         }
 
+        @Override
         public Discount convertToEntityAttribute(String value) {
             if (value == null) {
                 return null;

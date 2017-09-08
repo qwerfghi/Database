@@ -15,6 +15,16 @@ public class AnimalService {
     private AnimalDAO animalDAO;
 
     @Transactional
+    public void add(AnimalEntity entity) {
+        animalDAO.add(entity);
+    }
+
+    @Transactional
+    public void delete(int id) {
+        animalDAO.delete(id);
+    }
+
+    @Transactional
     public List<AnimalEntity> getAll() {
         return animalDAO.getAll();
     }

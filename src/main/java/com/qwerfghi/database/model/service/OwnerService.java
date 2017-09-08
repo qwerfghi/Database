@@ -16,6 +16,11 @@ public class OwnerService {
     private OwnerDAO ownerDAO;
 
     @Transactional
+    public OwnerEntity getById(int id) {
+         return ownerDAO.getById(id);
+    }
+
+    @Transactional
     public List<OwnerEntity> getAll(){
         return ownerDAO.getAll();
     }

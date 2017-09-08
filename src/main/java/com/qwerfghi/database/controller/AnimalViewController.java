@@ -1,12 +1,10 @@
 package com.qwerfghi.database.controller;
 
 import com.qwerfghi.database.Main;
-import com.qwerfghi.database.model.Animals;
-import com.qwerfghi.database.model.FragmentController;
-import com.qwerfghi.database.model.LayoutController;
-import com.qwerfghi.database.model.MyConnection;
 import com.qwerfghi.database.model.entity.AnimalEntity;
+import com.qwerfghi.database.model.entity.AnimalType;
 import com.qwerfghi.database.model.service.AnimalService;
+import com.qwerfghi.database.model.service.OwnerService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -18,6 +16,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 
 public class AnimalViewController {
     private AnimalService animalService;
+    private OwnerService ownerService;
     private ObservableList<AnimalEntity> list;
 
     @FXML
@@ -46,26 +45,37 @@ public class AnimalViewController {
     @FXML
     public void initialize() {
         animalService = Main.getContext().getBean(AnimalService.class);
+        ownerService = Main.getContext().getBean(OwnerService.class);
+        animalType.setItems(FXCollections.observableArrayList("собака", "кот", "хомяк", "черепаха", "змея"));
+        animalType.getSelectionModel().selectFirst();
+        updateTable();
+    }
+
+    private void updateTable() {
         list = FXCollections.observableArrayList(animalService.getAll());
         idOwnerColumn.setCellValueFactory(new PropertyValueFactory<>("idowner"));
         animalNameColumn.setCellValueFactory(new PropertyValueFactory<>("animalName"));
-        animalTypeColumn.setCellValueFactory(new PropertyValueFactory<>("idowner"));
-        animalAgeColumn.setCellValueFactory(new PropertyValueFactory<>("idowner"));
-        noticeColumn.setCellValueFactory(new PropertyValueFactory<>("idowner"));
+        animalTypeColumn.setCellValueFactory(new PropertyValueFactory<>("animalType"));
+        animalAgeColumn.setCellValueFactory(new PropertyValueFactory<>("age"));
+        noticeColumn.setCellValueFactory(new PropertyValueFactory<>("notice"));
         table.setItems(list);
-        animalType.setItems(FXCollections.observableArrayList("Собака", "Кот", "Хомяк", "Черепаха", "Змея"));
-        animalType.getSelectionModel().selectFirst();
     }
 
     @FXML
     private void onAddAnimal () {
-        //connection.addPet(Integer.parseInt(idOwner.getText()), animalName.getText(), animalType.getValue(), Integer.parseInt(animalAge.getText()), notice.getText());
-        initialize();
+        AnimalEntity animalEntity = new AnimalEntity();
+        animalEntity.setOwner(ownerService.getById(Integer.parseInt(idOwner.getText())));
+        animalEntity.setAge(Byte.parseByte(animalAge.getText()));
+        animalEntity.setAnimalName(animalName.getText());
+        animalEntity.setAnimalType(AnimalType.fromCode(animalType.getValue()));
+        animalEntity.setNotice(notice.getText());
+        animalService.add(animalEntity);
+        updateTable();
     }
 
     @FXML
     private void onDeleteAnimal () {
-        //connection.deletePet(table.getSelectionModel().getSelectedItem().idOwnerProperty().getValue(), table.getSelectionModel().getSelectedItem().animalNameProperty().getValue(), table.getSelectionModel().getSelectedItem().animalTypeProperty().getValue(), table.getSelectionModel().getSelectedItem().ageProperty().getValue());
-        initialize();
+        animalService.delete(table.getSelectionModel().getSelectedItem().getIdanimal());
+        updateTable();
     }
 }

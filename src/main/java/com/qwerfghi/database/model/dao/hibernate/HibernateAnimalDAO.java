@@ -1,7 +1,6 @@
 package com.qwerfghi.database.model.dao.hibernate;
 
 import com.qwerfghi.database.model.dao.AnimalDAO;
-import com.qwerfghi.database.model.dao.Dao;
 import com.qwerfghi.database.model.entity.AnimalEntity;
 import org.springframework.stereotype.Repository;
 
@@ -22,6 +21,6 @@ public class HibernateAnimalDAO extends HibernateDAO<AnimalEntity> implements An
 
     @Override
     public List<AnimalEntity> getAll() {
-        return entityManager.createQuery("FROM AnimalEntity ", AnimalEntity.class).getResultList();
+        return entityManager.createQuery("FROM AnimalEntity", AnimalEntity.class).getResultList();
     }
 }

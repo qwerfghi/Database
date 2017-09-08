@@ -17,6 +17,7 @@ public class AnimalEntity {
     private byte zootaxi;
     private byte cut;
     private String notice;
+    private int idowner;
 
     @Id
     @Column(name = "idanimal")
@@ -38,8 +39,8 @@ public class AnimalEntity {
         this.animalName = animalName;
     }
 
-    @Basic
     @Column(name = "animal_kind")
+    @Convert(converter = AnimalEntity.AnimalTypeConverter.class)
     public AnimalType getAnimalType() {
         return animalType;
     }
@@ -138,5 +139,33 @@ public class AnimalEntity {
 
     public void setOwner(OwnerEntity owner) {
         this.owner = owner;
+    }
+
+    @Transient
+    public int getIdowner() {
+        return owner.getIdowner();
+    }
+
+    public void setIdowner(int idowner) {
+        this.idowner = idowner;
+    }
+
+    @Converter
+    public static class AnimalTypeConverter implements AttributeConverter<AnimalType, String> {
+
+        public String convertToDatabaseColumn(AnimalType value) {
+            if (value == null) {
+                return null;
+            }
+            return value.getAnimalType();
+        }
+
+        @Override
+        public AnimalType convertToEntityAttribute(String s) {
+            if (s == null) {
+                return null;
+            }
+            return AnimalType.fromCode(s);
+        }
     }
 }
