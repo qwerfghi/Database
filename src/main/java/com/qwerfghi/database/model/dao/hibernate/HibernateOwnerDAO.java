@@ -22,7 +22,7 @@ public class HibernateOwnerDAO extends HibernateDAO<OwnerEntity> implements Owne
 
     @Override
     public List<OwnerEntity> getAll() {
-        return entityManager.createQuery("FROM OwnerEntity", OwnerEntity.class).getResultList();
+        return entityManager.createQuery("SELECT o FROM OwnerEntity o JOIN FETCH o.address", OwnerEntity.class).getResultList();
     }
 
     @Override

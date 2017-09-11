@@ -110,6 +110,8 @@ public class OwnerEntity {
         this.address = address;
     }
 
+
+
     @ManyToOne
     @JoinColumn(name = "iduser", foreignKey = @ForeignKey(name = "fk_user"))
     public UserEntity getUser() {

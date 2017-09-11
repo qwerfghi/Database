@@ -36,6 +36,16 @@ public class OwnerViewController {
     @FXML
     private TableColumn<OwnerEntity, String> discountColumn;
     @FXML
+    private TableColumn<OwnerEntity, String> regionColumn;
+    @FXML
+    private TableColumn<OwnerEntity, String> localityColumn;
+    @FXML
+    private TableColumn<OwnerEntity, String> streetColumn;
+    @FXML
+    private TableColumn<OwnerEntity, String> houseNumberColumn;
+    @FXML
+    private TableColumn<OwnerEntity, String> apartmentNumberColumn;
+    @FXML
     private TextField nameField;
     @FXML
     private TextField lastNameField;
@@ -47,6 +57,16 @@ public class OwnerViewController {
     private TextField phoneField;
     @FXML
     private TextField emailField;
+    @FXML
+    private TextField region;
+    @FXML
+    private TextField locality;
+    @FXML
+    private TextField street;
+    @FXML
+    private TextField houseNumber;
+    @FXML
+    private TextField apartmentNumber;
     @FXML
     private ChoiceBox<String> discount;
 
@@ -68,6 +88,7 @@ public class OwnerViewController {
         phoneNumColumn.setCellValueFactory(new PropertyValueFactory<>("phoneNum"));
         emailColumn.setCellValueFactory(new PropertyValueFactory<>("email"));
         discountColumn.setCellValueFactory(new PropertyValueFactory<>("discount"));
+        regionColumn.setCellValueFactory(new PropertyValueFactory<>("addresswsfg"));
         table.setItems(list);
     }
 

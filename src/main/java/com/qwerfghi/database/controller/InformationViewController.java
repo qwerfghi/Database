@@ -79,7 +79,6 @@ public class InformationViewController implements FragmentController {
         this.parent = parent;
     }
 
-
     @Override
     public FragmentController getChild() {
         return null;

@@ -6,77 +6,99 @@
 <?import javafx.scene.layout.*?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="555.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.qwerfghi.database.controller.OwnerViewController">
-   <left>
-      <VBox alignment="CENTER" prefHeight="555.0" prefWidth="162.0" BorderPane.alignment="CENTER">
-         <children>
-            <TextField fx:id="nameField" promptText="Имя посетителя">
-               <VBox.margin>
-                  <Insets bottom="10.0" />
-               </VBox.margin>
-            </TextField>
-            <TextField fx:id="lastNameField" promptText="Фамилия посетителя">
-               <VBox.margin>
-                  <Insets bottom="10.0" />
-               </VBox.margin>
-            </TextField>
-            <TextField fx:id="patronymicField" promptText="Отчетство посетителя">
-               <VBox.margin>
-                  <Insets bottom="10.0" />
-               </VBox.margin>
-            </TextField>
-            <TextField fx:id="passportField" promptText="Номер пасспорта">
-               <VBox.margin>
-                  <Insets bottom="10.0" />
-               </VBox.margin>
-            </TextField>
-            <TextField fx:id="phoneField" promptText="Телефонный номер">
-               <VBox.margin>
-                  <Insets bottom="10.0" />
-               </VBox.margin>
-            </TextField>
-            <TextField fx:id="emailField" promptText="Email">
-               <VBox.margin>
-                  <Insets bottom="10.0" />
-               </VBox.margin>
-            </TextField>
-            <Button mnemonicParsing="false" onAction="#OnAddUser" text="Добавить пользователя">
-               <VBox.margin>
-                  <Insets bottom="10.0" />
-               </VBox.margin>
-            </Button>
-            <Button mnemonicParsing="false" onAction="#OnDeleteUser" text="Удалить пользователя">
-               <VBox.margin>
-                  <Insets bottom="10.0" />
-               </VBox.margin>
-            </Button>
-            <ChoiceBox fx:id="discount" prefWidth="150.0">
-               <VBox.margin>
-                  <Insets bottom="10.0" />
-               </VBox.margin>
-            </ChoiceBox>
-            <Button mnemonicParsing="false" onAction="#OnChangeDiscount" text="Изменить скидку">
-               <VBox.margin>
-                  <Insets bottom="10.0" />
-               </VBox.margin>
-            </Button>
-         </children>
-      </VBox>
-   </left>
-   <center>
-      <TableView fx:id="table" prefHeight="555.0" prefWidth="799.0" BorderPane.alignment="CENTER">
+   <top>
+      <TableView fx:id="table" prefHeight="321.0" prefWidth="1000.0" BorderPane.alignment="CENTER">
         <columns>
-          <TableColumn fx:id="idGuestColumn" prefWidth="93.0" text="ID посетителя" />
-          <TableColumn fx:id="NameColumn" prefWidth="171.0" text="Имя" />
+          <TableColumn fx:id="idGuestColumn" prefWidth="16.0" text="ID" />
+          <TableColumn fx:id="NameColumn" prefWidth="193.0" text="Имя" />
             <TableColumn fx:id="lNameColumn" prefWidth="125.0" text="Фамилия" />
             <TableColumn fx:id="PatronymicColumn" prefWidth="139.0" text="Отчество" />
             <TableColumn fx:id="passNumColumn" prefWidth="75.0" text="Номер паспорта" />
             <TableColumn fx:id="phoneNumColumn" prefWidth="75.0" text="Телефон" />
             <TableColumn fx:id="emailColumn" prefWidth="75.0" text="Email" />
             <TableColumn fx:id="discountColumn" prefWidth="75.0" text="Скидка" />
+            <TableColumn fx:id="regionColumn" prefWidth="75.0" text="Область" />
+            <TableColumn fx:id="localityColumn" prefWidth="75.0" text="Город/населенный пункт" />
+            <TableColumn fx:id="streetColumn" prefWidth="75.0" text="Улица" />
+            <TableColumn fx:id="houseNumberColumn" prefWidth="75.0" text="Дом" />
+            <TableColumn fx:id="apartmentNumberColumn" prefWidth="75.0" text="Квартира" />
         </columns>
          <columnResizePolicy>
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>
       </TableView>
+   </top>
+   <center>
+      <HBox alignment="CENTER" prefHeight="363.0" prefWidth="1000.0" BorderPane.alignment="CENTER">
+         <children>
+            <VBox alignment="CENTER" prefHeight="555.0" prefWidth="162.0">
+               <children>
+                  <TextField fx:id="nameField" promptText="Имя посетителя">
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                  </TextField>
+                  <TextField fx:id="lastNameField" promptText="Фамилия посетителя">
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                  </TextField>
+                  <TextField fx:id="patronymicField" promptText="Отчетство посетителя">
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                  </TextField>
+                  <TextField fx:id="passportField" promptText="Номер пасспорта">
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                  </TextField>
+                  <TextField fx:id="phoneField" promptText="Телефонный номер">
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                  </TextField>
+                  <TextField fx:id="emailField" promptText="Email">
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                  </TextField>
+               </children>
+            </VBox>
+            <VBox alignment="CENTER" prefHeight="349.0" prefWidth="203.0">
+               <children>
+                  <TextField fx:id="region" promptText="Область" />
+                  <TextField fx:id="locality" promptText="Город/населенный пункт" />
+                  <TextField fx:id="street" promptText="Улица" />
+                  <TextField fx:id="houseNumber" promptText="Дом" />
+                  <TextField fx:id="apartmentNumber" promptText="Квартира" />
+               </children>
+            </VBox>
+            <VBox alignment="CENTER" prefHeight="387.0" prefWidth="174.0">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#OnAddUser" text="Добавить пользователя">
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#OnDeleteUser" text="Удалить пользователя">
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                  </Button>
+                  <ChoiceBox fx:id="discount" prefWidth="150.0">
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                  </ChoiceBox>
+                  <Button mnemonicParsing="false" onAction="#OnChangeDiscount" text="Изменить скидку">
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                  </Button>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
    </center>
 </BorderPane>
