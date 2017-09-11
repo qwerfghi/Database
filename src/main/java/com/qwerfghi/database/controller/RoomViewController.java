@@ -33,7 +33,7 @@ public class RoomViewController {
     public void initialize() {
         connection = Main.connection;
         userService = Main.getContext().getBean(UserService.class);
-        list = userService.getAllFreeRooms(Main.)
+        //list = userService.getAllFreeRooms(Main.)
         list = connection.getAllRooms();
         roomNumColumn.setCellValueFactory(cellData -> cellData.getValue().roomNumProperty().asObject());
         roomTypeColumn.setCellValueFactory(cellData -> cellData.getValue().roomTypeProperty());

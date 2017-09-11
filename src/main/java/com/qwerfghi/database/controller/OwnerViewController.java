@@ -1,9 +1,13 @@
 package com.qwerfghi.database.controller;
 
 import com.qwerfghi.database.Main;
+import com.qwerfghi.database.model.entity.AddressEntity;
 import com.qwerfghi.database.model.entity.Discount;
 import com.qwerfghi.database.model.entity.OwnerEntity;
 import com.qwerfghi.database.model.service.AdminService;
+import javafx.beans.property.StringProperty;
+import javafx.beans.property.adapter.JavaBeanStringProperty;
+import javafx.beans.property.adapter.JavaBeanStringPropertyBuilder;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -11,6 +15,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.MapValueFactory;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 public class OwnerViewController {
@@ -88,28 +93,40 @@ public class OwnerViewController {
         phoneNumColumn.setCellValueFactory(new PropertyValueFactory<>("phoneNum"));
         emailColumn.setCellValueFactory(new PropertyValueFactory<>("email"));
         discountColumn.setCellValueFactory(new PropertyValueFactory<>("discount"));
-        regionColumn.setCellValueFactory(new PropertyValueFactory<>("addresswsfg"));
+        //regionColumn.setCellValueFactory();
+        localityColumn.setCellValueFactory(celldata -> {
+            try {
+                return JavaBeanStringPropertyBuilder
+                        .create()
+                        .bean(celldata.getValue().getAddress())
+                        .name("locality")
+                        .build();
+            } catch (NoSuchMethodException e) {
+                e.printStackTrace();
+                return null;
+            }
+        });
         table.setItems(list);
     }
 
     @FXML
-    private void OnAddUser () {
+    private void OnAddUser() {
 
         //connection.addGuest(nameField.getText(), lastNameField.getText(), patronymicField.getText(),  passportField.getText(), phoneField.getText(), emailField.getText());
         updateTable();
     }
 
     @FXML
-    private void OnDeleteUser () {
+    private void OnDeleteUser() {
         //connection.deleteGuest(table.getSelectionModel().getSelectedItem().idownerProperty().getValue());
         updateTable();
     }
 
     @FXML
-    private void OnChangeDiscount () {
+    private void OnChangeDiscount() {
         int id = table.getSelectionModel().getSelectedItem().getIdowner();
         Discount currentDiscount = Discount.fromCode(this.discount.getSelectionModel().getSelectedItem());
-        adminService.changeDiscount(id , currentDiscount);
+        adminService.changeDiscount(id, currentDiscount);
         updateTable();
     }
 }

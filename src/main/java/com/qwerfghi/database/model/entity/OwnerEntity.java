@@ -18,6 +18,11 @@ public class OwnerEntity {
     private Discount discount;
     private UserEntity user;
     private AddressEntity address;
+    private String region;
+    private String locality;
+    private String street;
+    private int houseNum;
+    private int apartmentNum;
 
     @Id
     @GeneratedValue
@@ -154,6 +159,31 @@ public class OwnerEntity {
         result = 31 * result + (email != null ? email.hashCode() : 0);
         result = 31 * result + (discount != null ? discount.hashCode() : 0);
         return result;
+    }
+
+    @Transient
+    public String getRegion() {
+        return address.getRegion();
+    }
+
+    @Transient
+    public String getLocality() {
+        return address.getLocality();
+    }
+
+    @Transient
+    public String getStreet() {
+        return address.getStreet();
+    }
+
+    @Transient
+    public int getHouseNum() {
+        return address.getHouseNum();
+    }
+
+    @Transient
+    public int getApartmentNum() {
+        return address.getApartmentNum();
     }
 
     @Converter
