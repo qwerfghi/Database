@@ -2,19 +2,17 @@ package com.qwerfghi.database.controller;
 
 import com.qwerfghi.database.Main;
 import com.qwerfghi.database.model.MyConnection;
-import com.qwerfghi.database.model.dao.UserDAO;
 import com.qwerfghi.database.model.entity.UserEntity;
-import com.qwerfghi.database.model.service.LoginService;
+import com.qwerfghi.database.model.service.GuestService;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.GenericXmlApplicationContext;
 
 public class LoginWindowController {
 
     private MyConnection connection = Main.connection;
+    private GuestService guestService;
     private Main main;
 
     @FXML
@@ -28,12 +26,11 @@ public class LoginWindowController {
 
     @FXML
     private void onLogIn() {
-        ApplicationContext ctx = main.getContext();
-        LoginService loginService = ctx.getBean(LoginService.class);
+        guestService = Main.getContext().getBean(GuestService.class);
         String username = loginField.getText();
         String password = passwordField.getText();
         if (!username.equals("") || !password.equals("")) {
-            UserEntity user = loginService.getByUsernameAndPassword(username, password);
+            UserEntity user = guestService.getByUsernameAndPassword(username, password);
             if (user == null) {
                 showErrorDialog("Неверный логин или пароль.");
             } else if (user.getPrivilegeEntity().getId() == 1) {

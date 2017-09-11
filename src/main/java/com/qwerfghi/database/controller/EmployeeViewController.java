@@ -2,7 +2,7 @@ package com.qwerfghi.database.controller;
 
 import com.qwerfghi.database.Main;
 import com.qwerfghi.database.model.entity.StaffEntity;
-import com.qwerfghi.database.model.service.EmployeeService;
+import com.qwerfghi.database.model.service.AdminService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -14,7 +14,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 
 public class EmployeeViewController {
     private ObservableList<StaffEntity> list;
-    private EmployeeService employeeService;
+    private AdminService adminService;
 
     @FXML
     private TableView<StaffEntity> table;
@@ -54,12 +54,12 @@ public class EmployeeViewController {
 
     @FXML
     public void initialize() {
-        employeeService = Main.getContext().getBean(EmployeeService.class);
+        adminService = Main.getContext().getBean(AdminService.class);
         updateTable();
     }
 
     private void updateTable() {
-        list = FXCollections.observableList(employeeService.getAll());
+        list = FXCollections.observableList(adminService.getAllStaff());
         firstNameColumn.setCellValueFactory(new PropertyValueFactory<>("employeeName"));
         lastNameColumn.setCellValueFactory(new PropertyValueFactory<>("employeeLastName"));
         patronymicColumn.setCellValueFactory(new PropertyValueFactory<>("employeePatronymic"));
@@ -81,12 +81,12 @@ public class EmployeeViewController {
         staffEntity.setEmail(emailField.getText());
         staffEntity.setPosition(positionField.getText());
         staffEntity.setDateRec(Helper.convertLocalDateToDate(datePicker.getValue()));
-        employeeService.add(staffEntity);
+        adminService.addStaff(staffEntity);
         updateTable();
     }
 
     public void deleteEmployee() {
-        employeeService.deleteById(table.selectionModelProperty().get().getSelectedItem().getIdstaff());
+        adminService.deleteStaffById(table.selectionModelProperty().get().getSelectedItem().getIdstaff());
         updateTable();
     }
 }

@@ -1,7 +1,6 @@
 package com.qwerfghi.database.model.dao.hibernate;
 
 import com.qwerfghi.database.model.dao.Dao;
-import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;

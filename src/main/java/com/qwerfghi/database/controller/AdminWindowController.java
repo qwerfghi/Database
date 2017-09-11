@@ -24,7 +24,7 @@ public class AdminWindowController implements LayoutController {
 
     @FXML
     private void OnAnimals () {
-        main.setAnimalsElement(this);
+        main.setAnimalsElement();
     }
 
     public void setApp(Main main) {
