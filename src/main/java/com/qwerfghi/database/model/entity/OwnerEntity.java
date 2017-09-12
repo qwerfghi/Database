@@ -16,7 +16,6 @@ public class OwnerEntity {
     private String phoneNum;
     private String email;
     private Discount discount;
-    private UserEntity user;
     private AddressEntity address;
     private String region;
     private String locality;
@@ -113,18 +112,6 @@ public class OwnerEntity {
 
     public void setAddress(AddressEntity address) {
         this.address = address;
-    }
-
-
-
-    @ManyToOne
-    @JoinColumn(name = "iduser", foreignKey = @ForeignKey(name = "fk_user"))
-    public UserEntity getUser() {
-        return user;
-    }
-
-    public void setUser(UserEntity user) {
-        this.user = user;
     }
 
     @Override

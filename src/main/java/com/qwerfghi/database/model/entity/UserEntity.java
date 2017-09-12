@@ -12,6 +12,7 @@ public class UserEntity {
     private String username;
     private String password;
     private PrivilegesEntity privilegeEntity;
+    private OwnerEntity ownerEntity;
 
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE)
@@ -52,5 +53,15 @@ public class UserEntity {
 
     public void setPrivilegeEntity(PrivilegesEntity privilegeEntity) {
         this.privilegeEntity = privilegeEntity;
+    }
+
+    @OneToOne(cascade = CascadeType.REMOVE)
+    @JoinColumn(name = "idowner", foreignKey = @ForeignKey(name = "fk_owner_id"))
+    public OwnerEntity getOwnerEntity() {
+        return ownerEntity;
+    }
+
+    public void setOwnerEntity(OwnerEntity ownerEntity) {
+        this.ownerEntity = ownerEntity;
     }
 }

@@ -38,24 +38,6 @@ public class MyConnection {
         }
     }
 
-    public ObservableList<Room> getAllRooms() {
-        ObservableList<Room> list = FXCollections.observableArrayList();
-        list.addAll(allRooms());
-        return list;
-    }
-
-    private Set<Room> allRooms() {
-        String sql = "select number, animal_type, date_beg, date_end, cost from room order by number asc";
-        getted++;
-        if (getted == 30) {
-            Runtime.getRuntime().gc();
-            System.out.println("Очистка");
-            getted = 0;
-        }
-        rooms = getSet(getResultSet(sql));
-        return rooms;
-    }
-
     private ResultSet getResultSet(String sql) {
         try {
             return statement.executeQuery(sql);
@@ -63,23 +45,6 @@ public class MyConnection {
             e.printStackTrace();
             return null;
         }
-    }
-
-    private Set<Room> getSet(ResultSet resultSet) {
-        Set<Room> set = new LinkedHashSet<>();
-        try {
-            while (resultSet.next()) {
-                String roomType = resultSet.getString("animal_type");
-                String dateEnter = resultSet.getString("date_beg");
-                Integer roomCost = resultSet.getInt("cost");
-                Integer roomNum = resultSet.getInt("number");
-                String dateOut = resultSet.getString("date_end");
-                set.add(new Room(this, roomType, dateEnter, roomCost, roomNum, dateOut));
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return set;
     }
 
     public void addRecall(String email, int mark, String recall) {
