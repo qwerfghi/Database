@@ -19,4 +19,9 @@ public class UserService {
     public List<RoomEntity> getAllFreeRooms(AnimalType animalType) {
         return roomDAO.getAllFreeRooms(animalType, null);
     }
+
+    @Transactional
+    public List<RoomEntity> getAllRooms() {
+        return roomDAO.getAll();
+    }
 }

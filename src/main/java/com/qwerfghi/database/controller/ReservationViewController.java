@@ -1,25 +1,24 @@
 package com.qwerfghi.database.controller;
 
-import com.qwerfghi.database.model.FragmentController;
+import com.qwerfghi.database.Main;
 import com.qwerfghi.database.model.FreeRoom;
-import com.qwerfghi.database.model.LayoutController;
+import com.qwerfghi.database.model.entity.OwnerEntity;
+import com.qwerfghi.database.model.entity.UserEntity;
+import com.qwerfghi.database.model.service.UserService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
-import static com.qwerfghi.database.Main.connection;
-
-
-public class ReservationViewController implements FragmentController {
-    private LayoutController parent;
+public class ReservationViewController {
+    private UserService userService;
     private ObservableList<FreeRoom> list;
-    public static String res_select = "";
     private static String date_in = "";
     private static String date_out = "";
     private static int taxi_v = 0;
     private static int cut_v = 0;
     private static int vet_v = 0;
+
     @FXML
     private ChoiceBox<String> animalName;
     @FXML
@@ -43,11 +42,14 @@ public class ReservationViewController implements FragmentController {
 
     @FXML
     public void initialize() {
-        animalName.setItems(FXCollections.observableArrayList(connection.userPets()));
+        userService = Main.getContext().getBean(UserService.class);
+        Main.getUser().getOwnerEntity().getAnimalEntityList().stream().
+        animalName.setItems(FXCollections.observableArrayList());
         animalName.getSelectionModel().selectFirst();
     }
 
-    public void OnSearchRoom () {
+    public void searchRoom() {
+
         connection.roomType(animalName.getValue());
         list = connection.getAllFreeRooms();
         roomNumColumn.setCellValueFactory(cellData -> cellData.getValue().roomNumProperty().asObject());
@@ -56,7 +58,7 @@ public class ReservationViewController implements FragmentController {
         table.setItems(list);
     }
 
-    public void OnReserve () {
+    public void reserveRoom() {
         if (dateInPicker.getValue() != null) {
             date_in = dateInPicker.getValue().toString();
             date_in = date_in.replace("-","");
@@ -75,14 +77,6 @@ public class ReservationViewController implements FragmentController {
             vet_v = 1;
         }
         connection.addRes(date_in, date_out, taxi_v, cut_v, vet_v, table.getSelectionModel().getSelectedItem().roomNumProperty().getValue(), animalName.getValue());
-        OnSearchRoom();
-    }
-    public void setParent (LayoutController parent) {
-        this.parent = parent;
-    }
-
-    @Override
-    public FragmentController getChild() {
-        return null;
+        searchRoom();
     }
 }

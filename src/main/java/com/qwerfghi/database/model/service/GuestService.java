@@ -42,12 +42,12 @@ public class GuestService {
 
     @Transactional
     public void addUser(UserEntity userEntity, OwnerEntity ownerEntity, AddressEntity addressEntity) {
-        userEntity.setPrivilegeEntity(privilegeDAO.getUserPrivilege());
-        userDAO.add(userEntity);
-        ownerEntity.setUser(userEntity);
         addressDAO.add(addressEntity);
         ownerEntity.setAddress(addressEntity);
         ownerDAO.add(ownerEntity);
+        userEntity.setPrivilegeEntity(privilegeDAO.getUserPrivilege());
+        userEntity.setOwnerEntity(ownerEntity);
+        userDAO.add(userEntity);
     }
 
     @Transactional

@@ -1,7 +1,6 @@
 package com.qwerfghi.database.controller;
 
 import com.qwerfghi.database.Main;
-import com.qwerfghi.database.model.entity.AnimalType;
 import com.qwerfghi.database.model.entity.RoomEntity;
 import com.qwerfghi.database.model.service.UserService;
 import javafx.collections.FXCollections;
@@ -33,7 +32,7 @@ public class RoomViewController {
     @FXML
     public void initialize() {
         userService = Main.getContext().getBean(UserService.class);
-        list = FXCollections.observableArrayList(userService.getAllFreeRooms(AnimalType.DOG));
+        list = FXCollections.observableArrayList(userService.getAllRooms());
         roomNumColumn.setCellValueFactory(new PropertyValueFactory<>("number"));
         roomTypeColumn.setCellValueFactory(new PropertyValueFactory<>("animalType"));
         dateEnterColumn.setCellValueFactory(new PropertyValueFactory<>("dateBeg"));

@@ -1,6 +1,10 @@
 package com.qwerfghi.database.model.entity;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 import javax.persistence.*;
+import java.util.List;
 
 /**
  * Created by Павел on 21.06.2017.
@@ -17,6 +21,7 @@ public class OwnerEntity {
     private String email;
     private Discount discount;
     private AddressEntity address;
+    private List<AnimalEntity> animalEntityList;
     private String region;
     private String locality;
     private String street;
@@ -191,5 +196,15 @@ public class OwnerEntity {
             }
             return Discount.fromCode(value);
         }
+    }
+
+    @OneToMany(mappedBy = "owner")
+    @Fetch(value = FetchMode.JOIN)
+    public List<AnimalEntity> getAnimalEntityList() {
+        return animalEntityList;
+    }
+
+    public void setAnimalEntityList(List<AnimalEntity> animalEntityList) {
+        this.animalEntityList = animalEntityList;
     }
 }

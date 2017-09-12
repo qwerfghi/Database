@@ -50,7 +50,7 @@
                <font>
                   <Font size="14.0" />
                </font></CheckBox>
-            <Button mnemonicParsing="false" onAction="#OnReserve" prefHeight="55.0" prefWidth="202.0" text="Забронировать номер" GridPane.rowIndex="12">
+            <Button mnemonicParsing="false" onAction="#reserveRoom" prefHeight="55.0" prefWidth="202.0" text="Забронировать номер" GridPane.rowIndex="12">
                <font>
                   <Font size="16.0" />
                </font></Button>
@@ -71,7 +71,7 @@
                   <Font size="17.0" />
                </font>
             </Label>
-            <Button mnemonicParsing="false" onAction="#OnSearchRoom" text="Найти номер" GridPane.rowIndex="2">
+            <Button mnemonicParsing="false" onAction="#searchRoom" text="Найти номер" GridPane.rowIndex="2">
                <font>
                   <Font size="14.0" />
                </font>

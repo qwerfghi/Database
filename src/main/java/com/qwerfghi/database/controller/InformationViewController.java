@@ -1,20 +1,17 @@
 package com.qwerfghi.database.controller;
 
 import com.qwerfghi.database.Main;
-import com.qwerfghi.database.model.FragmentController;
-import com.qwerfghi.database.model.Information;
-import com.qwerfghi.database.model.LayoutController;
-import com.qwerfghi.database.model.MyConnection;
-import javafx.collections.ObservableList;
+import com.qwerfghi.database.model.entity.AddressEntity;
+import com.qwerfghi.database.model.entity.AnimalEntity;
+import com.qwerfghi.database.model.entity.OwnerEntity;
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-
+import javafx.scene.control.cell.PropertyValueFactory;
 
 public class InformationViewController{
-    private MyConnection connection;
-    private ObservableList<Information> list;
 
     @FXML
     private Label name;
@@ -41,36 +38,36 @@ public class InformationViewController{
     @FXML
     private Label apartNum;
     @FXML
-    private TableView<Information> table;
+    private TableView<AnimalEntity> table;
     @FXML
-    private TableColumn<Information, String> animalNameColumn;
+    private TableColumn<AnimalEntity, String> animalNameColumn;
     @FXML
-    private TableColumn<Information, String> animalTypeColumn;
+    private TableColumn<AnimalEntity, String> animalTypeColumn;
     @FXML
-    private TableColumn<Information, Integer> ageColumn;
+    private TableColumn<AnimalEntity, Integer> ageColumn;
     @FXML
-    private TableColumn<Information, String> noticeColumn;
+    private TableColumn<AnimalEntity, String> noticeColumn;
 
     @FXML
     public void initialize() {
-        connection = Main.connection;
-        list = connection.getInformation();
-        name.setText(list.get(0).getName());
-        lastName.setText(list.get(0).getLastName());
-        patronymic.setText(list.get(0).getPatronymic());
-        passNum.setText(list.get(0).getPassNum());
-        phoneNum.setText(list.get(0).getPhoneNum());
-        email.setText(list.get(0).getEmail());
-        discount.setText(list.get(0).getDiscount());
-        region.setText(list.get(0).getRegion());
-        locality.setText(list.get(0).getLocality());
-        street.setText(list.get(0).getStreet());
-        houseNum.setText(String.valueOf(list.get(0).getHouseNum()));
-        apartNum.setText(String.valueOf(list.get(0).getApartNum()));
-        animalNameColumn.setCellValueFactory(cellData -> cellData.getValue().animalNameProperty());
-        animalTypeColumn.setCellValueFactory(cellData -> cellData.getValue().animalTypeProperty());
-        ageColumn.setCellValueFactory(cellData -> cellData.getValue().ageProperty().asObject());
-        noticeColumn.setCellValueFactory(cellData -> cellData.getValue().noticeProperty());
-        table.setItems(list);
+        OwnerEntity ownerEntity = Main.getUser().getOwnerEntity();
+        name.setText(ownerEntity.getOwnerName());
+        lastName.setText(ownerEntity.getOwnerLastName());
+        patronymic.setText(ownerEntity.getOwnerPatronymic());
+        passNum.setText(ownerEntity.getPassport());
+        phoneNum.setText(ownerEntity.getPhoneNum());
+        email.setText(ownerEntity.getEmail());
+        discount.setText(ownerEntity.getDiscount().getDiscount());
+        AddressEntity addressEntity = ownerEntity.getAddress();
+        region.setText(addressEntity.getRegion());
+        locality.setText(addressEntity.getLocality());
+        street.setText(addressEntity.getStreet());
+        houseNum.setText(String.valueOf(addressEntity.getHouseNum()));
+        apartNum.setText(String.valueOf(addressEntity.getApartmentNum()));
+        animalNameColumn.setCellValueFactory(new PropertyValueFactory<>("animalName"));
+        animalTypeColumn.setCellValueFactory(new PropertyValueFactory<>("animalType"));
+        ageColumn.setCellValueFactory(new PropertyValueFactory<>("age"));
+        noticeColumn.setCellValueFactory(new PropertyValueFactory<>("notice"));
+        table.setItems(FXCollections.observableArrayList(ownerEntity.getAnimalEntityList()));
     }
 }

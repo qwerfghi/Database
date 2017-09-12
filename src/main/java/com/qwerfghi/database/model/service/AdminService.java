@@ -21,9 +21,6 @@ public class AdminService {
     private StaffDAO staffDAO;
 
     @Autowired
-    private UserDAO userDAO;
-
-    @Autowired
     private AddressDAO addressDAO;
 
     @Transactional
@@ -76,7 +73,6 @@ public class AdminService {
     public void addOwner(OwnerEntity ownerEntity, AddressEntity addressEntity) {
         addressDAO.add(addressEntity);
         ownerEntity.setAddress(addressEntity);
-        ownerEntity.setUser(userDAO.getByUsernameAndPassword("guest", "guest"));
         ownerDAO.add(ownerEntity);
     }
 

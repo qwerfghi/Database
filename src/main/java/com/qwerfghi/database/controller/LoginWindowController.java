@@ -1,7 +1,6 @@
 package com.qwerfghi.database.controller;
 
 import com.qwerfghi.database.Main;
-import com.qwerfghi.database.model.MyConnection;
 import com.qwerfghi.database.model.entity.UserEntity;
 import com.qwerfghi.database.model.service.GuestService;
 import javafx.fxml.FXML;
@@ -10,8 +9,6 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
 public class LoginWindowController {
-
-    private MyConnection connection = Main.connection;
     private GuestService guestService;
     private Main main;
 
@@ -19,10 +16,6 @@ public class LoginWindowController {
     private TextField loginField;
     @FXML
     private PasswordField passwordField;
-
-    @FXML
-    private void initialize() {
-    }
 
     @FXML
     private void onLogIn() {
