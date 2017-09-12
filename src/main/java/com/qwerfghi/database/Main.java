@@ -4,6 +4,7 @@ import com.qwerfghi.database.model.FragmentController;
 import com.qwerfghi.database.model.LayoutController;
 import com.qwerfghi.database.model.MyConnection;
 import com.qwerfghi.database.controller.*;
+import com.qwerfghi.database.model.entity.UserEntity;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -21,7 +22,16 @@ public class Main extends Application {
     public static MyConnection connection;
     private Stage stage;
     private BorderPane root;
+    private static UserEntity user;
     private static ApplicationContext context;
+
+    public static UserEntity getUser() {
+        return user;
+    }
+
+    public static void setUser(UserEntity user) {
+        Main.user = user;
+    }
 
     @Override
     public void start(Stage primaryStage) throws Exception {

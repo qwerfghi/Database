@@ -16,7 +16,7 @@ public class AddressEntity {
     private int apartmentNum;
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.TABLE)
     @Column(name = "idaddress")
     public int getIdaddress() {
         return idaddress;

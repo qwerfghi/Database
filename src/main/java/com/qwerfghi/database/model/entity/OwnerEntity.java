@@ -25,7 +25,7 @@ public class OwnerEntity {
     private int apartmentNum;
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.TABLE)
     @Column(name = "idowner")
     public int getIdowner() {
         return idowner;
@@ -105,7 +105,7 @@ public class OwnerEntity {
         this.discount = discount;
     }
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "idaddress", foreignKey = @ForeignKey(name = "fk_address"))
     public AddressEntity getAddress() {
         return address;

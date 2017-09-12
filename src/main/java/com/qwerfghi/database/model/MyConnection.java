@@ -1,9 +1,9 @@
 package com.qwerfghi.database.model;
 
 import com.qwerfghi.database.HibernateUtil;
+import com.qwerfghi.database.Main;
 import com.qwerfghi.database.model.entity.AnimalType;
 import com.qwerfghi.database.model.entity.RoomEntity;
-import com.qwerfghi.database.model.entity.UserEntity;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import org.hibernate.Session;
@@ -28,7 +28,6 @@ public class MyConnection {
     public static int currentId = 23;
     public static int userId = 23;
     public static AnimalType animalType;
-    public UserEntity user;
 
     public void connect() {
         try {
@@ -36,43 +35,6 @@ public class MyConnection {
             statement = connection.createStatement();
         } catch (SQLException e) {
             e.printStackTrace();
-        }
-    }
-
-    public boolean registration(String username, String pass, String firstName, String lastName, String patron,
-                                String passN, String phoneN, String mail, String reg, String loc, String str,
-                                String houseN, String appartN) {
-        /*try (SessionFactory sessionFactory = HibernateUtil.getSessionFactory()) {
-            Session session = sessionFactory.getCurrentSession();
-            session.beginTransaction();
-            Query query = session.createQuery("insert into UserEntity (username, password, privilege_id)" +
-                    "select username, password, privilege_id from UserEntity");
-
-        }*/
-        String sql = "insert into user (username, password, privilege_id) values (\'" + username + "\', MD5(\'" + pass + "\'), " + "2);";
-        try {
-            statement.execute(sql);
-        } catch (SQLException e) {
-            e.printStackTrace();
-            System.out.println("Создаваемый пользователь уже существует.");
-            return false;
-        }
-        idUser(username);
-        String sql2 = "insert into owner (iduser, owner_name, owner_last_name, owner_patronymic, passport, phone_num, email, discount) values (" + user.getIduser() + ", " + firstName + ", " + lastName + ", " + patron + ", " + passN + ", " + phoneN + ", " + mail + ", '0%');";
-        try {
-            statement.execute(sql2);
-        } catch (SQLException e) {
-            e.printStackTrace();
-            System.err.println(e.getMessage());
-        }
-        idOwner();
-        String sql3 = "insert into address (idowner, region, locality, street, house_num, apartment_num) values (" + currentId + ", " + reg + ", " + loc + ", " + str + ", " + houseN + ", " + appartN + ");";
-        try {
-            statement.execute(sql3);
-            return true;
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return false;
         }
     }
 
@@ -194,7 +156,7 @@ public class MyConnection {
     }
 
     private void idOwner() {
-        String sql = "select idowner from owner where iduser = '" + user.getIduser() + "';";
+        String sql = "select idowner from owner where iduser = '" + Main.getUser().getIduser() + "';";
         try {
             ResultSet result = statement.executeQuery(sql);
             if (result.next()) {
@@ -202,17 +164,6 @@ public class MyConnection {
             }
         } catch (SQLException e) {
             e.printStackTrace();
-        }
-    }
-
-    public boolean addPet(String petN, String select_pet, int age, String notice) {
-        String sql = "insert into animal (animal_name, animal_kind, vet_inspection, zootaxi, cut, idowner, age, notice) values (" + petN + ", " + select_pet + ", " + 0 + ", " + 0 + ", " + 0 + ", " + currentId + ", '" + age + "', '" + notice + "');";
-        try {
-            statement.execute(sql);
-            return true;
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return false;
         }
     }
 
@@ -294,45 +245,6 @@ public class MyConnection {
             statement.execute(sql1);
         } catch (SQLException e) {
             e.printStackTrace();
-        }
-    }
-
-    public boolean addGuest(String firstName, String lastName, String patron, String passN, String phoneN, String mail) {
-        String sql = "insert into owner (iduser, owner_name, owner_last_name, owner_patronymic, passport, phone_num, email, discount) values ('" + 24 + "', '" + firstName + "', '" + lastName + "', '" + patron + "', '" + passN + "', '" + phoneN + "', '" + mail + "', '0%');";
-        try {
-            statement.execute(sql);
-            return true;
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return false;
-        }
-    }
-
-    public void deleteGuest(Integer idowner) {
-        int iduser = 0;
-        String sql = "select iduser from owner where idowner = '" + idowner + "';";
-        try {
-            ResultSet result = statement.executeQuery(sql);
-            if (result.next()) {
-                iduser = result.getInt(1);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        if (iduser == 24) {
-            String sql1 = "DELETE FROM owner WHERE idowner='" + idowner + "';";
-            try {
-                statement.execute(sql1);
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        } else {
-            String sql2 = "DELETE FROM user WHERE iduser='" + iduser + "';";
-            try {
-                statement.execute(sql2);
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
         }
     }
 }

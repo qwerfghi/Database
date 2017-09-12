@@ -14,7 +14,7 @@ public class UserEntity {
     private PrivilegesEntity privilegeEntity;
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.TABLE)
     @Column(name = "iduser")
     public int getIduser() {
         return iduser;

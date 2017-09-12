@@ -21,7 +21,7 @@ public class StaffEntity {
     private String position;
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.TABLE)
     @Column(name = "idstaff")
     public int getIdstaff() {
         return idstaff;

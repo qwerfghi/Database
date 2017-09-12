@@ -20,6 +20,7 @@ public class AnimalEntity {
     private int idowner;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.TABLE)
     @Column(name = "idanimal")
     public int getIdanimal() {
         return idanimal;
@@ -144,10 +145,6 @@ public class AnimalEntity {
     @Transient
     public int getIdowner() {
         return owner.getIdowner();
-    }
-
-    public void setIdowner(int idowner) {
-        this.idowner = idowner;
     }
 
     @Converter

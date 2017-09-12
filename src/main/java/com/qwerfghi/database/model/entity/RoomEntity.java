@@ -17,6 +17,7 @@ public class RoomEntity {
     private int cost;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.TABLE)
     @Column(name = "idrooms")
     public int getIdrooms() {
         return idrooms;

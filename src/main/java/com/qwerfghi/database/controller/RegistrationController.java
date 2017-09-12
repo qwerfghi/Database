@@ -1,21 +1,19 @@
 package com.qwerfghi.database.controller;
 
 import com.qwerfghi.database.Main;
-import com.qwerfghi.database.model.MyConnection;
-import com.qwerfghi.database.model.dao.*;
-import com.qwerfghi.database.model.entity.AddressEntity;
-import com.qwerfghi.database.model.entity.Discount;
-import com.qwerfghi.database.model.entity.OwnerEntity;
-import com.qwerfghi.database.model.entity.UserEntity;
+import com.qwerfghi.database.model.entity.*;
+import com.qwerfghi.database.model.service.GuestService;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 
 public class RegistrationController {
-
-    private MyConnection connection;
     private Main main;
-    public static String select_pet = "Собака";
+    private GuestService guestService;
+    private OwnerEntity ownerEntity;
 
     @FXML
     private TextField loginField;
@@ -56,40 +54,21 @@ public class RegistrationController {
 
     @FXML
     private void initialize() {
-        connection = Main.connection;
-        animalType.setItems(FXCollections.
-                observableArrayList("Собака", "Кот", "Хомяк", "Черепаха", "Змея"));
+        guestService = Main.getContext().getBean(GuestService.class);
+        animalType.setItems(FXCollections.observableArrayList("собака", "кот", "хомяк", "черепаха", "змея"));
         animalType.getSelectionModel().selectFirst();
-        animalType.getSelectionModel().selectedIndexProperty().addListener((observable, oldValue, newValue) -> {
-            switch (newValue.intValue()) {
-                case 0:
-                    select_pet = "собака";
-                    break;
-                case 1:
-                    select_pet = "кот";
-                    break;
-                case 2:
-                    select_pet = "хомяк";
-                    break;
-                case 3:
-                    select_pet = "черепаха";
-                    break;
-                case 4:
-                    select_pet = "змея";
-                    break;
-            }
-        });
     }
 
     @FXML
     private void onRegistration() {
-//        DAOFactory factory = DAOFactory.getDAOFactory(DAOFactory.HIBERNATE);
-//        PrivilegeDAO privilegeDAO = factory.getPrivilegeDAO();
-//        OwnerDAO ownerDAO = factory.getOwnerDAO();
-//        ownerDAO.addAnimal(getOwnerEntity(privilegeDAO));
+        UserEntity entity = getUserEntity();
+        OwnerEntity ownerEntity1 = getOwnerEntity();
+        guestService.addUser(entity, ownerEntity1, getAddressEntity());
+        Main.setUser(entity);
+        ownerEntity = ownerEntity1;
     }
 
-    private OwnerEntity getOwnerEntity(PrivilegeDAO privilegeDAO) {
+    private OwnerEntity getOwnerEntity() {
         OwnerEntity ownerEntity = new OwnerEntity();
         ownerEntity.setDiscount(Discount.ZERO);
         ownerEntity.setEmail(email.getText());
@@ -98,8 +77,6 @@ public class RegistrationController {
         ownerEntity.setOwnerPatronymic(patronymic.getText());
         ownerEntity.setPassport(passNum.getText());
         ownerEntity.setPhoneNum(phoneNum.getText());
-        ownerEntity.setAddress(getAddressEntity());
-        ownerEntity.setUser(getUserEntity(privilegeDAO));
         return ownerEntity;
     }
 
@@ -113,11 +90,10 @@ public class RegistrationController {
         return addressEntity;
     }
 
-    private UserEntity getUserEntity(PrivilegeDAO privilegeDAO) {
+    private UserEntity getUserEntity() {
         UserEntity user = new UserEntity();
         user.setUsername(loginField.getText());
         user.setPassword(passwordField_1.getText());
-        user.setPrivilegeEntity(privilegeDAO.getUserPrivilege());
         return user;
     }
 
@@ -128,14 +104,13 @@ public class RegistrationController {
 
     @FXML
     private void onPet() {
-        String petN = petName.getText();
-        if (petN.equals("")) petN = "NULL";
-        else petN = "\'" + petN + "\'";
-        if (select_pet.equals("")) select_pet = "NULL";
-        else select_pet = "\'" + select_pet + "\'";
-        if (connection.addPet(petN, select_pet, Integer.parseInt(petAge.getText()), petNotice.getText())) {
-            Helper.showDialog("Животное добавлено.");
-        }
+        AnimalEntity animalEntity = new AnimalEntity();
+        animalEntity.setNotice(petNotice.getText());
+        animalEntity.setAnimalName(petName.getText());
+        animalEntity.setAge(Byte.parseByte(petAge.getText()));
+        animalEntity.setAnimalType(AnimalType.fromCode(animalType.getValue()));
+        animalEntity.setOwner(ownerEntity);
+        guestService.addAnimal(animalEntity);
     }
 
     public void setMain(Main main) {

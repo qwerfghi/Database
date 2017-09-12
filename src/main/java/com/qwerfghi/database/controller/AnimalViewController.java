@@ -61,12 +61,11 @@ public class AnimalViewController {
     @FXML
     private void onAddAnimal () {
         AnimalEntity animalEntity = new AnimalEntity();
-        animalEntity.setOwner(adminService.getOwnerById(Integer.parseInt(idOwner.getText())));
         animalEntity.setAge(Byte.parseByte(animalAge.getText()));
         animalEntity.setAnimalName(animalName.getText());
         animalEntity.setAnimalType(AnimalType.fromCode(animalType.getValue()));
         animalEntity.setNotice(notice.getText());
-        adminService.addAnimal(animalEntity);
+        adminService.addAnimal(animalEntity, Integer.parseInt(idOwner.getText()));
         updateTable();
     }
 

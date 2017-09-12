@@ -36,7 +36,7 @@ public class LoginWindowController {
             } else if (user.getPrivilegeEntity().getId() == 1) {
                 main.initAdminWindowController();
             } else {
-                connection.user = user;
+                Main.setUser(user);
                 main.initLogOnViewController();
             }
         } else {

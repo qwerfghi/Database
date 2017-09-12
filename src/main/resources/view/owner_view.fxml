@@ -76,12 +76,12 @@
             </VBox>
             <VBox alignment="CENTER" prefHeight="387.0" prefWidth="174.0">
                <children>
-                  <Button mnemonicParsing="false" onAction="#OnAddUser" text="Добавить пользователя">
+                  <Button mnemonicParsing="false" onAction="#addUser" text="Добавить пользователя">
                      <VBox.margin>
                         <Insets bottom="10.0" />
                      </VBox.margin>
                   </Button>
-                  <Button mnemonicParsing="false" onAction="#OnDeleteUser" text="Удалить пользователя">
+                  <Button mnemonicParsing="false" onAction="#deleteUser" text="Удалить пользователя">
                      <VBox.margin>
                         <Insets bottom="10.0" />
                      </VBox.margin>
@@ -91,7 +91,7 @@
                         <Insets bottom="10.0" />
                      </VBox.margin>
                   </ChoiceBox>
-                  <Button mnemonicParsing="false" onAction="#OnChangeDiscount" text="Изменить скидку">
+                  <Button mnemonicParsing="false" onAction="#changeDiscount" text="Изменить скидку">
                      <VBox.margin>
                         <Insets bottom="10.0" />
                      </VBox.margin>

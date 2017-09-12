@@ -86,7 +86,7 @@ public class EmployeeViewController {
     }
 
     public void deleteEmployee() {
-        adminService.deleteStaffById(table.selectionModelProperty().get().getSelectedItem().getIdstaff());
+        adminService.deleteStaff(table.selectionModelProperty().get().getSelectedItem().getIdstaff());
         updateTable();
     }
 }
