@@ -1,9 +1,7 @@
 package com.qwerfghi.database;
 
-import com.qwerfghi.database.model.FragmentController;
-import com.qwerfghi.database.model.LayoutController;
-import com.qwerfghi.database.model.MyConnection;
 import com.qwerfghi.database.controller.*;
+import com.qwerfghi.database.model.MyConnection;
 import com.qwerfghi.database.model.entity.UserEntity;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -130,18 +128,14 @@ public class Main extends Application {
         }
     }
 
-    public FragmentController setReservationElement(LayoutController parent) {
+    public void setReservationElement() {
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getClassLoader().getResource("view/reservation_view.fxml"));
             BorderPane element = loader.load();
-            ReservationViewController controller = loader.getController();
-            controller.setParent(parent);
             root.setCenter(element);
-            return controller;
         } catch (IOException e) {
             e.printStackTrace();
-            return null;
         }
     }
 

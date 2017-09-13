@@ -9,6 +9,7 @@ public enum AnimalType {
     HAMSTER("хомяк", "для хомяка"),
     TURTLE("черепаха", "для черепахи"),
     SNAKE("змея", "для змеи");
+
     private final String animalType;
     private final String roomType;
 

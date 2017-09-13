@@ -6,10 +6,6 @@ import javafx.fxml.FXML;
 
 public class LogOnWindowController implements LayoutController {
     private Main main;
-    @FXML
-    private void initialize() {
-
-    }
 
     @FXML
     public void onLogin (){
@@ -18,7 +14,7 @@ public class LogOnWindowController implements LayoutController {
 
     @FXML
     public void onReservation () {
-        main.setReservationElement(this);
+        main.setReservationElement();
     }
 
     @FXML
