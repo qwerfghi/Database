@@ -1,8 +1,8 @@
 package com.qwerfghi.database.controller;
 
 import com.qwerfghi.database.Main;
-import com.qwerfghi.database.model.entity.*;
-import com.qwerfghi.database.model.service.GuestService;
+import com.qwerfghi.database.entity.*;
+import com.qwerfghi.database.service.GuestService;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
@@ -13,7 +13,7 @@ import javafx.scene.control.TextField;
 public class RegistrationController {
     private Main main;
     private GuestService guestService;
-    private OwnerEntity ownerEntity;
+    private Owner owner;
 
     @FXML
     private TextField loginField;
@@ -61,37 +61,37 @@ public class RegistrationController {
 
     @FXML
     private void onRegistration() {
-        UserEntity entity = getUserEntity();
-        OwnerEntity ownerEntity1 = getOwnerEntity();
-        guestService.addUser(entity, ownerEntity1, getAddressEntity());
+        User entity = getUserEntity();
+        Owner owner1 = getOwner();
+        guestService.addUser(entity, owner1, getAddressEntity());
         Main.setUser(entity);
-        ownerEntity = ownerEntity1;
+        owner = owner1;
     }
 
-    private OwnerEntity getOwnerEntity() {
-        OwnerEntity ownerEntity = new OwnerEntity();
-        ownerEntity.setDiscount(Discount.ZERO);
-        ownerEntity.setEmail(email.getText());
-        ownerEntity.setOwnerLastName(lastName.getText());
-        ownerEntity.setOwnerName(firstName.getText());
-        ownerEntity.setOwnerPatronymic(patronymic.getText());
-        ownerEntity.setPassport(passNum.getText());
-        ownerEntity.setPhoneNum(phoneNum.getText());
-        return ownerEntity;
+    private Owner getOwner() {
+        Owner owner = new Owner();
+        owner.setDiscount(Discount.ZERO);
+        owner.setEmail(email.getText());
+        owner.setOwnerLastName(lastName.getText());
+        owner.setOwnerName(firstName.getText());
+        owner.setOwnerPatronymic(patronymic.getText());
+        owner.setPassport(passNum.getText());
+        owner.setPhoneNum(phoneNum.getText());
+        return owner;
     }
 
-    private AddressEntity getAddressEntity() {
-        AddressEntity addressEntity = new AddressEntity();
-        addressEntity.setApartmentNum(Short.parseShort(apartmentNum.getText()));
-        addressEntity.setHouseNum(Byte.parseByte(houseNum.getText()));
-        addressEntity.setLocality(locality.getText());
-        addressEntity.setRegion(region.getText());
-        addressEntity.setStreet(street.getText());
-        return addressEntity;
+    private Address getAddressEntity() {
+        Address address = new Address();
+        address.setApartmentNum(Short.parseShort(apartmentNum.getText()));
+        address.setHouseNum(Byte.parseByte(houseNum.getText()));
+        address.setLocality(locality.getText());
+        address.setRegion(region.getText());
+        address.setStreet(street.getText());
+        return address;
     }
 
-    private UserEntity getUserEntity() {
-        UserEntity user = new UserEntity();
+    private User getUserEntity() {
+        User user = new User();
         user.setUsername(loginField.getText());
         user.setPassword(passwordField_1.getText());
         return user;
@@ -104,13 +104,13 @@ public class RegistrationController {
 
     @FXML
     private void onPet() {
-        AnimalEntity animalEntity = new AnimalEntity();
-        animalEntity.setNotice(petNotice.getText());
-        animalEntity.setAnimalName(petName.getText());
-        animalEntity.setAge(Byte.parseByte(petAge.getText()));
-        animalEntity.setAnimalType(AnimalType.fromCode(animalType.getValue()));
-        animalEntity.setOwner(ownerEntity);
-        guestService.addAnimal(animalEntity);
+        Animal animal = new Animal();
+        animal.setNotice(petNotice.getText());
+        animal.setAnimalName(petName.getText());
+        animal.setAge(Byte.parseByte(petAge.getText()));
+        animal.setAnimalType(AnimalType.fromCode(animalType.getValue()));
+        animal.setOwner(owner);
+        guestService.addAnimal(animal);
     }
 
     public void setMain(Main main) {

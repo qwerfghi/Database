@@ -1,8 +1,8 @@
 package com.qwerfghi.database.controller;
 
 import com.qwerfghi.database.Main;
-import com.qwerfghi.database.model.entity.RoomEntity;
-import com.qwerfghi.database.model.service.UserService;
+import com.qwerfghi.database.entity.Room;
+import com.qwerfghi.database.service.UserService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -15,19 +15,19 @@ public class RoomViewController {
     private UserService userService;
 
     @FXML
-    private TableView<RoomEntity> table;
+    private TableView<Room> table;
     @FXML
-    private TableColumn<RoomEntity, Integer> roomNumColumn;
+    private TableColumn<Room, Integer> roomNumColumn;
     @FXML
-    private TableColumn<RoomEntity, String> roomTypeColumn;
+    private TableColumn<Room, String> roomTypeColumn;
     @FXML
-    private TableColumn<RoomEntity, String> dateEnterColumn;
+    private TableColumn<Room, String> dateEnterColumn;
     @FXML
-    private TableColumn<RoomEntity, String> dateOutColumn;
+    private TableColumn<Room, String> dateOutColumn;
     @FXML
-    private TableColumn<RoomEntity, Integer> roomCostColumn;
+    private TableColumn<Room, Integer> roomCostColumn;
 
-    private ObservableList<RoomEntity> list;
+    private ObservableList<Room> list;
 
     @FXML
     public void initialize() {

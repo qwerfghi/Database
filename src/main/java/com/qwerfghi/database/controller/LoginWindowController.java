@@ -1,8 +1,8 @@
 package com.qwerfghi.database.controller;
 
 import com.qwerfghi.database.Main;
-import com.qwerfghi.database.model.entity.UserEntity;
-import com.qwerfghi.database.model.service.GuestService;
+import com.qwerfghi.database.entity.User;
+import com.qwerfghi.database.service.GuestService;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
@@ -23,7 +23,7 @@ public class LoginWindowController {
         String username = loginField.getText();
         String password = passwordField.getText();
         if (!username.equals("") || !password.equals("")) {
-            UserEntity user = guestService.getByUsernameAndPassword(username, password);
+            User user = guestService.getByUsernameAndPassword(username, password);
             if (user == null) {
                 showErrorDialog("Неверный логин или пароль.");
             } else if (user.getPrivilegeEntity().getId() == 1) {

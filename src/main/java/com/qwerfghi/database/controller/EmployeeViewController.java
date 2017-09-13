@@ -1,8 +1,8 @@
 package com.qwerfghi.database.controller;
 
 import com.qwerfghi.database.Main;
-import com.qwerfghi.database.model.entity.StaffEntity;
-import com.qwerfghi.database.model.service.AdminService;
+import com.qwerfghi.database.entity.Staff;
+import com.qwerfghi.database.service.AdminService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -13,27 +13,27 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 public class EmployeeViewController {
-    private ObservableList<StaffEntity> list;
+    private ObservableList<Staff> list;
     private AdminService adminService;
 
     @FXML
-    private TableView<StaffEntity> table;
+    private TableView<Staff> table;
     @FXML
-    private TableColumn<StaffEntity, String> firstNameColumn;
+    private TableColumn<Staff, String> firstNameColumn;
     @FXML
-    private TableColumn<StaffEntity, String> lastNameColumn;
+    private TableColumn<Staff, String> lastNameColumn;
     @FXML
-    private TableColumn<StaffEntity, String> patronymicColumn;
+    private TableColumn<Staff, String> patronymicColumn;
     @FXML
-    private TableColumn<StaffEntity, String> dateColumn;
+    private TableColumn<Staff, String> dateColumn;
     @FXML
-    private TableColumn<StaffEntity, String> positionColumn;
+    private TableColumn<Staff, String> positionColumn;
     @FXML
-    private TableColumn<StaffEntity, String> passportColumn;
+    private TableColumn<Staff, String> passportColumn;
     @FXML
-    private TableColumn<StaffEntity, String> phoneNumColumn;
+    private TableColumn<Staff, String> phoneNumColumn;
     @FXML
-    private TableColumn<StaffEntity, String> emailColumn;
+    private TableColumn<Staff, String> emailColumn;
     @FXML
     private TextField firstNameField;
     @FXML
@@ -72,16 +72,16 @@ public class EmployeeViewController {
     }
 
     public void addEmployee() {
-        StaffEntity staffEntity = new StaffEntity();
-        staffEntity.setEmployeeName(firstNameField.getText());
-        staffEntity.setEmployeeLastName(lastNameField.getText());
-        staffEntity.setEmployeePatronymic(patronymicField.getText());
-        staffEntity.setPassport(passportField.getText());
-        staffEntity.setPhoneNum(phoneField.getText());
-        staffEntity.setEmail(emailField.getText());
-        staffEntity.setPosition(positionField.getText());
-        staffEntity.setDateRec(Helper.convertLocalDateToDate(datePicker.getValue()));
-        adminService.addStaff(staffEntity);
+        Staff staff = new Staff();
+        staff.setEmployeeName(firstNameField.getText());
+        staff.setEmployeeLastName(lastNameField.getText());
+        staff.setEmployeePatronymic(patronymicField.getText());
+        staff.setPassport(passportField.getText());
+        staff.setPhoneNum(phoneField.getText());
+        staff.setEmail(emailField.getText());
+        staff.setPosition(positionField.getText());
+        staff.setDateRec(Helper.convertLocalDateToDate(datePicker.getValue()));
+        adminService.addStaff(staff);
         updateTable();
     }
 

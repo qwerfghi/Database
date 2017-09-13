@@ -1,9 +1,9 @@
 package com.qwerfghi.database.controller;
 
 import com.qwerfghi.database.Main;
-import com.qwerfghi.database.model.entity.AnimalEntity;
-import com.qwerfghi.database.model.entity.RoomEntity;
-import com.qwerfghi.database.model.service.UserService;
+import com.qwerfghi.database.entity.Animal;
+import com.qwerfghi.database.entity.Room;
+import com.qwerfghi.database.service.UserService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -15,19 +15,19 @@ import java.util.stream.Collectors;
 
 public class ReservationViewController {
     private UserService userService;
-    private ObservableList<RoomEntity> list;
-    private List<AnimalEntity> animals;
+    private ObservableList<Room> list;
+    private List<Animal> animals;
 
     @FXML
     private ChoiceBox<String> animalName;
     @FXML
-    private TableView<RoomEntity> table;
+    private TableView<Room> table;
     @FXML
-    private TableColumn<RoomEntity, Integer> roomNumColumn;
+    private TableColumn<Room, Integer> roomNumColumn;
     @FXML
-    private TableColumn<RoomEntity, Integer> roomCostColumn;
+    private TableColumn<Room, Integer> roomCostColumn;
     @FXML
-    private TableColumn<RoomEntity, String> roomTypeColumn;
+    private TableColumn<Room, String> roomTypeColumn;
     @FXML
     private DatePicker dateInPicker;
     @FXML
@@ -42,10 +42,10 @@ public class ReservationViewController {
     @FXML
     public void initialize() {
         userService = Main.getContext().getBean(UserService.class);
-        animals = Main.getUser().getOwnerEntity().getAnimalEntityList();
+        animals = Main.getUser().getOwner().getAnimalList();
         animalName.setItems(FXCollections.observableArrayList(animals
                 .stream()
-                .map(AnimalEntity::getAnimalName)
+                .map(Animal::getAnimalName)
                 .collect(Collectors.toList())));
         animalName.getSelectionModel().selectFirst();
     }
@@ -59,21 +59,21 @@ public class ReservationViewController {
     }
 
     public void reserveRoom() {
-        RoomEntity roomEntity = table.getSelectionModel().getSelectedItem();
-        roomEntity.setDateBeg(Helper.convertLocalDateToDate(dateInPicker.getValue()));
-        roomEntity.setDateEnd(Helper.convertLocalDateToDate(dateOutPicker.getValue()));
-        AnimalEntity animalEntity = getAnimal();
-        animalEntity.setCut(cut.isSelected());
-        animalEntity.setVetInspection(vet_inspection.isSelected());
-        animalEntity.setZootaxi(taxi.isSelected());
-        userService.reserveRoom(roomEntity, animalEntity);
+        Room room = table.getSelectionModel().getSelectedItem();
+        room.setDateBeg(Helper.convertLocalDateToDate(dateInPicker.getValue()));
+        room.setDateEnd(Helper.convertLocalDateToDate(dateOutPicker.getValue()));
+        Animal animal = getAnimal();
+        animal.setCut(cut.isSelected());
+        animal.setVetInspection(vet_inspection.isSelected());
+        animal.setZootaxi(taxi.isSelected());
+        userService.reserveRoom(room, animal);
         searchRoom();
     }
 
-    private AnimalEntity getAnimal() {
+    private Animal getAnimal() {
         return animals.stream()
                 .filter(animalEntity -> animalEntity.getAnimalName().equals(animalName.getValue()))
                 .findFirst()
-                .orElse(new AnimalEntity());
+                .orElse(new Animal());
     }
 }

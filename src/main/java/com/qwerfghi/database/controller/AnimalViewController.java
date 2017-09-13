@@ -1,9 +1,9 @@
 package com.qwerfghi.database.controller;
 
 import com.qwerfghi.database.Main;
-import com.qwerfghi.database.model.entity.AnimalEntity;
-import com.qwerfghi.database.model.entity.AnimalType;
-import com.qwerfghi.database.model.service.AdminService;
+import com.qwerfghi.database.entity.Animal;
+import com.qwerfghi.database.entity.AnimalType;
+import com.qwerfghi.database.service.AdminService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -15,20 +15,20 @@ import javafx.scene.control.cell.PropertyValueFactory;
 
 public class AnimalViewController {
     private AdminService adminService;
-    private ObservableList<AnimalEntity> list;
+    private ObservableList<Animal> list;
 
     @FXML
-    private TableView<AnimalEntity> table;
+    private TableView<Animal> table;
     @FXML
-    private TableColumn<AnimalEntity, Integer> idOwnerColumn;
+    private TableColumn<Animal, Integer> idOwnerColumn;
     @FXML
-    private TableColumn<AnimalEntity, String> animalNameColumn;
+    private TableColumn<Animal, String> animalNameColumn;
     @FXML
-    private TableColumn<AnimalEntity, String> animalTypeColumn;
+    private TableColumn<Animal, String> animalTypeColumn;
     @FXML
-    private TableColumn<AnimalEntity, Integer> animalAgeColumn;
+    private TableColumn<Animal, Integer> animalAgeColumn;
     @FXML
-    private TableColumn<AnimalEntity, String> noticeColumn;
+    private TableColumn<Animal, String> noticeColumn;
     @FXML
     private TextField idOwner;
     @FXML
@@ -60,12 +60,12 @@ public class AnimalViewController {
 
     @FXML
     private void onAddAnimal () {
-        AnimalEntity animalEntity = new AnimalEntity();
-        animalEntity.setAge(Byte.parseByte(animalAge.getText()));
-        animalEntity.setAnimalName(animalName.getText());
-        animalEntity.setAnimalType(AnimalType.fromCode(animalType.getValue()));
-        animalEntity.setNotice(notice.getText());
-        adminService.addAnimal(animalEntity, Integer.parseInt(idOwner.getText()));
+        Animal animal = new Animal();
+        animal.setAge(Byte.parseByte(animalAge.getText()));
+        animal.setAnimalName(animalName.getText());
+        animal.setAnimalType(AnimalType.fromCode(animalType.getValue()));
+        animal.setNotice(notice.getText());
+        adminService.addAnimal(animal, Integer.parseInt(idOwner.getText()));
         updateTable();
     }
 

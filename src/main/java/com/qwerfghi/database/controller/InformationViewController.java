@@ -1,9 +1,9 @@
 package com.qwerfghi.database.controller;
 
 import com.qwerfghi.database.Main;
-import com.qwerfghi.database.model.entity.AddressEntity;
-import com.qwerfghi.database.model.entity.AnimalEntity;
-import com.qwerfghi.database.model.entity.OwnerEntity;
+import com.qwerfghi.database.entity.Address;
+import com.qwerfghi.database.entity.Animal;
+import com.qwerfghi.database.entity.Owner;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -38,36 +38,36 @@ public class InformationViewController{
     @FXML
     private Label apartNum;
     @FXML
-    private TableView<AnimalEntity> table;
+    private TableView<Animal> table;
     @FXML
-    private TableColumn<AnimalEntity, String> animalNameColumn;
+    private TableColumn<Animal, String> animalNameColumn;
     @FXML
-    private TableColumn<AnimalEntity, String> animalTypeColumn;
+    private TableColumn<Animal, String> animalTypeColumn;
     @FXML
-    private TableColumn<AnimalEntity, Integer> ageColumn;
+    private TableColumn<Animal, Integer> ageColumn;
     @FXML
-    private TableColumn<AnimalEntity, String> noticeColumn;
+    private TableColumn<Animal, String> noticeColumn;
 
     @FXML
     public void initialize() {
-        OwnerEntity ownerEntity = Main.getUser().getOwnerEntity();
-        name.setText(ownerEntity.getOwnerName());
-        lastName.setText(ownerEntity.getOwnerLastName());
-        patronymic.setText(ownerEntity.getOwnerPatronymic());
-        passNum.setText(ownerEntity.getPassport());
-        phoneNum.setText(ownerEntity.getPhoneNum());
-        email.setText(ownerEntity.getEmail());
-        discount.setText(ownerEntity.getDiscount().getDiscount());
-        AddressEntity addressEntity = ownerEntity.getAddress();
-        region.setText(addressEntity.getRegion());
-        locality.setText(addressEntity.getLocality());
-        street.setText(addressEntity.getStreet());
-        houseNum.setText(String.valueOf(addressEntity.getHouseNum()));
-        apartNum.setText(String.valueOf(addressEntity.getApartmentNum()));
+        Owner owner = Main.getUser().getOwner();
+        name.setText(owner.getOwnerName());
+        lastName.setText(owner.getOwnerLastName());
+        patronymic.setText(owner.getOwnerPatronymic());
+        passNum.setText(owner.getPassport());
+        phoneNum.setText(owner.getPhoneNum());
+        email.setText(owner.getEmail());
+        discount.setText(owner.getDiscount().getDiscount());
+        Address address = owner.getAddress();
+        region.setText(address.getRegion());
+        locality.setText(address.getLocality());
+        street.setText(address.getStreet());
+        houseNum.setText(String.valueOf(address.getHouseNum()));
+        apartNum.setText(String.valueOf(address.getApartmentNum()));
         animalNameColumn.setCellValueFactory(new PropertyValueFactory<>("animalName"));
         animalTypeColumn.setCellValueFactory(new PropertyValueFactory<>("animalType"));
         ageColumn.setCellValueFactory(new PropertyValueFactory<>("age"));
         noticeColumn.setCellValueFactory(new PropertyValueFactory<>("notice"));
-        table.setItems(FXCollections.observableArrayList(ownerEntity.getAnimalEntityList()));
+        table.setItems(FXCollections.observableArrayList(owner.getAnimalList()));
     }
 }

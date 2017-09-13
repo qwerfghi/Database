@@ -1,10 +1,9 @@
 package com.qwerfghi.database.controller;
 
 import com.qwerfghi.database.Main;
-import com.qwerfghi.database.model.LayoutController;
 import javafx.fxml.FXML;
 
-public class LogOnWindowController implements LayoutController {
+public class LogOnWindowController {
     private Main main;
 
     @FXML
@@ -34,10 +33,5 @@ public class LogOnWindowController implements LayoutController {
 
     public void setApp(Main main) {
         this.main = main;
-    }
-
-    @Override
-    public Main getApp() {
-        return main;
     }
 }

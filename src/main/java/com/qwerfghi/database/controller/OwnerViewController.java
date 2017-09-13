@@ -1,10 +1,10 @@
 package com.qwerfghi.database.controller;
 
 import com.qwerfghi.database.Main;
-import com.qwerfghi.database.model.entity.AddressEntity;
-import com.qwerfghi.database.model.entity.Discount;
-import com.qwerfghi.database.model.entity.OwnerEntity;
-import com.qwerfghi.database.model.service.AdminService;
+import com.qwerfghi.database.entity.Address;
+import com.qwerfghi.database.entity.Discount;
+import com.qwerfghi.database.entity.Owner;
+import com.qwerfghi.database.service.AdminService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -15,37 +15,37 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 public class OwnerViewController {
-    private ObservableList<OwnerEntity> list;
+    private ObservableList<Owner> list;
     private AdminService adminService;
 
     @FXML
-    private TableView<OwnerEntity> table;
+    private TableView<Owner> table;
     @FXML
-    private TableColumn<OwnerEntity, Integer> idGuestColumn;
+    private TableColumn<Owner, Integer> idGuestColumn;
     @FXML
-    private TableColumn<OwnerEntity, String> NameColumn;
+    private TableColumn<Owner, String> NameColumn;
     @FXML
-    private TableColumn<OwnerEntity, String> lNameColumn;
+    private TableColumn<Owner, String> lNameColumn;
     @FXML
-    private TableColumn<OwnerEntity, String> PatronymicColumn;
+    private TableColumn<Owner, String> PatronymicColumn;
     @FXML
-    private TableColumn<OwnerEntity, String> passNumColumn;
+    private TableColumn<Owner, String> passNumColumn;
     @FXML
-    private TableColumn<OwnerEntity, String> phoneNumColumn;
+    private TableColumn<Owner, String> phoneNumColumn;
     @FXML
-    private TableColumn<OwnerEntity, String> emailColumn;
+    private TableColumn<Owner, String> emailColumn;
     @FXML
-    private TableColumn<OwnerEntity, String> discountColumn;
+    private TableColumn<Owner, String> discountColumn;
     @FXML
-    private TableColumn<OwnerEntity, String> regionColumn;
+    private TableColumn<Owner, String> regionColumn;
     @FXML
-    private TableColumn<OwnerEntity, String> localityColumn;
+    private TableColumn<Owner, String> localityColumn;
     @FXML
-    private TableColumn<OwnerEntity, String> streetColumn;
+    private TableColumn<Owner, String> streetColumn;
     @FXML
-    private TableColumn<OwnerEntity, String> houseNumberColumn;
+    private TableColumn<Owner, String> houseNumberColumn;
     @FXML
-    private TableColumn<OwnerEntity, String> apartmentNumberColumn;
+    private TableColumn<Owner, String> apartmentNumberColumn;
     @FXML
     private TextField nameField;
     @FXML
@@ -99,21 +99,21 @@ public class OwnerViewController {
 
     @FXML
     private void addUser() {
-        AddressEntity addressEntity = new AddressEntity();
-        addressEntity.setStreet(street.getText());
-        addressEntity.setRegion(region.getText());
-        addressEntity.setLocality(locality.getText());
-        addressEntity.setApartmentNum(Integer.parseInt(apartmentNumber.getText()));
-        addressEntity.setHouseNum(Integer.parseInt(houseNumber.getText()));
-        OwnerEntity ownerEntity = new OwnerEntity();
-        ownerEntity.setPhoneNum(phoneField.getText());
-        ownerEntity.setPassport(passportField.getText());
-        ownerEntity.setOwnerPatronymic(patronymicField.getText());
-        ownerEntity.setOwnerName(nameField.getText());
-        ownerEntity.setOwnerLastName(lastNameField.getText());
-        ownerEntity.setEmail(emailField.getText());
-        ownerEntity.setDiscount(Discount.fromCode(discount.getValue()));
-        adminService.addOwner(ownerEntity, addressEntity);
+        Address address = new Address();
+        address.setStreet(street.getText());
+        address.setRegion(region.getText());
+        address.setLocality(locality.getText());
+        address.setApartmentNum(Integer.parseInt(apartmentNumber.getText()));
+        address.setHouseNum(Integer.parseInt(houseNumber.getText()));
+        Owner owner = new Owner();
+        owner.setPhoneNum(phoneField.getText());
+        owner.setPassport(passportField.getText());
+        owner.setOwnerPatronymic(patronymicField.getText());
+        owner.setOwnerName(nameField.getText());
+        owner.setOwnerLastName(lastNameField.getText());
+        owner.setEmail(emailField.getText());
+        owner.setDiscount(Discount.fromCode(discount.getValue()));
+        adminService.addOwner(owner, address);
         updateTable();
     }
 

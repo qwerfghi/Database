@@ -1,10 +1,9 @@
 package com.qwerfghi.database.controller;
 
 import com.qwerfghi.database.Main;
-import com.qwerfghi.database.model.LayoutController;
 import javafx.fxml.FXML;
 
-public class AdminWindowController implements LayoutController {
+public class AdminWindowController {
     private Main main;
 
     @FXML
@@ -29,10 +28,5 @@ public class AdminWindowController implements LayoutController {
 
     public void setApp(Main main) {
         this.main = main;
-    }
-
-    @Override
-    public Main getApp() {
-        return main;
     }
 }

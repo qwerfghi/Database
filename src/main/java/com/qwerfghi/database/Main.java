@@ -1,8 +1,7 @@
 package com.qwerfghi.database;
 
 import com.qwerfghi.database.controller.*;
-import com.qwerfghi.database.model.MyConnection;
-import com.qwerfghi.database.model.entity.UserEntity;
+import com.qwerfghi.database.entity.User;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -17,17 +16,16 @@ import java.net.URL;
 
 public class Main extends Application {
 
-    public static MyConnection connection;
     private Stage stage;
     private BorderPane root;
-    private static UserEntity user;
+    private static User user;
     private static ApplicationContext context;
 
-    public static UserEntity getUser() {
+    public static User getUser() {
         return user;
     }
 
-    public static void setUser(UserEntity user) {
+    public static void setUser(User user) {
         Main.user = user;
     }
 
@@ -89,8 +87,6 @@ public class Main extends Application {
     }
 
     public static void main(String[] args) {
-        connection = new MyConnection();
-        connection.connect();
         launch();
     }
 

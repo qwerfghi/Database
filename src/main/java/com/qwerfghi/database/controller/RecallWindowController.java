@@ -1,8 +1,8 @@
 package com.qwerfghi.database.controller;
 
 import com.qwerfghi.database.Main;
-import com.qwerfghi.database.model.entity.RecallEntity;
-import com.qwerfghi.database.model.service.GuestService;
+import com.qwerfghi.database.entity.Recall;
+import com.qwerfghi.database.service.GuestService;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
@@ -30,10 +30,10 @@ public class RecallWindowController {
 
     @FXML
     private void onRecall() {
-        RecallEntity recallEntity = new RecallEntity();
-        recallEntity.setEmail(emailPicker.getText());
-        recallEntity.setMark(markPicker.getValue());
-        recallEntity.setRecall(recallPicker.getText());
-        guestService.addRecall(recallEntity);
+        Recall recall = new Recall();
+        recall.setEmail(emailPicker.getText());
+        recall.setMark(markPicker.getValue());
+        recall.setRecall(recallPicker.getText());
+        guestService.addRecall(recall);
     }
 }
