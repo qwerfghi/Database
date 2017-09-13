@@ -6,14 +6,15 @@ import javax.persistence.*;
  * Created by Павел on 21.06.2017.
  */
 @Entity
-@Table(name = "recall", schema = "hostel", catalog = "")
+@Table(name = "recall", schema = "hostel")
 public class RecallEntity {
     private short idrecall;
     private String email;
-    private byte mark;
+    private int mark;
     private String recall;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.TABLE)
     @Column(name = "idrecall")
     public short getIdrecall() {
         return idrecall;
@@ -35,11 +36,11 @@ public class RecallEntity {
 
     @Basic
     @Column(name = "mark")
-    public byte getMark() {
+    public int getMark() {
         return mark;
     }
 
-    public void setMark(byte mark) {
+    public void setMark(int mark) {
         this.mark = mark;
     }
 

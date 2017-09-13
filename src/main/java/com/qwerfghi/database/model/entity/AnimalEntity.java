@@ -13,9 +13,9 @@ public class AnimalEntity {
     private String animalName;
     private AnimalType animalType;
     private byte age;
-    private byte vetInspection;
-    private byte zootaxi;
-    private byte cut;
+    private boolean vetInspection;
+    private boolean zootaxi;
+    private boolean cut;
     private String notice;
     private int idowner;
 
@@ -62,31 +62,31 @@ public class AnimalEntity {
 
     @Basic
     @Column(name = "vet_inspection")
-    public byte getVetInspection() {
+    public boolean getVetInspection() {
         return vetInspection;
     }
 
-    public void setVetInspection(byte vetInspection) {
+    public void setVetInspection(boolean vetInspection) {
         this.vetInspection = vetInspection;
     }
 
     @Basic
     @Column(name = "zootaxi")
-    public byte getZootaxi() {
+    public boolean getZootaxi() {
         return zootaxi;
     }
 
-    public void setZootaxi(byte zootaxi) {
+    public void setZootaxi(boolean zootaxi) {
         this.zootaxi = zootaxi;
     }
 
     @Basic
     @Column(name = "cut")
-    public byte getCut() {
+    public boolean getCut() {
         return cut;
     }
 
-    public void setCut(byte cut) {
+    public void setCut(boolean cut) {
         this.cut = cut;
     }
 
@@ -112,23 +112,23 @@ public class AnimalEntity {
         if (vetInspection != that.vetInspection) return false;
         if (zootaxi != that.zootaxi) return false;
         if (cut != that.cut) return false;
-        if (animalName != null ? !animalName.equals(that.animalName) : that.animalName != null) return false;
-        if (animalType != null ? !animalType.equals(that.animalType) : that.animalType != null) return false;
-        if (notice != null ? !notice.equals(that.notice) : that.notice != null) return false;
-
-        return true;
+        if (!owner.equals(that.owner)) return false;
+        if (!animalName.equals(that.animalName)) return false;
+        if (animalType != that.animalType) return false;
+        return notice.equals(that.notice);
     }
 
     @Override
     public int hashCode() {
         int result = idanimal;
-        result = 31 * result + (animalName != null ? animalName.hashCode() : 0);
-        result = 31 * result + (animalType != null ? animalType.hashCode() : 0);
+        result = 31 * result + owner.hashCode();
+        result = 31 * result + animalName.hashCode();
+        result = 31 * result + animalType.hashCode();
         result = 31 * result + (int) age;
-        result = 31 * result + (int) vetInspection;
-        result = 31 * result + (int) zootaxi;
-        result = 31 * result + (int) cut;
-        result = 31 * result + (notice != null ? notice.hashCode() : 0);
+        result = 31 * result + (vetInspection ? 1 : 0);
+        result = 31 * result + (zootaxi ? 1 : 0);
+        result = 31 * result + (cut ? 1 : 0);
+        result = 31 * result + notice.hashCode();
         return result;
     }
 

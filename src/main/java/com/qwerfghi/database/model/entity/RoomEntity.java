@@ -1,7 +1,7 @@
 package com.qwerfghi.database.model.entity;
 
 import javax.persistence.*;
-import java.sql.Date;
+import java.util.Date;
 
 /**
  * Created by Павел on 21.06.2017.
@@ -50,6 +50,7 @@ public class RoomEntity {
 
     @Basic
     @Column(name = "date_beg")
+    @Temporal(TemporalType.DATE)
     public Date getDateBeg() {
         return dateBeg;
     }
@@ -60,6 +61,7 @@ public class RoomEntity {
 
     @Basic
     @Column(name = "date_end")
+    @Temporal(TemporalType.DATE)
     public Date getDateEnd() {
         return dateEnd;
     }

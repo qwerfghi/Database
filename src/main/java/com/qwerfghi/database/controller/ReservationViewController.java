@@ -2,7 +2,6 @@ package com.qwerfghi.database.controller;
 
 import com.qwerfghi.database.Main;
 import com.qwerfghi.database.model.entity.AnimalEntity;
-import com.qwerfghi.database.model.entity.AnimalType;
 import com.qwerfghi.database.model.entity.RoomEntity;
 import com.qwerfghi.database.model.service.UserService;
 import javafx.collections.FXCollections;
@@ -14,16 +13,9 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static com.qwerfghi.database.Main.connection;
-
 public class ReservationViewController {
     private UserService userService;
     private ObservableList<RoomEntity> list;
-    private static String date_in = "";
-    private static String date_out = "";
-    private static int taxi_v = 0;
-    private static int cut_v = 0;
-    private static int vet_v = 0;
     private List<AnimalEntity> animals;
 
     @FXML
@@ -59,8 +51,7 @@ public class ReservationViewController {
     }
 
     public void searchRoom() {
-        connection.roomType(animalName.getValue());
-        list =  FXCollections.observableList(userService.getAllFreeRooms(getAnimalType())) ;
+        list = FXCollections.observableList(userService.getAllFreeRooms(getAnimal().getAnimalType()));
         roomNumColumn.setCellValueFactory(new PropertyValueFactory<>("number"));
         roomCostColumn.setCellValueFactory(new PropertyValueFactory<>("cost"));
         roomTypeColumn.setCellValueFactory(new PropertyValueFactory<>("animalType"));
@@ -68,33 +59,21 @@ public class ReservationViewController {
     }
 
     public void reserveRoom() {
-        if (dateInPicker.getValue() != null) {
-            date_in = dateInPicker.getValue().toString();
-            date_in = date_in.replace("-", "");
-        }
-        if (dateOutPicker.getValue() != null) {
-            date_out = dateOutPicker.getValue().toString();
-            date_out = date_out.replace("-", "");
-        }
-        if (taxi.isSelected()) {
-            taxi_v = 1;
-        }
-        if (cut.isSelected()) {
-            cut_v = 1;
-        }
-        if (vet_inspection.isSelected()) {
-            vet_v = 1;
-        }
-        //connection.addRes(date_in, date_out, taxi_v, cut_v, vet_v, table.getSelectionModel().getSelectedItem().roomNumProperty().getValue(), animalName.getValue());
+        RoomEntity roomEntity = table.getSelectionModel().getSelectedItem();
+        roomEntity.setDateBeg(Helper.convertLocalDateToDate(dateInPicker.getValue()));
+        roomEntity.setDateEnd(Helper.convertLocalDateToDate(dateOutPicker.getValue()));
+        AnimalEntity animalEntity = getAnimal();
+        animalEntity.setCut(cut.isSelected());
+        animalEntity.setVetInspection(vet_inspection.isSelected());
+        animalEntity.setZootaxi(taxi.isSelected());
+        userService.reserveRoom(roomEntity, animalEntity);
         searchRoom();
     }
 
-    private AnimalType getAnimalType() {
+    private AnimalEntity getAnimal() {
         return animals.stream()
-                .filter(animalEntity -> animalEntity.getAnimalName()
-                        .equals(animalName.getValue()))
+                .filter(animalEntity -> animalEntity.getAnimalName().equals(animalName.getValue()))
                 .findFirst()
-                .orElse(new AnimalEntity())
-                .getAnimalType();
+                .orElse(new AnimalEntity());
     }
 }

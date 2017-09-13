@@ -1,6 +1,7 @@
 package com.qwerfghi.database.model.service;
 
 import com.qwerfghi.database.model.dao.*;
+import com.qwerfghi.database.model.dao.hibernate.RecallDAO;
 import com.qwerfghi.database.model.entity.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,6 +31,9 @@ public class GuestService {
     @Autowired
     private AnimalDAO animalDAO;
 
+    @Autowired
+    private RecallDAO recallDAO;
+
     @Transactional
     public UserEntity getByUsernameAndPassword(String username, String password) {
         return userDAO.getByUsernameAndPassword(username, password);
@@ -53,5 +57,10 @@ public class GuestService {
     @Transactional
     public void addAnimal(AnimalEntity animalEntity) {
         animalDAO.add(animalEntity);
+    }
+
+    @Transactional
+    public void addRecall(RecallEntity entity) {
+        recallDAO.add(entity);
     }
 }

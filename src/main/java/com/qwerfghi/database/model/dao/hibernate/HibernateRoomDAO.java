@@ -27,6 +27,9 @@ public class HibernateRoomDAO extends HibernateDAO<RoomEntity> implements RoomDA
 
     @Override
     public RoomEntity getById(int id) {
+        RoomEntity entity = new RoomEntity();
+        entity.setCost(100);
+        entityManager.persist(entity);
         return entityManager.find(RoomEntity.class, id);
     }
 
