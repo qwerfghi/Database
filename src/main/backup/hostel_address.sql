@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 5.7.9, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 5.7.17, for Win64 (x86_64)
 --
 -- Host: localhost    Database: hostel
 -- ------------------------------------------------------
--- Server version	5.7.9-log
+-- Server version	5.7.18-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -16,37 +16,32 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `animal`
+-- Table structure for table `address`
 --
 
-DROP TABLE IF EXISTS `animal`;
+DROP TABLE IF EXISTS `address`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `animal` (
-  `idanimal` smallint(6) unsigned NOT NULL,
-  `idowner` smallint(6) unsigned NOT NULL,
-  `animal_name` varchar(40) NOT NULL,
-  `animal_kind` enum('собака','кот','хомяк','черепаха','змея') NOT NULL,
-  `age` tinyint(3) unsigned NOT NULL,
-  `vet_inspection` tinyint(1) unsigned NOT NULL,
-  `zootaxi` tinyint(1) unsigned NOT NULL,
-  `cut` tinyint(1) unsigned NOT NULL,
-  `notice` text,
-  PRIMARY KEY (`idanimal`),
-  UNIQUE KEY `idanimal_UNIQUE` (`idanimal`),
-  KEY `fk_pass_idx` (`idowner`),
-  CONSTRAINT `fk_owner` FOREIGN KEY (`idowner`) REFERENCES `owner` (`idowner`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+CREATE TABLE `address` (
+  `idaddress` smallint(5) unsigned NOT NULL AUTO_INCREMENT,
+  `region` varchar(45) NOT NULL,
+  `locality` varchar(45) NOT NULL,
+  `street` varchar(45) NOT NULL,
+  `house_num` tinyint(4) unsigned NOT NULL,
+  `apartment_num` smallint(6) unsigned NOT NULL,
+  PRIMARY KEY (`idaddress`),
+  UNIQUE KEY `idaddress_UNIQUE` (`idaddress`)
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `animal`
+-- Dumping data for table `address`
 --
 
-LOCK TABLES `animal` WRITE;
-/*!40000 ALTER TABLE `animal` DISABLE KEYS */;
-INSERT INTO `animal` VALUES (1,10,'Летти','собака',1,1,0,0,'Отличный пес');
-/*!40000 ALTER TABLE `animal` ENABLE KEYS */;
+LOCK TABLES `address` WRITE;
+/*!40000 ALTER TABLE `address` DISABLE KEYS */;
+INSERT INTO `address` VALUES (9,'Минская','Смолевичи','Центральная',34,1),(16,'asda','sdas','dasda',123,123),(22,'asdas','dasd','dasd',123,123);
+/*!40000 ALTER TABLE `address` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -58,4 +53,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-09-12 18:58:17
+-- Dump completed on 2017-09-18 16:50:39

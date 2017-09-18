@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 5.7.9, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 5.7.17, for Win64 (x86_64)
 --
 -- Host: localhost    Database: hostel
 -- ------------------------------------------------------
--- Server version	5.7.9-log
+-- Server version	5.7.18-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -16,38 +16,34 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `owner`
+-- Table structure for table `staff`
 --
 
-DROP TABLE IF EXISTS `owner`;
+DROP TABLE IF EXISTS `staff`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `owner` (
-  `idowner` smallint(6) unsigned NOT NULL AUTO_INCREMENT,
-  `owner_name` varchar(45) NOT NULL,
-  `owner_last_name` varchar(45) NOT NULL,
-  `owner_patronymic` varchar(45) NOT NULL,
-  `passport` varchar(10) NOT NULL,
+CREATE TABLE `staff` (
+  `idstaff` smallint(6) NOT NULL,
+  `employee_name` varchar(45) NOT NULL,
+  `employee_last_name` varchar(45) NOT NULL,
+  `employee_patronymic` varchar(45) NOT NULL,
+  `date_rec` date NOT NULL,
+  `passport` char(9) NOT NULL,
   `phone_num` varchar(13) NOT NULL,
   `email` varchar(45) NOT NULL,
-  `discount` enum('0%','5%','10%','20%') NOT NULL,
-  `idaddress` smallint(5) unsigned NOT NULL,
-  PRIMARY KEY (`idowner`),
-  UNIQUE KEY `passport_UNIQUE` (`passport`),
-  UNIQUE KEY `idowner_UNIQUE` (`idowner`),
-  UNIQUE KEY `idaddress_UNIQUE` (`idaddress`),
-  CONSTRAINT `fk_address` FOREIGN KEY (`idaddress`) REFERENCES `address` (`idaddress`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+  `position` varchar(45) NOT NULL,
+  PRIMARY KEY (`idstaff`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `owner`
+-- Dumping data for table `staff`
 --
 
-LOCK TABLES `owner` WRITE;
-/*!40000 ALTER TABLE `owner` DISABLE KEYS */;
-INSERT INTO `owner` VALUES (10,'Павел','Лобанок','Андреевич','МС2580843','+375295055393','pavellobanok@gmail.com','10%',9);
-/*!40000 ALTER TABLE `owner` ENABLE KEYS */;
+LOCK TABLES `staff` WRITE;
+/*!40000 ALTER TABLE `staff` DISABLE KEYS */;
+INSERT INTO `staff` VALUES (9,'a','asd','asdasd','2017-09-12','asdasd','asdasd','asd','asdad');
+/*!40000 ALTER TABLE `staff` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -59,4 +55,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-09-12 18:58:17
+-- Dump completed on 2017-09-18 16:50:39

@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 5.7.9, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 5.7.17, for Win64 (x86_64)
 --
 -- Host: localhost    Database: hostel
 -- ------------------------------------------------------
--- Server version	5.7.9-log
+-- Server version	5.7.18-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -16,36 +16,36 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `user`
+-- Table structure for table `room`
 --
 
-DROP TABLE IF EXISTS `user`;
+DROP TABLE IF EXISTS `room`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `user` (
-  `iduser` smallint(6) unsigned NOT NULL AUTO_INCREMENT,
-  `username` varchar(45) NOT NULL,
-  `password` varchar(32) NOT NULL,
-  `privilege_id` tinyint(3) NOT NULL,
+CREATE TABLE `room` (
+  `idrooms` smallint(6) unsigned NOT NULL AUTO_INCREMENT,
   `idowner` smallint(6) unsigned DEFAULT NULL,
-  PRIMARY KEY (`iduser`),
-  UNIQUE KEY `username_UNIQUE` (`username`),
-  UNIQUE KEY `id_UNIQUE` (`iduser`),
-  UNIQUE KEY `idowner_UNIQUE` (`idowner`),
-  KEY `fk_privilege_id_idx` (`privilege_id`),
-  CONSTRAINT `fk_owner_id` FOREIGN KEY (`idowner`) REFERENCES `owner` (`idowner`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_privilege_id` FOREIGN KEY (`privilege_id`) REFERENCES `privileges` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8;
+  `number` smallint(6) unsigned NOT NULL,
+  `animal_type` enum('DOG','CAT','HAMSTER','TURTLE','SNAKE') NOT NULL,
+  `date_beg` date DEFAULT NULL,
+  `date_end` date DEFAULT NULL,
+  `cost` smallint(6) unsigned NOT NULL,
+  PRIMARY KEY (`idrooms`),
+  UNIQUE KEY `number_UNIQUE` (`number`),
+  UNIQUE KEY `idrooms_UNIQUE` (`idrooms`),
+  KEY `fk_idguest_idx` (`idowner`),
+  CONSTRAINT `fk_idowner` FOREIGN KEY (`idowner`) REFERENCES `owner` (`idowner`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `user`
+-- Dumping data for table `room`
 --
 
-LOCK TABLES `user` WRITE;
-/*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (28,'qwerfghi','ASDFGHJKL',2,10),(29,'admin','admin',1,NULL);
-/*!40000 ALTER TABLE `user` ENABLE KEYS */;
+LOCK TABLES `room` WRITE;
+/*!40000 ALTER TABLE `room` DISABLE KEYS */;
+INSERT INTO `room` VALUES (14,NULL,1,'DOG',NULL,NULL,100),(15,NULL,2,'CAT',NULL,NULL,100),(16,NULL,3,'DOG',NULL,NULL,200),(17,NULL,5,'DOG','2017-09-15','2017-09-14',100),(18,NULL,6,'DOG',NULL,NULL,150),(19,NULL,4,'DOG','2016-12-21','2016-12-25',170),(20,NULL,7,'HAMSTER',NULL,NULL,150);
+/*!40000 ALTER TABLE `room` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -57,4 +57,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-09-12 18:58:17
+-- Dump completed on 2017-09-18 16:50:38

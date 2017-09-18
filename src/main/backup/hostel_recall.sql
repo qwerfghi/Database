@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 5.7.9, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 5.7.17, for Win64 (x86_64)
 --
 -- Host: localhost    Database: hostel
 -- ------------------------------------------------------
--- Server version	5.7.9-log
+-- Server version	5.7.18-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -16,36 +16,30 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `room`
+-- Table structure for table `recall`
 --
 
-DROP TABLE IF EXISTS `room`;
+DROP TABLE IF EXISTS `recall`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `room` (
-  `idrooms` smallint(6) unsigned NOT NULL AUTO_INCREMENT,
-  `idowner` smallint(6) unsigned DEFAULT NULL,
-  `number` smallint(6) unsigned NOT NULL,
-  `animal_type` enum('DOG','CAT','HAMSTER','TURTLE','SNAKE') NOT NULL,
-  `date_beg` date DEFAULT NULL,
-  `date_end` date DEFAULT NULL,
-  `cost` smallint(6) unsigned NOT NULL,
-  PRIMARY KEY (`idrooms`),
-  UNIQUE KEY `number_UNIQUE` (`number`),
-  UNIQUE KEY `idrooms_UNIQUE` (`idrooms`),
-  KEY `fk_idguest_idx` (`idowner`),
-  CONSTRAINT `fk_idowner` FOREIGN KEY (`idowner`) REFERENCES `owner` (`idowner`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
+CREATE TABLE `recall` (
+  `idrecall` smallint(6) unsigned NOT NULL AUTO_INCREMENT,
+  `email` varchar(40) NOT NULL,
+  `mark` tinyint(4) unsigned NOT NULL,
+  `recall` text NOT NULL,
+  PRIMARY KEY (`idrecall`),
+  UNIQUE KEY `idrecall_UNIQUE` (`idrecall`)
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `room`
+-- Dumping data for table `recall`
 --
 
-LOCK TABLES `room` WRITE;
-/*!40000 ALTER TABLE `room` DISABLE KEYS */;
-INSERT INTO `room` VALUES (14,NULL,1,'DOG',NULL,NULL,100),(15,NULL,2,'CAT',NULL,NULL,100),(16,NULL,3,'DOG',NULL,NULL,200),(17,NULL,5,'DOG',NULL,NULL,100),(18,NULL,6,'DOG',NULL,NULL,150),(19,NULL,4,'DOG','2016-12-21','2016-12-25',170);
-/*!40000 ALTER TABLE `room` ENABLE KEYS */;
+LOCK TABLES `recall` WRITE;
+/*!40000 ALTER TABLE `recall` DISABLE KEYS */;
+INSERT INTO `recall` VALUES (2,'pavellobanok@gmail.com',9,'Отличное заведение, реккомендую!'),(3,'sdasdasdad',7,'Норм.'),(25,'DAFFGSFDGA',4,'AEFEGWERSHSETG');
+/*!40000 ALTER TABLE `recall` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -57,4 +51,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-09-12 18:58:17
+-- Dump completed on 2017-09-18 16:50:38
