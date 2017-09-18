@@ -14,7 +14,7 @@
 
     <context:component-scan base-package="com.qwerfghi.database.web"/>
 
-    <mvc:resources mapping="/resources/**" location=""/>
+    <mvc:resources mapping="/resources/**" location="res"/>
 
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/WEB-INF/webPage/" />
