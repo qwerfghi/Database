@@ -1,6 +1,9 @@
 package com.qwerfghi.database.service;
 
-import com.qwerfghi.database.dao.*;
+import com.qwerfghi.database.dao.AddressDAO;
+import com.qwerfghi.database.dao.AnimalDAO;
+import com.qwerfghi.database.dao.OwnerDAO;
+import com.qwerfghi.database.dao.StaffDAO;
 import com.qwerfghi.database.entity.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
