@@ -7,8 +7,22 @@ body {
     background-size: 100%;
 }
 
+button, input, optgroup, select, textarea {
+    margin-bottom: 10px;
+}
+
+.hui {
+    width: 49%;
+}
+
 .form {
+    border-radius: 10px;
     margin: auto;
+    background-color: rgba(80, 80, 80, 0.5);
+}
+
+.form-control {
+    line-height: inherit;
 }
 
 .form-signin {
@@ -19,6 +33,7 @@ body {
 
 .form-signin .form-signin-heading,
 .form-signin .checkbox {
+    color: seashell;
     margin-bottom: 10px;
 }
 
@@ -37,16 +52,4 @@ body {
 
 .form-signin .form-control:focus {
     z-index: 2;
-}
-
-.form-signin input[type="email"] {
-    margin-bottom: -1px;
-    border-bottom-right-radius: 0;
-    border-bottom-left-radius: 0;
-}
-
-.form-signin input[type="password"] {
-    margin-bottom: 10px;
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
 }
