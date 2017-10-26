@@ -9,14 +9,14 @@
     <link rel="stylesheet" href="../../resources/css/index.css">
 </head>
 <body>
-<div class="container">
+<div class="container form">
     <form class="form-signin">
         <h2 class="form-signin-heading">Please sign in</h2>
         <label for="Login" class="sr-only">Login</label>
         <input type="text" id="Login" class="form-control" placeholder="Login" required autofocus>
         <label for="inputPassword" class="sr-only">Password</label>
         <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Войти</button>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Sing in</button>
     </form>
 </div>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
