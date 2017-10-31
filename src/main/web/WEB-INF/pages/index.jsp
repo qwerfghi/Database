@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html lang="en">
 <head>
+    <title>Index</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -9,7 +10,7 @@
     <link rel="stylesheet" href="../../resources/css/index.css">
 </head>
 <body>
-<div class="container col-sm form">
+<div class="container col-sm-auto form">
     <form class="form-signin">
         <h2 class="form-signin-heading">Please sign in</h2>
         <label for="Login" class="sr-only">Login</label>

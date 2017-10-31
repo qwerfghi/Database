@@ -1,0 +1,39 @@
+<html>
+<head>
+    <title>Guest</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="../main/web/resources/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../main/web/resources/css/guest.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script>
+        $(function () {
+            $("#datepicker").datepicker();
+        });
+    </script>
+</head>
+<body>
+<form>
+    <div class="container">
+        <div class="row col-sm-12">
+            <label for="exampleSelect1">Выберите тип комнаты</label>
+            <select class="form-control col-lg-3" id="exampleSelect1">
+                <option>для собаки</option>
+                <option>для кота</option>
+                <option>для хомяка</option>
+                <option>для черепахи</option>
+                <option>для змеи</option>
+            </select>
+            <label for="datepicker">Date:</label><input type="text" id="datepicker">
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+    </div>
+</form>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
+<script src="../main/web/resources/js/bootstrap.js"></script>
+</body>
+</html>

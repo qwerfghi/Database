@@ -7,9 +7,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class GuestController {
 
-    @RequestMapping(value = "/")
+    @RequestMapping(value = "/index")
     public String helloWorld(ModelMap model) {
-        model.addAttribute("message", "Spring 3 MVC - Hello World");
         return "index";
+    }
+
+    @RequestMapping(value = "/guest")
+    public String guest(ModelMap model) {
+        return "guest";
     }
 }
