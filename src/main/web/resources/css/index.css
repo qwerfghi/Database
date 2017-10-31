@@ -11,30 +11,29 @@ button, input, optgroup, select, textarea {
     margin-bottom: 10px;
 }
 
-.hui {
+h2 {
+    color: seashell;
+}
+
+form {
+    display: contents;
+    margin-bottom: 0;
+}
+
+.buttons button {
     width: 49%;
 }
 
 .form {
+    max-width: 330px;
     border-radius: 10px;
     margin: auto;
     background-color: rgba(80, 80, 80, 0.5);
+    padding: 15px;
 }
 
 .form-control {
     line-height: inherit;
-}
-
-.form-signin {
-    max-width: 330px;
-    padding: 15px;
-    margin: 0 auto;
-}
-
-.form-signin .form-signin-heading,
-.form-signin .checkbox {
-    color: seashell;
-    margin-bottom: 10px;
 }
 
 .form-signin .checkbox {

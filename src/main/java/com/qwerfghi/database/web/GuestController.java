@@ -16,4 +16,9 @@ public class GuestController {
     public String guest(ModelMap model) {
         return "guest";
     }
+
+    @RequestMapping(value = "/signup")
+    public String sighUp(ModelMap model) {
+        return "signup";
+    }
 }
