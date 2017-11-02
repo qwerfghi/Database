@@ -2,3 +2,16 @@ body {
     background: url("../img/guest.jpg");
     background-size: 100%;
 }
+
+.table {
+    height: 350px;
+    overflow: auto;
+}
+
+.hasDatepicker {
+    width: 150px;
+}
+
+table {
+    width: 100%;
+}
