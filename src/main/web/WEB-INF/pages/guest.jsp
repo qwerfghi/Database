@@ -45,15 +45,17 @@
     <div class="row">
         <div class="col"></div>
         <div class="col-lg-8 table">
-            <table>
-                <tbody>
+            <table class="table-bordered table-hover table-inverse">
+                <thead>
                 <tr>
                     <td>Номер комнаты</td>
                     <td>Дата заселения</td>
                     <td>Дата выселения</td>
                     <td>Стоимость/сут</td>
                 </tr>
-                <c:if test="${empty(freeRooms)}">
+                </thead>
+                <tbody>
+                <c:if test="${empty freeRooms}">
                     <tr>
                         <td></td>
                         <td></td>
@@ -133,7 +135,7 @@
                         <td></td>
                     </tr>
                 </c:if>
-                <c:if test="${!empty(freeRooms)}">
+                <c:if test="${not empty freeRooms}">
                     <c:forEach items="${freeRooms}" var="room">
                         <tr>
                             <td>${room.number}</td>
