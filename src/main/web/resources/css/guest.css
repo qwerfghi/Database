@@ -1,9 +1,16 @@
 body {
+    display: flex;
+    height: 100%;
     background: url("../img/guest.jpg");
     background-size: 100%;
 }
 
+.container {
+    margin: auto;
+}
+
 .table {
+    padding: 0;
     height: 350px;
     overflow: auto;
 }
@@ -13,6 +20,6 @@ body {
 }
 
 table {
-    padding: 0;
     width: 100%;
+    min-height: 100%;
 }

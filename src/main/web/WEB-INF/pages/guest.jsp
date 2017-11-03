@@ -20,9 +20,9 @@
 <body>
 <div class="container">
     <form action="<c:url value="/guest"/>">
-        <div class="row">
+        <div class="row align-items-end">
             <div class="col"></div>
-            <div class="col-lg-2 form-group">
+            <div class="col-lg-2">
                 <label for="exampleSelect1">Тип комнаты</label>
                 <select class="form-control" id="exampleSelect1" name="animalType">
                     <option>для собаки</option>
@@ -34,7 +34,7 @@
             </div>
             <div class="col-lg-2">
                 <label for="datepicker">Дата заселения</label>
-                <input type="text" id="datepicker" name="date">
+                <input type="text" id="datepicker" name="date" class="form-control" required>
             </div>
             <div class="col-lg-1">
                 <button type="submit" class="btn btn-primary">Submit</button>
@@ -56,84 +56,14 @@
                 </thead>
                 <tbody>
                 <c:if test="${empty freeRooms}">
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
+                    <c:forEach begin="${0}" end="${15}">
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </c:forEach>
                 </c:if>
                 <c:if test="${not empty freeRooms}">
                     <c:forEach items="${freeRooms}" var="room">
