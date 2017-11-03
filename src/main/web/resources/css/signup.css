@@ -1,7 +1,7 @@
 body {
     display: flex;
     height: 100%;
-    background: url("../img/guest.jpg");
+    background: url("../img/signup.jpg");
     background-size: 100%;
 }
 
@@ -10,16 +10,7 @@ body {
 }
 
 .form {
-    align-content: center;
     border-radius: 10px;
     background-color: rgba(80, 80, 80, 0.5);
     padding: 15px;
-}
-
-.form-control {
-    display: inline-block;
-}
-
-input {
-    max-width: 200px;
 }

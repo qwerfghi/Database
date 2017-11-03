@@ -13,15 +13,9 @@
 <div class="container">
     <div class="row">
         <div class="col"></div>
-        <div class="col-lg-5 form">
+        <div class="col-lg-4 form">
             <form action="<c:url value="/signup"/>">
-                <input type="text" name="login" class="form-control" placeholder="Логин" required autofocus>
-                <input type="password" name="password1" class="form-control" placeholder="Пароль" required>
-                <input type="password" name="password2" class="form-control" placeholder="Повторите пароль" required>
-                <input type="text" name="name" class="form-control" placeholder="Имя" required>
-                <input type="text" name="lastName" class="form-control" placeholder="Фамилия" required>
-                <input type="text" name="patronymic" class="form-control" placeholder="Отчество" required>
-                <button class="btn btn-primary" type="submit">Далее</button>
+                <%@include file="jspf/signup/registration1.jspf" %>
             </form>
         </div>
         <div class="col"></div>

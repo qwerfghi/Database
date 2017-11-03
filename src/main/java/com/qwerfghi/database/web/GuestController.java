@@ -21,7 +21,7 @@ public class GuestController {
     private GuestService guestService;
 
     @RequestMapping(value = "/index")
-    public String helloWorld(ModelMap model) {
+    public String index(ModelMap model) {
         return "index";
     }
 
@@ -34,6 +34,7 @@ public class GuestController {
         try {
             Date parse = dateFormat.parse(date);
             rooms = guestService.getAllFreeRooms(AnimalType.fromCode(animalType), parse);
+            System.out.println(guestService.getAllFreeRooms(AnimalType.fromCode(animalType), parse).size());
         } catch (Exception e) {
             e.printStackTrace();
         }
