@@ -1,0 +1,20 @@
+<%@ page contentType="text/html;charset=UTF-8" %>
+<div class="form-group">
+    <label for="email">Email</label>
+    <input type="email" name="email" class="form-control" id="email" required>
+    <label for="phoneNum">Телефонный номер</label>
+    <input type="text" name="phoneNum" class="form-control" id="phoneNum" required>
+    <label for="passport">Номер паспорта</label>
+    <input type="text" name="passport" class="form-control" id="passport" required>
+    <label for="region">Область</label>
+    <input type="text" name="region" class="form-control" id="region" required>
+    <label for="locality">Город/населенный пункт</label>
+    <input type="text" name="locality" class="form-control" id="locality" required>
+    <label for="street">Улица</label>
+    <input type="text" name="street" class="form-control" id="street" required>
+    <label for="house">Дом</label>
+    <input type="text" name="house" class="form-control" id="house" required>
+    <label for="apartment">Квартира</label>
+    <input type="text" name="apartment" class="form-control" id="apartment" required>
+</div>
+<button class="btn btn-primary" type="submit">Далее</button>

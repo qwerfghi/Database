@@ -15,7 +15,17 @@
         <div class="col"></div>
         <div class="col-lg-4 form">
             <form action="<c:url value="/signup"/>">
-                <%@include file="jspf/signup/registration1.jspf" %>
+                <c:choose>
+                    <c:when test="${count eq 1}">
+                        <%@include file="jspf/signup/registration1.jspf" %>
+                    </c:when>
+                    <c:when test="${count eq 2}">
+                        <%@include file="jspf/signup/registration2.jspf" %>
+                    </c:when>
+                    <c:when test="${count eq 3}">
+                        <%@include file="jspf/signup/registration3.jspf" %>
+                    </c:when>
+                </c:choose>
             </form>
         </div>
         <div class="col"></div>
