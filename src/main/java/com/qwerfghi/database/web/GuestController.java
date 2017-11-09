@@ -1,7 +1,6 @@
 package com.qwerfghi.database.web;
 
-import com.qwerfghi.database.entity.AnimalType;
-import com.qwerfghi.database.entity.Room;
+import com.qwerfghi.database.entity.*;
 import com.qwerfghi.database.service.GuestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,11 +23,9 @@ public class GuestController {
     @Autowired
     private GuestService guestService;
 
-    @RequestMapping(value = "/index")
+    @RequestMapping(value = "/")
     public String index(ModelMap model) {
-        if (!model.containsAttribute("count")) {
-            model.addAttribute("count", 0);
-        }
+        model.addAttribute("count", 0);
         return "index";
     }
 
@@ -52,30 +49,49 @@ public class GuestController {
     @RequestMapping(value = "/signup")
     public String sighUp(ModelMap model, HttpServletRequest request, HttpSession session, @ModelAttribute(name = "count") int count) {
         switch (count) {
-            case 0:
+            case 0: {
                 model.addAttribute("count", ++count);
                 break;
-            case 1:
-                session.setAttribute("login", request.getAttribute("login"));
-                session.setAttribute("password1", request.getAttribute("password1"));
-                session.setAttribute("name", request.getAttribute("name"));
-                session.setAttribute("lastName", request.getAttribute("lastName"));
-                session.setAttribute("patronymic", request.getAttribute("patronymic"));
+            }
+            case 1: {
+                User user = new User();
+                user.setUsername(request.getParameter("login"));
+                user.setPassword(request.getParameter("password1"));
+                Owner owner = new Owner();
+                owner.setOwnerLastName(request.getParameter("lastName"));
+                owner.setOwnerName(request.getParameter("name"));
+                owner.setOwnerPatronymic(request.getParameter("patronymic"));
+                session.setAttribute("user", user);
+                session.setAttribute("owner", owner);
                 model.addAttribute("count", ++count);
                 break;
-            case 2:
-                session.setAttribute("email", request.getAttribute("email"));
-                session.setAttribute("phoneNum", request.getAttribute("phoneNum"));
-                session.setAttribute("passport", request.getAttribute("passport"));
-                session.setAttribute("region", request.getAttribute("region"));
-                session.setAttribute("locality", request.getAttribute("locality"));
-                session.setAttribute("street", request.getAttribute("street"));
-                session.setAttribute("house", request.getAttribute("house"));
-                session.setAttribute("apartment", request.getAttribute("apartment"));
+            }
+            case 2: {
+                Owner owner = (Owner) session.getAttribute("owner");
+                owner.setPassport(request.getParameter("passport"));
+                owner.setPhoneNum(request.getParameter("phoneNum"));
+                owner.setEmail(request.getParameter("email"));
+                Address address = new Address();
+                address.setApartmentNum(Short.parseShort(request.getParameter("apartment")));
+                address.setHouseNum(Byte.parseByte(request.getParameter("house")));
+                address.setLocality(request.getParameter("locality"));
+                address.setRegion(request.getParameter("region"));
+                address.setStreet(request.getParameter("street"));
+                guestService.addUser((User) session.getAttribute("user"), owner, address);
+                session.setAttribute("owner", owner);
                 model.addAttribute("count", ++count);
                 break;
-            case 3:
-
+            }
+            case 3: {
+                Animal animal = new Animal();
+                animal.setNotice(request.getParameter("notice"));
+                animal.setAnimalName(request.getParameter("petName"));
+                animal.setAge(Byte.parseByte(request.getParameter("petAge")));
+                animal.setAnimalType(AnimalType.fromCode(request.getParameter("petType")));
+                animal.setOwner((Owner) session.getAttribute("owner"));
+                guestService.addAnimal(animal);
+                break;
+            }
         }
         return "signup";
     }

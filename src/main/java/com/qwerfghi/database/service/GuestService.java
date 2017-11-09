@@ -47,6 +47,7 @@ public class GuestService {
     @Transactional
     public void addUser(User user, Owner owner, Address address) {
         addressDAO.add(address);
+        owner.setDiscount(Discount.ZERO);
         owner.setAddress(address);
         ownerDAO.add(owner);
         user.setPrivilegeEntity(privilegeDAO.getUserPrivilege());

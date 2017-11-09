@@ -70,7 +70,6 @@ public class RegistrationController {
 
     private Owner getOwner() {
         Owner owner = new Owner();
-        owner.setDiscount(Discount.ZERO);
         owner.setEmail(email.getText());
         owner.setOwnerLastName(lastName.getText());
         owner.setOwnerName(firstName.getText());
