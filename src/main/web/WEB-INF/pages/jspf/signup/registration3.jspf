@@ -5,7 +5,7 @@
         <input type="text" name="petName" class="form-control" placeholder="Имя питомца" required>
         <input type="text" name="petAge" class="form-control" placeholder="Возраст питомца" required>
         <label for="petType">Вид питомца</label>
-        <select class="form-control" id="petType" name="animalType">
+        <select class="form-control" id="petType" name="petType">
             <option>собака</option>
             <option>кот</option>
             <option>хомяк</option>
@@ -15,7 +15,7 @@
         <textarea placeholder="Примечание" class="form-control" name="notice" style="margin-top: 20px"></textarea>
     </div>
     <button class="btn btn-primary" type="submit">Добавить питомца</button>
-    <form action="<c:url value="/"/>">
-        <button class="btn btn-primary" type="submit">Войти</button>
-    </form>
+</form>
+<form action="<c:url value="/"/>">
+    <button class="btn btn-primary" type="submit">Войти</button>
 </form>
