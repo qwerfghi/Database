@@ -11,7 +11,7 @@
 </head>
 <body>
 <div class="container col-auto form">
-    <form>
+    <form action="<c:url value="/user/home"/>">
         <h2>Please sign in</h2>
         <label for="Login" class="sr-only">Login</label>
         <input type="text" id="Login" class="form-control" placeholder="Login" required autofocus>
