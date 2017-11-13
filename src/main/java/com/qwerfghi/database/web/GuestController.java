@@ -5,9 +5,7 @@ import com.qwerfghi.database.service.GuestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -26,10 +24,10 @@ public class GuestController {
     @RequestMapping(value = "/")
     public String index(ModelMap model) {
         model.addAttribute("count", 0);
-        return "index";
+        return "guest/index";
     }
 
-    @RequestMapping(value = "/guest")
+    @GetMapping(value = "/guest")
     public String guest(ModelMap model, HttpServletRequest request) {
         String animalType = request.getParameter("animalType");
         String date = request.getParameter("date");
@@ -43,7 +41,7 @@ public class GuestController {
             e.printStackTrace();
         }
         model.addAttribute("freeRooms", rooms);
-        return "guest";
+        return "guest/guest";
     }
 
     @RequestMapping(value = "/signup")
@@ -93,6 +91,21 @@ public class GuestController {
                 break;
             }
         }
-        return "signup";
+        return "guest/signup";
+    }
+
+    @RequestMapping(value = "/signin")
+    public String signin(HttpSession session, @RequestParam("login") String login, @RequestParam("password") String password) {
+        User user = guestService.getByUsernameAndPassword(login, password);
+        if (user == null) {
+            return "guest/index";
+        } else {
+            session.setAttribute("user", user);
+            if (user.getPrivilegeEntity().getId() == 1) {
+                return "redirect:/admin/pets";
+            } else {
+                return "redirect:/user/home";
+            }
+        }
     }
 }
