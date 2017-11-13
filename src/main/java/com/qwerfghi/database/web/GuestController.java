@@ -36,7 +36,6 @@ public class GuestController {
         try {
             Date parse = dateFormat.parse(date);
             rooms = guestService.getAllFreeRooms(AnimalType.fromCode(animalType), parse);
-            System.out.println(guestService.getAllFreeRooms(AnimalType.fromCode(animalType), parse).size());
         } catch (Exception e) {
             e.printStackTrace();
         }
