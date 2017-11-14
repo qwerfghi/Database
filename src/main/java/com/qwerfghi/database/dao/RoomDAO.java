@@ -8,4 +8,5 @@ import java.util.List;
 
 public interface RoomDAO extends Dao<Room> {
     List<Room> getAllFreeRooms(AnimalType animalType, Date checkInDate);
+    Room getRoomByNumber(int number);
 }

@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -31,7 +33,10 @@ public class UserService {
     }
 
     @Transactional
-    public void reserveRoom(Room room, Animal animal) {
+    public void reserveRoom(int number, Date dateBeg, Date dateEnd, Animal animal) {
+        Room room = roomDAO.getRoomByNumber(number);
+        room.setDateBeg(dateBeg);
+        room.setDateEnd(dateEnd);
         roomDAO.update(room);
         animalDAO.update(animal);
     }

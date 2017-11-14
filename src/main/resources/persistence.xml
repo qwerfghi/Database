@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence
+             http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd"
+             version="2.1">
+
+    <!--
+        Файл persistence.xml дает полную гибкость для настройки EntityManager.
+        persistence.xml является стандартным файлом конфигурации в JPA.
+        Он должен находиться в каталоге META-INF внутри JAR-файла, который содержит сущности-компоненты.
+        Файл persistence.xml должен определять persistence-unit-ы с уникальными именами.
+        Поскольку может быть несколько экземпляров persistence-unit, определенных в одном приложении,
+        в аннотации @PersistenceContext нужно указать, какой именно persistence-unit использовать.
+        Например, @PersistenceContext (name = "JpaPersistenceUnitCoursesSpring") инжектирует EntityManager из
+        persistence-unit с именем «JpaPersistenceUnitCoursesSpring».
+        Если persistence-unit один, имя в аннотации можно не указывать.
+    -->
+
+    <!--
+        The set of entity types that can be managed by a given entity manager is defined by a persistence unit.
+        A persistence unit defines the set of all classes that are related or grouped by the application,
+        and which must be collocated in their mapping to a single data store.
+    -->
+    <persistence-unit name="Database" transaction-type="RESOURCE_LOCAL">
+        <!--
+            With <persistence-unit transaction-type="RESOURCE_LOCAL"> you are responsible
+            for EntityManager (PersistenceContext/Cache) creating and tracking
+            Resource_Local and JTA (also transaction-type) are transaction managers (methods of doing transactions).
+            This is not the property of database but the component responsible for coordinating transactions.
+            JPA and JTA transaction managers are different. JPA transaction manager is responsible for JPA transactions
+            and you want to use one if you are only doing JPA transaction. JTA transaction manager is
+            general purpose transaction manager and can enlist other resources such as JMS queues in transaction.
+        -->
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+        <!--
+            provider означает какая реализация JPA должна быть использована.
+            Hibernate представлен org.hibernate.jpa.HibernatePersistenceProvider.
+        -->
+
+        <!-- The "class" elements specify names of managed persistable classes -->
+        <class>com.qwerfghi.database.entity.Room</class>
+        <class>com.qwerfghi.database.entity.Animal</class>
+        <class>com.qwerfghi.database.entity.Address</class>
+        <class>com.qwerfghi.database.entity.Owner</class>
+        <class>com.qwerfghi.database.entity.Privileges</class>
+        <class>com.qwerfghi.database.entity.Recall</class>
+        <class>com.qwerfghi.database.entity.Staff</class>
+        <class>com.qwerfghi.database.entity.User</class>
+
+        <!-- Настройки для Hibernate -->
+        <properties>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" />
+            <property name="hibernate.generate_statistics" value="true" />
+            <property name="hibernate.show_sql" value="true" />
+            <property name="hibernate.hbm2ddl.auto" value="create" />
+        </properties>
+    </persistence-unit>
+</persistence>

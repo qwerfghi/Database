@@ -60,13 +60,14 @@ public class ReservationViewController {
 
     public void reserveRoom() {
         Room room = table.getSelectionModel().getSelectedItem();
-        room.setDateBeg(Helper.convertLocalDateToDate(dateInPicker.getValue()));
-        room.setDateEnd(Helper.convertLocalDateToDate(dateOutPicker.getValue()));
         Animal animal = getAnimal();
         animal.setCut(cut.isSelected());
         animal.setVetInspection(vet_inspection.isSelected());
         animal.setZootaxi(taxi.isSelected());
-        userService.reserveRoom(room, animal);
+        userService.reserveRoom(room.getNumber(),
+                Helper.convertLocalDateToDate(dateInPicker.getValue()),
+                Helper.convertLocalDateToDate(dateOutPicker.getValue()),
+                animal);
         searchRoom();
     }
 

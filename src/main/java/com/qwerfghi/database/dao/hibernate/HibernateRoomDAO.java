@@ -26,6 +26,13 @@ public class HibernateRoomDAO extends HibernateDAO<Room> implements RoomDAO {
     }
 
     @Override
+    public Room getRoomByNumber(int number) {
+        TypedQuery<Room> query = entityManager.createQuery("FROM Room r WHERE r.number = :number", Room.class);
+        query.setParameter("number", number);
+        return query.getSingleResult();
+    }
+
+    @Override
     public Room getById(int id) {
         Room entity = new Room();
         entity.setCost(100);
