@@ -18,22 +18,25 @@
                          data-parent="#accordion">
                         <div class="card-body">
                             <form action="<c:url value="/admin/personal"/>">
-                                <input type="text" name="addId" class="form-control" placeholder="ID сотрудника" required
-                                       autofocus>
                                 <input type="text" name="emplName" class="form-control" placeholder="Имя сотрудника"
+                                       required autofocus>
+                                <input type="text" name="emplLastName" class="form-control"
+                                       placeholder="Фамилия сотрудника"
                                        required>
-                                <input type="text" name="emplLastName" class="form-control" placeholder="Фамилия сотрудника"
+                                <input type="text" name="emplPatr" class="form-control"
+                                       placeholder="Отчество сотрудника"
                                        required>
-                                <input type="text" name="emplPatr" class="form-control" placeholder="Отчество сотрудника"
+                                <input type="text" name="emplPosition" class="form-control"
+                                       placeholder="Должность сотрудника"
                                        required>
-                                <input type="text" name="empl" class="form-control" placeholder="Должность сотрудника"
+                                <input type="text" id="datepicker" name="date" class="form-control"
+                                       placeholder="Дата найма" required>
+                                <input type="text" name="passNum" class="form-control" placeholder="Номер паспорта"
                                        required>
-                                <input type="text" name="petAge" class="form-control" placeholder="Номер паспорта"
+                                <input type="text" name="phoneNum" class="form-control" placeholder="Номер телефона"
                                        required>
-                                <input type="text" name="petAge" class="form-control" placeholder="Номер телефона"
-                                       required>
-                                <input type="email" name="notice" class="form-control" placeholder="email" required>
-                                <button class="btn btn-primary" type="submit">Добавить питомца</button>
+                                <input type="email" name="email" class="form-control" placeholder="Email" required>
+                                <button class="btn btn-primary" type="submit">Добавить работника</button>
                             </form>
                         </div>
                     </div>
@@ -42,8 +45,8 @@
                     <div class="card-header" role="tab" id="headingTwo">
                         <h5 class="mb-0">
                             <a data-toggle="collapse" href="#collapseTwo" aria-expanded="true"
-                               aria-controls="collapseOne">
-                                Удалить питомца
+                               aria-controls="collapseTwo">
+                                Удалить работника
                             </a>
                         </h5>
                     </div>
@@ -51,9 +54,9 @@
                          data-parent="#accordion">
                         <div class="card-body">
                             <form action="<c:url value="/admin/personal"/>">
-                                <input type="text" name="deleteId" class="form-control" placeholder="ID питомца"
+                                <input type="text" name="deleteId" class="form-control" placeholder="ID работника"
                                        required>
-                                <button class="btn btn-primary mt-3" type="submit">Удалить питомца</button>
+                                <button class="btn btn-primary mt-3" type="submit">Удалить работника</button>
                             </form>
                         </div>
                     </div>
@@ -68,23 +71,29 @@
             <table class="table-bordered table-hover">
                 <thead>
                 <tr>
-                    <td>ID владельца</td>
-                    <td>ID питомца</td>
-                    <td>Кличка питомца</td>
-                    <td>Вид питомца</td>
-                    <td>Возраст питомца</td>
-                    <td>Примечание</td>
+                    <td>ID сотрудника</td>
+                    <td>Имя</td>
+                    <td>Фамилия</td>
+                    <td>Отчество</td>
+                    <td>Дата найма</td>
+                    <td>Должность</td>
+                    <td>Номер паспорта</td>
+                    <td>Номер телефона</td>
+                    <td>Email</td>
                 </tr>
                 </thead>
                 <tbody>
-                <c:forEach items="${pets}" var="pet">
+                <c:forEach items="${staff}" var="employee">
                     <tr>
-                        <td>${pet.idowner}</td>
-                        <td>${pet.idanimal}</td>
-                        <td>${pet.animalName}</td>
-                        <td>${pet.animalType.animalType}</td>
-                        <td>${pet.age}</td>
-                        <td>${pet.notice}</td>
+                        <td>${employee.idstaff}</td>
+                        <td>${employee.employeeName}</td>
+                        <td>${employee.employeeLastName}</td>
+                        <td>${employee.employeePatronymic}</td>
+                        <td>${employee.dateRec}</td>
+                        <td>${employee.position}</td>
+                        <td>${employee.passport}</td>
+                        <td>${employee.phoneNum}</td>
+                        <td>${employee.email}</td>
                     </tr>
                 </c:forEach>
                 </tbody>

@@ -41,7 +41,7 @@
                     <div class="card-header" role="tab" id="headingTwo">
                         <h5 class="mb-0">
                             <a data-toggle="collapse" href="#collapseTwo" aria-expanded="true"
-                               aria-controls="collapseOne">
+                               aria-controls="collapseTwo">
                                 Удалить питомца
                             </a>
                         </h5>
