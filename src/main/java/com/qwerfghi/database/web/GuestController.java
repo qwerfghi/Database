@@ -31,7 +31,7 @@ public class GuestController {
     public String guest(ModelMap model, HttpServletRequest request) {
         String animalType = request.getParameter("animalType");
         String date = request.getParameter("date");
-        SimpleDateFormat dateFormat = new SimpleDateFormat("mm/dd/yyyy");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd.mm.yyyy");
         List<Room> rooms = new ArrayList<>();
         try {
             Date parse = dateFormat.parse(date);

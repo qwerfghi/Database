@@ -29,7 +29,7 @@
                                 <input type="text" name="emplPosition" class="form-control"
                                        placeholder="Должность сотрудника"
                                        required>
-                                <input type="text" id="datepicker" name="date" class="form-control"
+                                <input type="date" name="date" class="form-control"
                                        placeholder="Дата найма" required>
                                 <input type="text" name="passNum" class="form-control" placeholder="Номер паспорта"
                                        required>

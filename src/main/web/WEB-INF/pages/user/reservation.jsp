@@ -11,7 +11,7 @@
                             <label for="pet">Выберите вашего питомца</label>
                         </div>
                         <div class="col-4">
-                            <select class="form-control" id="pet" name="petName" onchange="hiddenPet.value = this.value">
+                            <select class="form-control" id="pet" name="petName" onchange="document.getElementById('hiddenPet').value = document.getElementById('pet').value">
                                 <c:forEach items="${user.owner.animalList}" var="pet">
                                     <option>${pet.animalName}</option>
                                 </c:forEach>
@@ -56,7 +56,7 @@
                     <div class="form-group row">
                         <label for="roomNum" class="col-sm-5 col-form-label">Номер комнаты</label>
                         <div class="col-sm-7">
-                            <input type="email" class="form-control" id="roomNum">
+                            <input type="text" class="form-control" id="roomNum" name="roomNum">
                         </div>
                     </div>
                     <div class="form-group row">
@@ -91,7 +91,7 @@
                             </label>
                         </div>
                     </div>
-                    <select id="hiddenPet" name="petName" hidden></select>
+                    <input type="hidden" id="hiddenPet" name="hiddenPet" value="Летти">
                     <button class="btn btn-primary" type="submit">Забронировать</button>
                 </form>
             </div>

@@ -6,16 +6,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="../../../resources/css/bootstrap.min.css">
     <link rel="stylesheet" href="../../../resources/css/guest.css">
-    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <script>
-        $(function () {
-            $("#datepicker").datepicker();
-        });
-    </script>
 </head>
 <body>
 <div class="container">
@@ -34,7 +26,7 @@
             </div>
             <div class="col-lg-2">
                 <label for="datepicker">Дата заселения</label>
-                <input type="text" id="datepicker" name="date" class="form-control" required>
+                <input type="date" id="datepicker" name="date" class="form-control" required>
             </div>
             <div class="col-lg-1">
                 <button type="submit" class="btn btn-primary">Submit</button>

@@ -53,7 +53,7 @@ public class AdminController {
             staff.setPhoneNum(request.getParameter("phoneNum"));
             staff.setEmail(request.getParameter("email"));
             try {
-                staff.setDateRec(new SimpleDateFormat("mm/dd/yyyy").parse(request.getParameter("date")));
+                staff.setDateRec(new SimpleDateFormat("dd.mm.yyyy").parse(request.getParameter("date")));
             } catch (Exception e) {
                 e.printStackTrace();
             }

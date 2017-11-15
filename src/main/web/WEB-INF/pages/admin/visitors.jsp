@@ -95,8 +95,8 @@
     </div>
     <div class="row pt-4">
         <div class="col"></div>
-        <div class="col-lg-9 table">
-            <table class="table-bordered table-hover">
+        <div class="col-lg-9 table" style="overflow: auto">
+            <table class="table-bordered table-hover table">
                 <thead>
                 <tr>
                     <td>ID</td>
@@ -108,7 +108,7 @@
                     <td>Email</td>
                     <td>Скидка</td>
                     <td>Область</td>
-                    <td>Город/Населенный пункт</td>
+                    <td>Город/ Населенный пункт</td>
                     <td>Улица</td>
                     <td>Дом</td>
                     <td>Квартира</td>

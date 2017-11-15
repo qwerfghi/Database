@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import javax.servlet.http.HttpServletRequest;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 
 @Controller
 @RequestMapping("/user")
@@ -29,27 +30,35 @@ public class UserController {
 
     @RequestMapping(value = "/reservation")
     public String reservation(ModelMap model, @ModelAttribute(name = "user") User user, HttpServletRequest request) {
-        String petName = request.getParameter("petName");
         String roomNum = request.getParameter("roomNum");
-        if (petName != null) {
-            Animal animal = user.getOwner()
-                    .getAnimalList()
-                    .stream()
-                    .filter(animalEntity -> animalEntity.getAnimalName().equals(petName))
-                    .findFirst()
-                    .orElse(new Animal());
-             model.addAttribute("freeRooms", userService.getAllFreeRooms(animal.getAnimalType()));
-        }
         if (roomNum != null) {
-            SimpleDateFormat dateFormat = new SimpleDateFormat("mm/dd/yyyy");
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd");
             try {
-                userService.reserveRoom(Integer.parseInt(roomNum), dateFormat.parse(request.getParameter("dateIn")),
-                        dateFormat.parse(request.getParameter("dateOut")), null /*animal*/);
+                String hiddenPet = request.getParameter("hiddenPet");
+                Animal animal = getAnimal(user, hiddenPet);
+                Date dateIn = dateFormat.parse(request.getParameter("dateIn"));
+                Date dateOut = dateFormat.parse(request.getParameter("dateOut"));
+                userService.reserveRoom(Integer.parseInt(roomNum), dateIn, dateOut, animal);
+                model.addAttribute("freeRooms", userService.getAllFreeRooms(animal.getAnimalType()));
             } catch (ParseException e) {
                 e.printStackTrace();
             }
         }
+        String petName = request.getParameter("petName");
+        if (petName != null) {
+            Animal animal = getAnimal(user, petName);
+            model.addAttribute("freeRooms", userService.getAllFreeRooms(animal.getAnimalType()));
+        }
         return "user/reservation";
+    }
+
+    private Animal getAnimal(User user, String petName) {
+        return user.getOwner()
+                        .getAnimalList()
+                        .stream()
+                        .filter(animalEntity -> animalEntity.getAnimalName().equals(petName))
+                        .findFirst()
+                        .orElse(new Animal());
     }
 
     @RequestMapping(value = "/rooms")
